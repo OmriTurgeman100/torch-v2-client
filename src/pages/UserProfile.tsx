@@ -7,6 +7,7 @@ import Avatar from "@mui/material/Avatar";
 import api from "../services/Http";
 import { useDropzone } from "react-dropzone";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 
 interface UserData {
   username: string;
@@ -67,6 +68,9 @@ export const UserProfile = () => {
           Authorization: `Bearer ${user.token}`,
         },
       });
+
+      window.location.reload(); 
+
     } catch (error) {
       console.log(error);
       alert("There was an error uploading your image.");
@@ -96,6 +100,7 @@ export const UserProfile = () => {
         margin: "50px auto",
         position: "relative",
         backgroundColor: "white",
+        overflow: "hidden"
       }}
     >
       <Box
@@ -190,7 +195,7 @@ export const UserProfile = () => {
               </div>
 
               <Typography
-                sx={{ fontSize: "10px", position: "absolute", bottom: "0px" }}
+                sx={{ fontSize: "17px", position: "absolute", bottom: "0px" }}
                 variant="h6"
               >
                 {fileName}

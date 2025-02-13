@@ -37,6 +37,8 @@ export const Login = () => {
 
       dispatch({ type: "LOGIN", payload: { token: response.data.token } });
 
+      
+
       navigate("/")
 
       reset();
