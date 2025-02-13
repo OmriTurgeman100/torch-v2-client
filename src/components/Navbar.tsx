@@ -71,7 +71,7 @@ export const Navbar = () => {
   const handleSettingClick = (setting: string) => {
     switch (setting) {
       case "Profile":
-        navigate("/me");
+        navigate("/me"); //TODO remove not wanted routes
         break;
       case "Account":
         navigate("/account");
