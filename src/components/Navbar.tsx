@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
-import torchLogo from "../assets/torchi.svg";
+import torchLogo from "../assets/torched.svg";
 import { useAuthContext } from "../Context/UseAuthContext";
 import { jwtDecode } from "jwt-decode";
 import Button from "@mui/material/Button";
