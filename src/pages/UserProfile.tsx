@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { fetch_user_photo } from "../services/Get-User-Photo";
 import Avatar from "@mui/material/Avatar";
+import api from "../services/Http";
+import { useDropzone } from 'react-dropzone';
+import Button from "@mui/material/Button";
 
 interface UserData {
   username: string;
@@ -16,6 +19,7 @@ export const UserProfile = () => {
   const [data, setData] = useState<UserData[]>([]);
   const [createdAt, setCreatedAt] = useState<String | null>();
   const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
+  const [FormImage, SetFormImage] = useState<any>();
 
   const getData = async () => {
     try {
@@ -24,7 +28,7 @@ export const UserProfile = () => {
 
       const uploadedAt: string = response.data.user_created_at[0].uploaded_at;
 
-      const extracted_date:string = uploadedAt.split('T')[0];
+      const extracted_date: string = uploadedAt.split("T")[0];
       setCreatedAt(extracted_date);
     } catch (error) {
       console.error(error);
@@ -43,6 +47,28 @@ export const UserProfile = () => {
       }
     }
   };
+
+  function handleImage(e: any) {
+    SetFormImage(e.target.files[0]);
+  }
+
+  async function send_image_api() {
+    try {
+      const formData = new FormData();
+      formData.append("photo", FormImage);
+
+      await api.patch("/api/v1/users/update-me", formData, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+      alert("There was an error uploading your image.");
+    }
+  }
+
+  
 
   useEffect(() => {
     if (user.token) {
@@ -137,6 +163,31 @@ export const UserProfile = () => {
             >
               created_at: {createdAt}
             </Typography>
+
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                marginTop: "15px",
+                gap: "25px",
+              }}
+            >
+              <input
+                className="upload-photo"
+                type="file"
+                name="photo"
+                id="photo-input"
+                onChange={handleImage}
+              />
+              <label htmlFor="photo-input" className="upload-photo-label">
+                Change Picture
+              </label>
+
+              <Button onClick={send_image_api} variant="contained">
+                upload
+              </Button>
+            </Box>
           </div>
         ))}
       </Box>

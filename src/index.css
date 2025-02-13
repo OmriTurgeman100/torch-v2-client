@@ -21,3 +21,22 @@ a:hover {
   border-radius: 10px;
 }
 
+input {
+  display: none;
+}
+
+.upload-photo {
+  display: none;
+}
+
+.upload-photo-label {
+  background-color: #e9ecef;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border-radius: 5px;
+  transition: transform 0.2s ease-in-out; 
+}
+
+.upload-photo-label:hover {
+  transform: scale(1.05); 
+}
