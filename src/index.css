@@ -12,31 +12,37 @@ a {
   font-size: 20px;
   color: rgb(43, 43, 43);
   padding: 5px;
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 a:hover {
   background-color: rgba(22, 72, 238, 0.1);
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
   border-radius: 10px;
 }
 
-input {
-  display: none;
+.dropzone {
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  width: 80%;
+  background-color: #fafafa;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
 }
 
-.upload-photo {
-  display: none;
+.dropzone:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  border-color: #888;
 }
 
-.upload-photo-label {
-  background-color: #e9ecef;
-  padding: 10px;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  border-radius: 5px;
-  transition: transform 0.2s ease-in-out; 
-}
-
-.upload-photo-label:hover {
-  transform: scale(1.05); 
+.dropzone:active {
+  background-color: #e5e5e5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-color: #555;
 }

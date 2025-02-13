@@ -5,7 +5,7 @@ import { Box, Typography } from "@mui/material";
 import { fetch_user_photo } from "../services/Get-User-Photo";
 import Avatar from "@mui/material/Avatar";
 import api from "../services/Http";
-import { useDropzone } from 'react-dropzone';
+import { useDropzone } from "react-dropzone";
 import Button from "@mui/material/Button";
 
 interface UserData {
@@ -20,6 +20,7 @@ export const UserProfile = () => {
   const [createdAt, setCreatedAt] = useState<String | null>();
   const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
   const [FormImage, SetFormImage] = useState<any>();
+  const [fileName, setFileName] = useState<string>("");
 
   const getData = async () => {
     try {
@@ -48,9 +49,13 @@ export const UserProfile = () => {
     }
   };
 
-  function handleImage(e: any) {
-    SetFormImage(e.target.files[0]);
-  }
+  const handleDrop = (acceptedFiles: any[]) => {
+    if (acceptedFiles.length > 0) {
+      SetFormImage(acceptedFiles[0]);
+    }
+
+    setFileName(acceptedFiles[0].path);
+  };
 
   async function send_image_api() {
     try {
@@ -68,14 +73,18 @@ export const UserProfile = () => {
     }
   }
 
-  
-
   useEffect(() => {
     if (user.token) {
       getData();
       fetchProfilePhoto();
     }
   }, [user.token]);
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop: (acceptedFiles: File[]) => handleDrop(acceptedFiles),
+    multiple: false,
+    accept: "image/*" as any,
+  });
 
   return (
     <Box
@@ -173,19 +182,22 @@ export const UserProfile = () => {
                 gap: "25px",
               }}
             >
-              <input
-                className="upload-photo"
-                type="file"
-                name="photo"
-                id="photo-input"
-                onChange={handleImage}
-              />
-              <label htmlFor="photo-input" className="upload-photo-label">
-                Change Picture
-              </label>
+              <div {...getRootProps({ className: "dropzone" })}>
+                <input {...getInputProps()} style={{ display: "none" }} />
+                <Typography variant="h6">
+                  Drag & Drop your photo here
+                </Typography>
+              </div>
+
+              <Typography
+                sx={{ fontSize: "10px", position: "absolute", bottom: "0px" }}
+                variant="h6"
+              >
+                {fileName}
+              </Typography>
 
               <Button onClick={send_image_api} variant="contained">
-                upload
+                Upload
               </Button>
             </Box>
           </div>
