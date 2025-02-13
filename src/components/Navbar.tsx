@@ -17,7 +17,7 @@ import Avatar from "@mui/material/Avatar";
 import axios from "../services/Http";
 import { fetch_user_photo } from "../services/Get-User-Photo";
 
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Account", "Home", "Logout"];
 
 export const Navbar = () => {
   const { user, dispatch } = useAuthContext();
@@ -76,8 +76,8 @@ export const Navbar = () => {
       case "Account":
         navigate("/account");
         break;
-      case "Dashboard":
-        navigate("/dashboard");
+      case "Home":
+        navigate("/");
         break;
       case "Logout":
         handle_logout();
