@@ -50,10 +50,10 @@ a:hover {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  margin-top: 10px;
   gap: 20px;
   padding: 20px;
 }
+
 
 .card {
   transition: transform 1s ease;

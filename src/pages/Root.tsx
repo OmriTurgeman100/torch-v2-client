@@ -5,6 +5,7 @@ import { Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { node_colors } from "../utils/NodeColors";
 
 interface RootNode {
   node_id: number;
@@ -34,22 +35,6 @@ export const Root = () => {
     data();
   }, [user.token]);
 
-  const color = (status: string) => {
-    switch (status) {
-      case "expired":
-        return "linear-gradient(135deg, #6c757d, #343a40)";
-      case "critical":
-        return "linear-gradient(135deg, #ff8800 0%, #ffd700 100%)";
-      case "down":
-        return "linear-gradient(135deg, #ff2600 0%, #e95d3a 100%)";
-      case "up":
-        return "linear-gradient(135deg,rgb(77, 85, 189), #2575fc)";
-
-      default:
-        return "linear-gradient(135deg, #dee2e6, #adb5bd)";
-    }
-  };
-
   return (
     <div className="grid-container">
       {RootNodes.map((node) => (
@@ -60,7 +45,7 @@ export const Root = () => {
             sx={{
               width: "200px",
               height: "80px",
-              background: color(node.status),
+              background: node_colors(node.status),
               padding: "15px",
               borderRadius: 1,
               boxShadow: 5,
