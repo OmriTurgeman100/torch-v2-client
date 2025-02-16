@@ -8,7 +8,7 @@ export const fetch_root_nodes = async (token: string) => {
       },
     });
 
-    return response;
+    return response.data;
   } catch (error) {
     throw error;
   }

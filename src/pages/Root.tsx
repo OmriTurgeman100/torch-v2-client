@@ -25,7 +25,7 @@ export const Root = () => {
   const data = async () => {
     try {
       const response = await fetch_root_nodes(user.token);
-      setRootNodes(response.data.data);
+      setRootNodes(response.data);
     } catch (error) {
       console.error("Error fetching root nodes:", error);
     }

@@ -5,8 +5,6 @@ import { Typography } from "@mui/material";
 import torchLogo from "../assets/torchi.svg";
 import { useAuthContext } from "../Context/UseAuthContext";
 import { jwtDecode } from "jwt-decode";
-import Button from "@mui/material/Button";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useNavigate } from "react-router-dom";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
@@ -14,17 +12,16 @@ import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import { useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
-import axios from "../services/Http";
 import { fetch_user_photo } from "../services/Get-User-Photo";
 
-const settings = ["Profile", "Account", "Home", "Logout"];
+
 
 export const Navbar = () => {
   const { user, dispatch } = useAuthContext();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
-
   const navigate = useNavigate();
+  const settings = ["Profile", "Account", "Home", "Logout"];
 
   let decoded: any = null;
   let username: any = null;
@@ -42,23 +39,22 @@ export const Navbar = () => {
     username = decoded.user_name;
   }
 
-  useEffect(() => {
-    const fetchProfilePhoto = async () => {
-      if (user && user.token) {
-        try {
-          decoded = jwtDecode(user.token);
-          username = decoded.user_name;
+  const fetchProfilePhoto = async (): Promise<void> => {
+    if (user && user.token) {
+      try {
+        decoded = jwtDecode(user.token);
+        username = decoded.user_name;
 
-          const data: string = await fetch_user_photo(user.token);
+        const data: string = await fetch_user_photo(user.token);
 
-          console.log(`data is ${data}`);
-          setProfilePhoto(data);
-        } catch (error) {
-          console.error("Failed to fetch profile photo:", error);
-        }
+        setProfilePhoto(data);
+      } catch (error) {
+        console.error("Failed to fetch profile photo:", error);
       }
-    };
+    }
+  };
 
+  useEffect(() => {
     fetchProfilePhoto();
   }, [user]);
 
@@ -71,7 +67,7 @@ export const Navbar = () => {
   const handleSettingClick = (setting: string) => {
     switch (setting) {
       case "Profile":
-        navigate("/me"); 
+        navigate("/me");
         break;
       case "Account":
         navigate("/account");
