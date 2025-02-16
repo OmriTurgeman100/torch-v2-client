@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { fetch_root_nodes } from "../services/Get-Root-Nodes";
 import { useAuthContext } from "../Context/UseAuthContext";
 
+import { Box} from "@mui/material";
+import Grid from '@mui/material/Grid2';
+
 interface RootNode {
   node_id: number;
   parent: number | null;
@@ -30,8 +33,8 @@ export const Root = () => {
   }, [user.token]);
 
   return (
-    <div>
-      <h1>Root page</h1>
-    </div>
+    <Box>
+
+    </Box>
   );
 };
