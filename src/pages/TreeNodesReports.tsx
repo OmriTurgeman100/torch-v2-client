@@ -43,6 +43,12 @@ export const TreeNodesReports = () => {
 
   useEffect(() => {
     get_reports_nodes();
+
+    const intervalId = setInterval(get_reports_nodes, 5000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
   }, [id]);
 
   return (

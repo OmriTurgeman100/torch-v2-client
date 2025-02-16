@@ -33,6 +33,12 @@ export const Root = () => {
 
   useEffect(() => {
     data();
+
+    const intervalId = setInterval(data, 5000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
   }, [user.token]);
 
   return (

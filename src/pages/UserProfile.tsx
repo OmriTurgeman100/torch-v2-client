@@ -69,8 +69,7 @@ export const UserProfile = () => {
         },
       });
 
-      window.location.reload(); 
-
+      window.location.reload();
     } catch (error) {
       console.log(error);
       alert("There was an error uploading your image.");
@@ -100,7 +99,7 @@ export const UserProfile = () => {
         margin: "50px auto",
         position: "relative",
         backgroundColor: "white",
-        overflow: "hidden"
+        overflow: "hidden",
       }}
     >
       <Box

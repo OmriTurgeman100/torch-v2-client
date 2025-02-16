@@ -27,7 +27,7 @@ export const Register = () => {
 
       await AuthUserRegister(form_username, form_password);
 
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 2000));
 
       navigate("/login");
 
