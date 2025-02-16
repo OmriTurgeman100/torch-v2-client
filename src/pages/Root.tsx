@@ -16,7 +16,7 @@ interface RootNode {
 }
 
 export const Root = () => {
-  const { user } = useAuthContext(); // Destructure `user` directly
+  const { user } = useAuthContext(); 
   const [RootNodes, setRootNodes] = useState<RootNode[]>([]);
 
   const data = async () => {
