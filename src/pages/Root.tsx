@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { fetch_root_nodes } from "../services/Get-Root-Nodes";
 import { useAuthContext } from "../Context/UseAuthContext";
+import { Box } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 
-import { Box} from "@mui/material";
-import Grid from '@mui/material/Grid2';
 
 interface RootNode {
   node_id: number;
@@ -16,7 +16,7 @@ interface RootNode {
 }
 
 export const Root = () => {
-  const { user } = useAuthContext(); 
+  const { user } = useAuthContext();
   const [RootNodes, setRootNodes] = useState<RootNode[]>([]);
 
   const data = async () => {
@@ -33,8 +33,17 @@ export const Root = () => {
   }, [user.token]);
 
   return (
-    <Box>
+<Box>
+  <Grid container spacing={2}>
+    {RootNodes.map((node) => (
 
-    </Box>
+        <Box>
+          <h1>{node.title}</h1>
+          <h2>{node.status}</h2>
+        </Box>
+     
+    ))}
+  </Grid>
+</Box>
   );
 };
