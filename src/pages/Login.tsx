@@ -10,7 +10,6 @@ import { AuthUserLogin } from "../services/Post-Auth-Login";
 import { useAuthContext } from "../Context/UseAuthContext";
 import { useNavigate } from "react-router-dom";
 
-
 export const Login = () => {
   const {
     register,
@@ -31,15 +30,11 @@ export const Login = () => {
 
       const response = await AuthUserLogin(form_username, form_password);
 
-      console.log(typeof response.data.token) // * type is string 
-
       localStorage.setItem("token", response.data.token);
 
       dispatch({ type: "LOGIN", payload: { token: response.data.token } });
 
-      
-
-      navigate("/")
+      navigate("/");
 
       reset();
     } catch (error: any) {
