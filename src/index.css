@@ -31,7 +31,7 @@ a:hover {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
 }
 
@@ -45,4 +45,20 @@ a:hover {
   background-color: #e5e5e5;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-color: #555;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  margin-top: 10px;
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  transition: transform 1s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
 }
