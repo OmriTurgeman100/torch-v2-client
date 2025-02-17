@@ -185,8 +185,12 @@ export const TreeNodesReports = () => {
           <Button loading loadingPosition="start" startIcon={<SaveIcon />}>
             Rules
           </Button>
-          <Button>Nodes</Button>
-          <Button>Reports</Button>
+          <Button onClick={() => navigate(`/submit/nodes/tree/${id}`)}>
+            Nodes
+          </Button>
+          <Button onClick={() => navigate(`/reports/menu/tree/${id}`)}>
+            Reports
+          </Button>
         </ButtonGroup>
       )}
     </>

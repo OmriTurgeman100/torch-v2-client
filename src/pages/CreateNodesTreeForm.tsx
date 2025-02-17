@@ -15,6 +15,7 @@ import { useParams } from "react-router-dom";
 
 export const CreateNodesTreeForm = () => {
   const { user } = useAuthContext();
+  const {id} = useParams()
   const {
     register,
     handleSubmit,
@@ -26,7 +27,7 @@ export const CreateNodesTreeForm = () => {
     try {
       const form_title: string = data.title;
       const form_description: string = data.description;
-      const {id} = useParams()
+    
 
       await api.post(
         "/api/v1/reports/nodes",

@@ -15,6 +15,7 @@ import { Navigate } from "react-router-dom";
 import { ReportRules } from "./pages/ReportRules";
 import { CreateNodesForm } from "./pages/CreateNodesFormRoot";
 import { CreateNodesTreeForm } from "./pages/CreateNodesTreeForm";
+import { ReportsMenu } from "./pages/ReportsMenu";
 
 function App() {
   const { user } = useAuthContext();
@@ -27,6 +28,7 @@ function App() {
         <Route path="/report/rules/:id" element={user ? <ReportRules/> : <Navigate to={"/login"}/>}></Route>
         <Route path="/submit/nodes/root" element={user ? <CreateNodesForm/> : <Navigate to={"/login"}/>}></Route>
         <Route path="/submit/nodes/tree/:id" element={user ? <CreateNodesTreeForm/> : <Navigate to={"/login"}/>}></Route>
+        <Route path="/reports/menu/tree/:id" element={user ? <ReportsMenu/> : <Navigate to={"/login"}/>}></Route>
         <Route path="/register" element={!user ?<Register /> : <Navigate to={"/"}/>}></Route>
         <Route path="/login" element={!user ? <Login /> :<Navigate to={"/"}/>}></Route>
         <Route path="/me" element={user ? <UserProfile /> :<Navigate to={"/"}/>}></Route>
