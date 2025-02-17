@@ -94,7 +94,7 @@ export const Root = () => {
         <Button loading loadingPosition="start" startIcon={<SaveIcon />}>
           Rules
         </Button>
-        <Button onClick={() => navigate(`/submit/nodes/${null}`)}>Nodes</Button>
+        <Button onClick={() => navigate("/submit/nodes/root")}>Nodes</Button>
         <Button loading loadingPosition="start" startIcon={<SaveIcon />}>
           Reports
         </Button>

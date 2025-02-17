@@ -106,7 +106,7 @@ export const TreeNodesReports = () => {
             sx={{ position: "absolute", bottom: 10, right: 10 }}
           >
             <Button>Rules</Button>
-            <Button onClick={() => navigate(`/submit/nodes/${id}`)}>
+            <Button onClick={() => navigate(`/submit/nodes/tree/${id}`)}>
               Nodes
             </Button>
             <Button loading loadingPosition="start" startIcon={<SaveIcon />}>

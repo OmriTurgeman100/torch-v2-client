@@ -1,5 +1,4 @@
-import { useParams } from "react-router-dom";
-import { Typography, Box } from "@mui/material";
+import { Box } from "@mui/material";
 import { useForm } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -10,9 +9,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
+import api from "../services/Http";
+import { useAuthContext } from "../Context/UseAuthContext";
+import { useParams } from "react-router-dom";
 
-export const CreateNodesForm = () => {
-  const { id } = useParams();
+export const CreateNodesTreeForm = () => {
+  const { user } = useAuthContext();
   const {
     register,
     handleSubmit,
@@ -20,21 +22,37 @@ export const CreateNodesForm = () => {
     reset,
   } = useForm();
 
-
-  
   const onSubmit = async (data: FieldValues) => {
     try {
       const form_title: string = data.title;
-
       const form_description: string = data.description;
+      const {id} = useParams()
 
-      console.log(form_title);
+      await api.post(
+        "/api/v1/reports/nodes",
+        {
+          title: form_title,
+          description: form_description,
+          parent: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
 
-      console.log(form_description);
+      toast.success("Successful", {
+        style: {
+          backgroundColor: "#0047AB",
+          color: "white",
+        },
+      });
 
       reset();
     } catch (error: any) {
-      console.error("form submit has failed:", error.message);
+      console.error("Form submit has failed:", error.message);
+      
     }
   };
 
@@ -54,10 +72,14 @@ export const CreateNodesForm = () => {
           sx={{
             background: "linear-gradient(135deg, #1E3A8A, #3B82F6)",
             width: "500px",
-
             height: "255px",
             margin: "15px",
             boxShadow: 5,
+            transition: "transform 1s ease, box-shadow 1s ease",
+            "&:hover": {
+              transform: "translateY(-5px)",
+              boxShadow: 10,
+            },
           }}
         >
           <Box
