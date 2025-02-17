@@ -1,5 +1,5 @@
 // apiService.ts
-import api from "./Http"; // Assuming you have an api instance configured
+import api from "./Http"; 
 import { toast } from "react-toastify";
 
 export const AuthUserRegister = async (username: string, password: string) => {
