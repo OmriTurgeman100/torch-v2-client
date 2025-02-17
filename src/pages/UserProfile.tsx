@@ -7,7 +7,6 @@ import Avatar from "@mui/material/Avatar";
 import api from "../services/Http";
 import { useDropzone } from "react-dropzone";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
 
 interface UserData {
   username: string;
