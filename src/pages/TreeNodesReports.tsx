@@ -8,6 +8,7 @@ import { node_colors } from "../utils/NodeColors";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 import SaveIcon from "@mui/icons-material/Save";
+import { useNavigate } from "react-router-dom";
 
 type sub_nodes = {
   description: string;
@@ -38,6 +39,7 @@ export const TreeNodesReports = () => {
   const [Data, setData] = useState<data | null>(null);
   const { id } = useParams();
   const { user } = useAuthContext();
+  const navigate = useNavigate();
 
   const get_reports_nodes = async () => {
     const response = await fetch_nodes_report(user.token, id);
@@ -60,9 +62,8 @@ export const TreeNodesReports = () => {
         <div>
           <div className="grid-container">
             {Data.nodes.map((node) => (
-              <Link to={`/${node.node_id}`}>
+              <Link to={`/${node.node_id}`} key={node.node_id}>
                 <Box
-                  key={node.node_id}
                   className="card"
                   sx={{
                     width: "200px",
@@ -105,7 +106,9 @@ export const TreeNodesReports = () => {
             sx={{ position: "absolute", bottom: 10, right: 10 }}
           >
             <Button>Rules</Button>
-            <Button>Nodes</Button>
+            <Button onClick={() => navigate(`/submit/nodes/${id}`)}>
+              Nodes
+            </Button>
             <Button loading loadingPosition="start" startIcon={<SaveIcon />}>
               Reports
             </Button>

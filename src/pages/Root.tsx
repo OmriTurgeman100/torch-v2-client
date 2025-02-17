@@ -48,9 +48,8 @@ export const Root = () => {
     <div>
       <div className="grid-container">
         {RootNodes.map((node) => (
-          <Link to={`/${node.node_id}`}>
+          <Link to={`/${node.node_id}`} key={node.node_id}>
             <Box
-              key={node.node_id}
               className="card"
               sx={{
                 width: "200px",
@@ -95,7 +94,7 @@ export const Root = () => {
         <Button loading loadingPosition="start" startIcon={<SaveIcon />}>
           Rules
         </Button>
-        <Button>Nodes</Button>
+        <Button onClick={() => navigate(`/submit/nodes/${null}`)}>Nodes</Button>
         <Button loading loadingPosition="start" startIcon={<SaveIcon />}>
           Reports
         </Button>
