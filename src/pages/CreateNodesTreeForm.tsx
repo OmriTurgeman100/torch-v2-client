@@ -141,7 +141,7 @@ export const CreateNodesTreeForm = () => {
                 required: "description is required",
                 minLength: {
                   value: 5,
-                  message: "description must be at least 5 characters",
+                  message: "Desc must be at least 5 characters",
                 },
               })}
               error={!!errors.description}
