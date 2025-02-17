@@ -99,41 +99,44 @@ export const TreeNodesReports = () => {
       {Data?.reports && Data.reports.length > 0 && (
         <div className="grid-container">
           {Data.reports.map((report) => (
-            <Box
-              key={report.id}
-              className="card"
-              sx={{
-                width: "200px",
-                height: "80px",
-                background: "linear-gradient(135deg,rgb(77, 85, 189), #2575fc)",
-                padding: "15px",
-                borderRadius: 1,
-                boxShadow: 5,
-              }}
-            >
-              <Typography
-                variant="h4"
-                style={{
-                  color: "white",
-                  fontSize: "1.6rem",
-                  letterSpacing: "1px",
+            <Link to={`/report/rules/${report.parent}`}>
+              <Box
+                key={report.id}
+                className="card"
+                sx={{
+                  width: "200px",
+                  height: "80px",
+                  background:
+                    "linear-gradient(135deg,rgb(77, 85, 189), #2575fc)",
+                  padding: "15px",
+                  borderRadius: 1,
+                  boxShadow: 5,
                 }}
               >
-                {report.title}
-              </Typography>
+                <Typography
+                  variant="h4"
+                  style={{
+                    color: "white",
+                    fontSize: "1.6rem",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  {report.title}
+                </Typography>
 
-              <Typography
-                variant="h4"
-                style={{
-                  color: "white",
-                  fontSize: "1.0rem",
-                  opacity: "50%",
-                  letterSpacing: "1px",
-                }}
-              >
-                {report.value}
-              </Typography>
-            </Box>
+                <Typography
+                  variant="h4"
+                  style={{
+                    color: "white",
+                    fontSize: "1.0rem",
+                    opacity: "50%",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  {report.value}
+                </Typography>
+              </Box>
+            </Link>
           ))}
         </div>
       )}
