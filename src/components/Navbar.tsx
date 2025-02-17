@@ -14,8 +14,6 @@ import { useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import { fetch_user_photo } from "../services/Get-User-Photo";
 
-
-
 export const Navbar = () => {
   const { user, dispatch } = useAuthContext();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
