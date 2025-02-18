@@ -56,7 +56,8 @@ export const Display_Report_Rules = () => {
         sx={{
           backgroundColor: "white",
           width: "500px",
-          height: "500px",
+          minHeight: "500px",
+          height: "fit-content",
           margin: "35px auto",
           padding: "10px",
           borderRadius: 1,

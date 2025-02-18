@@ -32,7 +32,7 @@ export const post_report_from_menu = async (
       },
     });
 
-    console.log(response);
+    
     return response;
   } catch (error: any) {
     toast.error(error.message);
