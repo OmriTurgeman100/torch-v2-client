@@ -71,21 +71,25 @@ export const Display_Node_Rules = () => {
               alignItems: "center",
             }}
           >
-            <Box sx={{ backgroundColor: "#4361ee", padding: 0.5, borderRadius: 5, boxShadow: 1 }}>
-              <Typography
-                variant="h6"
-                style={{
-                  color: "white",
-                  fontSize: "1.5rem",
-                  letterSpacing: "1px",
-                }}
-              >
-                {node_rule.operator}
-              </Typography>
-            </Box>
+            <Typography
+              variant="h6"
+              style={{
+                color: "blue",
+                fontSize: "1.5rem",
+                letterSpacing: "1px",
+              }}
+            >
+              If
+            </Typography>
+
             <Box>
               {node_rule.conditions.map((node_rule_condition) => (
-                <Box sx={{ display: "flex", gap: 2, marginTop: 2 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    gap: 2,
+                  }}
+                >
                   <Typography
                     variant="h6"
                     style={{
@@ -104,7 +108,7 @@ export const Display_Node_Rules = () => {
                       letterSpacing: "1px",
                     }}
                   >
-                    {node_rule.operator}
+                    ==
                   </Typography>
                   <Typography
                     variant="h6"
@@ -126,7 +130,7 @@ export const Display_Node_Rules = () => {
                 fontSize: "1.5rem",
                 letterSpacing: "1px",
               }}
-              sx={{ marginTop: 2, marginBottom: 2 }}
+              sx={{}}
             >
               action: {node_rule.action}
             </Typography>
