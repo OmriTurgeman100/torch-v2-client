@@ -19,10 +19,26 @@ export const Create_Report_Rules = () => {
   const { id } = useParams();
 
   return (
-    <div>
+    <Box
+      sx={{
+        backgroundColor: "white",
+        width: "500px",
+        height: "500px",
+        margin: "35px auto",
+        padding: "10px",
+        borderRadius: 1,
+        boxShadow: 1,
+        display: "flex",
+        flexDirection: "column",
+        position: "relative",
+        gap: 1,
+        alignItems: "center",
+      }}
+    >
       <Box>
-        <h1>{id}</h1>
+      <h1>{id}</h1>
       </Box>
-    </div>
+      
+    </Box>
   );
 };

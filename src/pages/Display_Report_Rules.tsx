@@ -15,6 +15,9 @@ import { useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { fetch_rules } from "../services/Get-Rules";
 import { node_colors } from "../utils/NodeColors";
+import IconButton from "@mui/material/IconButton";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { useNavigate } from "react-router-dom";
 
 interface Report_Conditions {
   report_id: string;
@@ -33,6 +36,7 @@ interface Report_Rules {
 export const Display_Report_Rules = () => {
   const { user } = useAuthContext();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [reportRules, setReportRules] = useState<Report_Rules[]>([]);
 
@@ -58,8 +62,10 @@ export const Display_Report_Rules = () => {
         boxShadow: 1,
         display: "flex",
         flexDirection: "column",
-        gap: 3,
+        position: "relative",
+        gap: 1,
         alignItems: "center",
+   
       }}
     >
       {reportRules.map((report) => (
@@ -70,7 +76,7 @@ export const Display_Report_Rules = () => {
               flexDirection: "row",
               gap: 2,
               alignItems: "center",
-              marginTop: "15px",
+
               backgroundColor: "#e9ecef",
               padding: "10px",
               borderRadius: 5,
@@ -137,27 +143,40 @@ export const Display_Report_Rules = () => {
               </Typography>
             </Box>
           </Box>
-
-          
-          <Typography
-            variant="h6"
-            style={{
-              color: "#333333",
-              fontSize: "1.5rem",
-              textAlign: "center",
-              letterSpacing: "1px",
-              marginTop: "10px",
-              backgroundColor: "black",
-              display: "inline"
-
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              background: node_colors(report.action),
+              width: "fit-content",
+              margin: "auto",
+              marginTop: 2,
+              marginBottom: 2,
+              padding: "3px",
+              borderRadius: 5,
+              boxShadow: 5,
             }}
           >
-            {report.action}
-          </Typography>
-
-      
+            <Typography
+              variant="h6"
+              style={{
+                color: "white",
+                fontSize: "1.5rem",
+                opacity: "50%",
+                textAlign: "center",
+                fontWeight: "bold",
+                letterSpacing: "1px",
+              }}
+            >
+              {report.action}
+            </Typography>
+          </Box>
         </Box>
       ))}
+
+      <IconButton onClick={() => navigate(`/submit/report/rules/${id}`)} sx={{ position: "absolute", bottom: "-25px" }}>
+        <AddCircleIcon sx={{ color: "#4361ee", fontSize: 35 }} />
+      </IconButton>
     </Box>
   );
 };
