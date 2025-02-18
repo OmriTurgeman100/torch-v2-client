@@ -15,7 +15,14 @@ import { useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
 
 export const Display_Node_Rules = () => {
+  const { user } = useAuthContext();
+  const {id} = useParams();
   return (
-    <div>Display_Node_Rules</div>
+    <div>
+      <h1>
+      {id}
+      </h1>
+      
+      </div>
   )
 }
