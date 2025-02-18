@@ -51,60 +51,108 @@ export const Display_Report_Rules = () => {
   }, [id]);
 
   return (
-    <Box
-      sx={{
-        backgroundColor: "white",
-        width: "500px",
-        height: "500px",
-        margin: "35px auto",
-        padding: "10px",
-        borderRadius: 1,
-        boxShadow: 1,
-        display: "flex",
-        flexDirection: "column",
-        position: "relative",
-        gap: 1,
-        alignItems: "center",
-      }}
-    >
-      {reportRules.map((report) => (
-        <Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              gap: 2,
-              alignItems: "center",
-
-              backgroundColor: "#e9ecef",
-              padding: "10px",
-              borderRadius: 5,
-            }}
-          >
+    <div>
+      <Box
+        sx={{
+          backgroundColor: "white",
+          width: "500px",
+          height: "500px",
+          margin: "35px auto",
+          padding: "10px",
+          borderRadius: 1,
+          boxShadow: 1,
+          display: "flex",
+          flexDirection: "column",
+          position: "relative",
+          gap: 1,
+          alignItems: "center",
+        }}
+      >
+        {reportRules.map((report) => (
+          <Box>
             <Box
               sx={{
-                backgroundColor: "#f8f9fa",
-                padding: 1,
+                display: "flex",
+                flexDirection: "row",
+                gap: 2,
+                alignItems: "center",
+
+                backgroundColor: "#e9ecef",
+                padding: "10px",
                 borderRadius: 5,
-                boxShadow: 1,
               }}
             >
-              <Typography
-                variant="h6"
-                style={{
-                  color: "#333333",
-                  fontSize: "1.5rem",
-                  letterSpacing: "1px",
+              <Box
+                sx={{
+                  backgroundColor: "#f8f9fa",
+                  padding: 1,
+                  borderRadius: 5,
+                  boxShadow: 1,
                 }}
               >
-                {report.conditions[0].report_id}
-              </Typography>
+                <Typography
+                  variant="h6"
+                  style={{
+                    color: "#333333",
+                    fontSize: "1.5rem",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  {report.conditions[0].report_id}
+                </Typography>
+              </Box>
+              <Box
+                sx={{
+                  backgroundColor: "#4361ee",
+                  height: "fit-content",
+                  padding: 0.5,
+                  borderRadius: 5,
+                  boxShadow: 5,
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  style={{
+                    color: "white",
+                    fontSize: "1.0rem",
+                    fontWeight: "bold",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  {report.operator}
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  backgroundColor: "#f8f9fa",
+                  padding: 1,
+                  borderRadius: 5,
+                  boxShadow: 1,
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  style={{
+                    color: "#333333",
+                    fontSize: "1.5rem",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  {report.conditions[0].threshold}
+                </Typography>
+              </Box>
             </Box>
             <Box
               sx={{
-                backgroundColor: "#4361ee",
-                height: "fit-content",
-                padding: 0.5,
+                display: "flex",
+                justifyContent: "center",
+                background: node_colors(report.action),
+                width: "fit-content",
+                margin: "auto",
+                marginTop: 2,
+                marginBottom: 2,
+                padding: "3px",
                 borderRadius: 5,
                 boxShadow: 5,
               }}
@@ -113,72 +161,39 @@ export const Display_Report_Rules = () => {
                 variant="h6"
                 style={{
                   color: "white",
-                  fontSize: "1.0rem",
+                  fontSize: "1.5rem",
+                  opacity: "50%",
+                  textAlign: "center",
                   fontWeight: "bold",
                   letterSpacing: "1px",
                 }}
               >
-                {report.operator}
-              </Typography>
-            </Box>
-
-            <Box
-              sx={{
-                backgroundColor: "#f8f9fa",
-                padding: 1,
-                borderRadius: 5,
-                boxShadow: 1,
-              }}
-            >
-              <Typography
-                variant="h6"
-                style={{
-                  color: "#333333",
-                  fontSize: "1.5rem",
-                  letterSpacing: "1px",
-                }}
-              >
-                {report.conditions[0].threshold}
+                {report.action}
               </Typography>
             </Box>
           </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              background: node_colors(report.action),
-              width: "fit-content",
-              margin: "auto",
-              marginTop: 2,
-              marginBottom: 2,
-              padding: "3px",
-              borderRadius: 5,
-              boxShadow: 5,
-            }}
-          >
-            <Typography
-              variant="h6"
-              style={{
-                color: "white",
-                fontSize: "1.5rem",
-                opacity: "50%",
-                textAlign: "center",
-                fontWeight: "bold",
-                letterSpacing: "1px",
-              }}
-            >
-              {report.action}
-            </Typography>
-          </Box>
-        </Box>
-      ))}
+        ))}
 
-      <IconButton
-        onClick={() => navigate(`/submit/report/rules/${id}/${report_id}`)}
-        sx={{ position: "absolute", bottom: "-25px" }}
-      >
-        <AddCircleIcon sx={{ color: "#4361ee", fontSize: 35 }} />
-      </IconButton>
-    </Box>
+        <IconButton
+          onClick={() => navigate(`/submit/report/rules/${id}/${report_id}`)}
+          sx={{ position: "absolute", bottom: "-25px" }}
+        >
+          <AddCircleIcon sx={{ color: "#4361ee", fontSize: 35 }} />
+        </IconButton>
+      </Box>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
+    </div>
   );
 };
