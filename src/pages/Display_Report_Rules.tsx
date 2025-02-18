@@ -41,9 +41,13 @@ export const Display_Report_Rules = () => {
   const [reportRules, setReportRules] = useState<Report_Rules[]>([]);
 
   const fetch_report_rules = async () => {
-    const response = await fetch_rules(user.token, id);
+    try {
+      const response = await fetch_rules(user.token, id);
 
-    setReportRules(response.data);
+      setReportRules(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
