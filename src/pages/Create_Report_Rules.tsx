@@ -60,6 +60,10 @@ export const Create_Report_Rules = () => {
           report_id,
           user.token
         );
+
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+
+        navigate(`/display/report/rules/${id}/${report_id}`);
       }
     } catch (error) {
       console.error(error);
