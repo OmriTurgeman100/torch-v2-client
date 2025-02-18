@@ -80,6 +80,11 @@ export const Display_Report_Rules = () => {
                 backgroundColor: "#e9ecef",
                 padding: "10px",
                 borderRadius: 5,
+                transition: "transform 1s ease, box-shadow 1s ease",
+                "&:hover": {
+                  transform: "translateY(-5px)",
+                  boxShadow: 10,
+                },
               }}
             >
               <Box
@@ -155,6 +160,11 @@ export const Display_Report_Rules = () => {
                 padding: "3px",
                 borderRadius: 5,
                 boxShadow: 5,
+                transition: "transform 1s ease, box-shadow 1s ease",
+                "&:hover": {
+                  transform: "translateY(-5px)",
+                  boxShadow: 10,
+                },
               }}
             >
               <Typography
