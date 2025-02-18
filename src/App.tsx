@@ -34,9 +34,9 @@ function App() {
         <Route path="/submit/nodes/tree/:id" element={user ? <CreateNodesTreeForm/> : <Navigate to={"/login"}/>}></Route>
         <Route path="/reports/menu/tree/:id" element={user ? <ReportsMenu/> : <Navigate to={"/login"}/>}></Route>
         <Route path="/submit/node/rules/:id" element={user ? <Create_Node_Rules /> : <Navigate to={"/login"}/>}></Route>
-        <Route path="/submit/report/rules/:id" element={user ? <Create_Report_Rules /> : <Navigate to={"/login"}/>}></Route>
         <Route path="/display/node/rules/:id" element={user ? <Display_Node_Rules /> : <Navigate to={"/login"}/>}></Route>
-        <Route path="/display/report/rules/:id" element={user ? <Display_Report_Rules /> : <Navigate to={"/login"}/>}></Route>
+        <Route path="/display/report/rules/:id/:report_id" element={user ? <Display_Report_Rules /> : <Navigate to={"/login"}/>}></Route>
+        <Route path="/submit/report/rules/:id/:report_id" element={user ? <Create_Report_Rules /> : <Navigate to={"/login"}/>}></Route>
         <Route path="/register" element={!user ?<Register /> : <Navigate to={"/"}/>}></Route>
         <Route path="/login" element={!user ? <Login /> :<Navigate to={"/"}/>}></Route>
         <Route path="/me" element={user ? <UserProfile /> :<Navigate to={"/"}/>}></Route>

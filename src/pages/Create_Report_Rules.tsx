@@ -16,7 +16,7 @@ import { Typography } from "@mui/material";
 
 export const Create_Report_Rules = () => {
   const { user } = useAuthContext();
-  const { id } = useParams();
+  const { id, report_id } = useParams();
 
   return (
     <Box
@@ -36,9 +36,8 @@ export const Create_Report_Rules = () => {
       }}
     >
       <Box>
-      <h1>{id}</h1>
+        <h1>{id}</h1>
       </Box>
-      
     </Box>
   );
 };

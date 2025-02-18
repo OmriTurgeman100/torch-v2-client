@@ -35,7 +35,7 @@ interface Report_Rules {
 
 export const Display_Report_Rules = () => {
   const { user } = useAuthContext();
-  const { id } = useParams();
+  const { id, report_id } = useParams();
   const navigate = useNavigate();
 
   const [reportRules, setReportRules] = useState<Report_Rules[]>([]);
@@ -65,7 +65,6 @@ export const Display_Report_Rules = () => {
         position: "relative",
         gap: 1,
         alignItems: "center",
-   
       }}
     >
       {reportRules.map((report) => (
@@ -174,7 +173,10 @@ export const Display_Report_Rules = () => {
         </Box>
       ))}
 
-      <IconButton onClick={() => navigate(`/submit/report/rules/${id}`)} sx={{ position: "absolute", bottom: "-25px" }}>
+      <IconButton
+        onClick={() => navigate(`/submit/report/rules/${id}/${report_id}`)}
+        sx={{ position: "absolute", bottom: "-25px" }}
+      >
         <AddCircleIcon sx={{ color: "#4361ee", fontSize: 35 }} />
       </IconButton>
     </Box>

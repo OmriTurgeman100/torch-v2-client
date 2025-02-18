@@ -37,13 +37,19 @@ type data = {
 
 export const TreeNodesReports = () => {
   const [Data, setData] = useState<data | null>(null);
+  const [reportId, setReportId] = useState<string | null>();
   const { id } = useParams();
   const { user } = useAuthContext();
   const navigate = useNavigate();
 
   const get_reports_nodes = async () => {
     const response = await fetch_nodes_report(user.token, id);
+
     setData(response.data);
+
+    if (response.data.reports.length > 0) {
+      setReportId(response.data.reports[0].report_id);
+    }
   };
 
   useEffect(() => {
@@ -169,7 +175,11 @@ export const TreeNodesReports = () => {
             <Button loading loadingPosition="start" startIcon={<SaveIcon />}>
               Nodes
             </Button>
-            <Button onClick={() => navigate(`/display/report/rules/${id}`)}>
+            <Button
+              onClick={() =>
+                navigate(`/display/report/rules/${id}/${reportId}`)
+              }
+            >
               Rules
             </Button>
 
