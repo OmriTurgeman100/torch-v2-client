@@ -105,7 +105,7 @@ export const TreeNodesReports = () => {
             aria-label="Loading button group"
             sx={{ position: "absolute", bottom: 10, right: 10 }}
           >
-            <Button onClick={() => navigate(`/submit/node/rules/${id}`)}>
+            <Button onClick={() => navigate(`/display/node/rules/${id}`)}>
               Rules
             </Button>
             <Button onClick={() => navigate(`/submit/nodes/tree/${id}`)}>
@@ -169,7 +169,7 @@ export const TreeNodesReports = () => {
             <Button loading loadingPosition="start" startIcon={<SaveIcon />}>
               Nodes
             </Button>
-            <Button onClick={() => navigate(`/submit/node/rules/${id}`)}>
+            <Button onClick={() => navigate(`/display/report/rules/${id}`)}>
               Rules
             </Button>
 

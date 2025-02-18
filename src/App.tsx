@@ -18,6 +18,8 @@ import { CreateNodesTreeForm } from "./pages/CreateNodesTreeForm";
 import { ReportsMenu } from "./pages/ReportsMenu";
 import { Create_Node_Rules } from "./pages/Create_Node_Rules";
 import { Create_Report_Rules } from "./pages/Create_Report_Rules";
+import { Display_Node_Rules } from "./pages/Display_Node_Rules";
+import { Display_Report_Rules } from "./pages/Display_Report_Rules";
 
 function App() {
   const { user } = useAuthContext();
@@ -33,6 +35,8 @@ function App() {
         <Route path="/reports/menu/tree/:id" element={user ? <ReportsMenu/> : <Navigate to={"/login"}/>}></Route>
         <Route path="/submit/node/rules/:id" element={user ? <Create_Node_Rules /> : <Navigate to={"/login"}/>}></Route>
         <Route path="/submit/report/rules/:id" element={user ? <Create_Report_Rules /> : <Navigate to={"/login"}/>}></Route>
+        <Route path="/display/node/rules/:id" element={user ? <Display_Node_Rules /> : <Navigate to={"/login"}/>}></Route>
+        <Route path="/display/report/rules/:id" element={user ? <Display_Report_Rules /> : <Navigate to={"/login"}/>}></Route>
         <Route path="/register" element={!user ?<Register /> : <Navigate to={"/"}/>}></Route>
         <Route path="/login" element={!user ? <Login /> :<Navigate to={"/"}/>}></Route>
         <Route path="/me" element={user ? <UserProfile /> :<Navigate to={"/"}/>}></Route>
