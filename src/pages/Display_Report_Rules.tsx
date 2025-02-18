@@ -14,8 +14,8 @@ import { useAuthContext } from "../Context/UseAuthContext";
 import { useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
 
-export const Display_Node_Rules = () => {
+export const Display_Report_Rules = () => {
   return (
-    <div>Display_Node_Rules</div>
+    <div>Display_Report_Rules</div>
   )
 }
