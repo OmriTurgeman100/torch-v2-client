@@ -118,7 +118,6 @@ export const ReportsMenu = () => {
                   )
                 }
                 variant="contained"
-             
                 sx={{
                   minWidth: "40px",
                   width: "40px",
