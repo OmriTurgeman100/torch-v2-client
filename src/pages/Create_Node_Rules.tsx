@@ -115,6 +115,7 @@ export const Create_Node_Rules = () => {
           flexDirection: "column",
           position: "relative",
           boxShadow: 5,
+          borderRadius: 1
         }}
       >
         <Box sx={{ width: "100px", backgroundColor: "#f8f9fa" }}>
@@ -124,7 +125,7 @@ export const Create_Node_Rules = () => {
               labelId="operator-label"
               value={operator}
               onChange={handleOperatorChange}
-              sx={{ color: "blue", fontWeight: "bold" }}
+              sx={{ color: "#4361ee", fontWeight: "bold" }}
             >
               <MenuItem value="and">and</MenuItem>
               <MenuItem value="or">or</MenuItem>
@@ -142,27 +143,43 @@ export const Create_Node_Rules = () => {
               alignItems: "center",
             }}
           >
-            <Typography
-              variant="h6"
+            <Box
               sx={{
-                color: "#333333",
-                fontSize: "1.5rem",
-                letterSpacing: "1px",
+                backgroundColor: "#f8f9fa",
+                padding: "5px",
+                borderRadius: 5,
               }}
             >
-              {node.title}
-            </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "#333333",
+                  fontSize: "1.5rem",
+                  letterSpacing: "1px",
+                }}
+              >
+                {node.title}
+              </Typography>
+            </Box>
 
-            <Typography
-              variant="h6"
+            <Box
               sx={{
-                color: "#333333",
-                fontSize: "1.5rem",
-                letterSpacing: "1px",
+                backgroundColor: "#f8f9fa",
+                padding: "5px",
+                borderRadius: 5,
               }}
             >
-              ==
-            </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "#4361ee",
+                  fontSize: "1.5rem",
+                  letterSpacing: "1px",
+                }}
+              >
+                ==
+              </Typography>
+            </Box>
 
             <Box sx={{ width: "100px" }}>
               <FormControl fullWidth>
