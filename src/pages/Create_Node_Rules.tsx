@@ -13,6 +13,7 @@ import { fetch_nodes_report } from "../services/Get-Nodes-Reports";
 import { toast, ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
 import { post_node_rules } from "../services/Post-Node-Rules";
+import { useNavigate } from "react-router-dom";
 
 interface Sub_Nodes {
   node_id: number;
@@ -31,6 +32,7 @@ export const Create_Node_Rules = () => {
   const [action, setAction] = useState<string>("");
   const [operator, setOperator] = useState<string>("");
   const [values, setValues] = useState<{ [key: number]: string }>({});
+  const navigate = useNavigate();
 
   const handleOperatorChange = (event: SelectChangeEvent) => {
     setOperator(event.target.value as string);
@@ -68,7 +70,7 @@ export const Create_Node_Rules = () => {
       const payload_values: any = [];
 
       if (!operator || !action) {
-        console.log("none");
+        null;
       } else {
         payload.conditions.map((condition) =>
           payload_values.push(condition.value)
@@ -90,6 +92,10 @@ export const Create_Node_Rules = () => {
         toast.error("Please select all fields");
       } else {
         await post_node_rules(user.token, id, payload);
+
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+
+        navigate(`/display/node/rules/${id}`);
       }
     } catch (error) {
       console.error("Error sending request:", error);
@@ -115,7 +121,7 @@ export const Create_Node_Rules = () => {
           flexDirection: "column",
           position: "relative",
           boxShadow: 5,
-          borderRadius: 1
+          borderRadius: 1,
         }}
       >
         <Box sx={{ width: "100px", backgroundColor: "#f8f9fa" }}>
