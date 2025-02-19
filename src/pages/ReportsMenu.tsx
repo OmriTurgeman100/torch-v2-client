@@ -102,6 +102,11 @@ export const ReportsMenu = () => {
                 boxShadow: 0,
                 alignItems: "center",
                 gap: 2,
+                transition: "transform 1s ease, box-shadow 1s ease",
+                "&:hover": {
+                  transform: "translateY(-5px)",
+                  boxShadow: 10,
+                },
               }}
             >
               <Button
@@ -113,7 +118,7 @@ export const ReportsMenu = () => {
                   )
                 }
                 variant="contained"
-                href="#outlined-buttons"
+             
                 sx={{
                   minWidth: "40px",
                   width: "40px",
