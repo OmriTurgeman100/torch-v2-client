@@ -1,19 +1,16 @@
 import { Box } from "@mui/material";
-import { useForm } from "react-hook-form";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import type { FieldValues } from "react-hook-form";
-import formsvg from "../assets/form.svg";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
-import api from "../services/Http";
 import { useAuthContext } from "../Context/UseAuthContext";
 import { useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { fetch_rules } from "../services/Get-Rules";
+import { node_colors } from "../utils/NodeColors";
+import IconButton from "@mui/material/IconButton";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { useNavigate } from "react-router-dom";
 
 interface node_conditions {
   value: string;
@@ -34,6 +31,7 @@ export const Display_Node_Rules = () => {
   const { user } = useAuthContext();
   const { id } = useParams();
   const [NodeRules, setNodeRules] = useState<node_rules[]>([]);
+  const navigate = useNavigate();
 
   const get_rules = async () => {
     try {
@@ -55,12 +53,16 @@ export const Display_Node_Rules = () => {
         sx={{
           backgroundColor: "white",
           width: "500px",
-          minHeight: "500px",
+          minHeight: "700px",
           height: "fit-content",
           margin: "35px auto",
           padding: "10px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
           borderRadius: 1,
           boxShadow: 1,
+          position: "relative",
         }}
       >
         {NodeRules.map((node_rule) => (
@@ -77,65 +79,142 @@ export const Display_Node_Rules = () => {
                 color: "blue",
                 fontSize: "1.5rem",
                 letterSpacing: "1px",
+                marginTop: "15px",
+                marginBottom: "1px",
               }}
             >
               If
             </Typography>
 
             <Box>
-              {node_rule.conditions.map((node_rule_condition) => (
-                <Box
-                  sx={{
-                    display: "flex",
-                    gap: 2,
-                  }}
-                >
-                  <Typography
-                    variant="h6"
-                    style={{
-                      color: "#333333",
-                      fontSize: "1.5rem",
-                      letterSpacing: "1px",
+              {node_rule.conditions.map((node_rule_condition, index) => (
+                <Box>
+                  {index > 0 && (
+                    <Box
+                      sx={{
+                        backgroundColor: "#4361ee",
+                        width: "fit-content",
+                        alignItems: "center",
+                        margin: "10px auto",
+                        padding: 0.3,
+                        borderRadius: 2,
+                        boxShadow: 5,
+                      }}
+                    >
+                      <Typography
+                        variant="h6"
+                        style={{
+                          color: "white",
+                          fontSize: "1rem",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {node_rule.operator}
+                      </Typography>
+                    </Box>
+                  )}
+
+                  <Box
+                    sx={{
+                      display: "flex",
+                      gap: 2,
+                      backgroundColor: "#ced4da",
+                      padding: 0.5,
+                      borderRadius: 5,
                     }}
                   >
-                    {node_rule_condition.title}
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    style={{
-                      color: "#333333",
-                      fontSize: "1.5rem",
-                      letterSpacing: "1px",
-                    }}
-                  >
-                    ==
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    style={{
-                      color: "#333333",
-                      fontSize: "1.5rem",
-                      letterSpacing: "1px",
-                    }}
-                  >
-                    {node_rule_condition.value}
-                  </Typography>
+                    <Box
+                      sx={{
+                        backgroundColor: "#f8f9fa",
+                        padding: 0.3,
+                        borderRadius: 5,
+                        boxShadow: 1,
+                      }}
+                    >
+                      <Typography
+                        variant="h6"
+                        style={{
+                          color: "#333333",
+                          fontSize: "1.5rem",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {node_rule_condition.title}
+                      </Typography>
+                    </Box>
+
+                    <Box
+                      sx={{
+                        backgroundColor: "#4361ee",
+                        padding: 0.3,
+                        borderRadius: 5,
+                      }}
+                    >
+                      <Typography
+                        variant="h6"
+                        style={{
+                          color: "white",
+                          fontSize: "1.5rem",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        ==
+                      </Typography>
+                    </Box>
+
+                    <Box
+                      sx={{
+                        backgroundColor: "#f8f9fa",
+                        padding: 0.3,
+                        borderRadius: 5,
+                      }}
+                    >
+                      <Typography
+                        variant="h6"
+                        style={{
+                          color: "#333333",
+                          fontSize: "1.5rem",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {node_rule_condition.value}
+                      </Typography>
+                    </Box>
+                  </Box>
                 </Box>
               ))}
             </Box>
-            <Typography
-              variant="h6"
-              style={{
-                color: "#333333",
-                fontSize: "1.5rem",
-                letterSpacing: "1px",
+            <Box
+              sx={{
+                background: node_colors(node_rule.action),
+                alignItems: "center",
+                marginTop: "10px",
+
+                borderRadius: "5px",
+                padding: 0.5,
+                boxShadow: 5,
               }}
-              sx={{}}
             >
-              action: {node_rule.action}
-            </Typography>
+              <Typography
+                variant="h6"
+                style={{
+                  color: "white",
+                  fontSize: "1.5rem",
+                  letterSpacing: "1px",
+                }}
+              >
+                {node_rule.action}
+              </Typography>
+            </Box>
           </Box>
         ))}
+
+        <IconButton
+          onClick={() => navigate(`/submit/node/rules/${id}`)}
+          sx={{ position: "absolute", bottom: "-25px" }}
+        >
+          <AddCircleIcon sx={{ color: "#4361ee", fontSize: 35 }} />
+        </IconButton>
       </Box>
       <ToastContainer
         position="bottom-right"

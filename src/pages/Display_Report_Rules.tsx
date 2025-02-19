@@ -61,9 +61,9 @@ export const Display_Report_Rules = () => {
           boxShadow: 1,
           display: "flex",
           flexDirection: "column",
+          alignItems: "center",
           position: "relative",
           gap: 1,
-          alignItems: "center",
         }}
       >
         {reportRules.map((report) => (
