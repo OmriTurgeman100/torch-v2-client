@@ -10,7 +10,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import { useAuthContext } from "../Context/UseAuthContext";
 import { useParams } from "react-router-dom";
 import { fetch_nodes_report } from "../services/Get-Nodes-Reports";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
 import { post_node_rules } from "../services/Post-Node-Rules";
 
@@ -87,25 +87,10 @@ export const Create_Node_Rules = () => {
       }
 
       if (safe_rules === null || safe_rules === false) {
-        console.log("error");
+        toast.error("Please select all fields");
       } else {
-        console.log("good");
+        await post_node_rules(user.token, id, payload);
       }
-
-      // console.log(`payload is ${payload}`)
-      // console.log(typeof payload)
-
-      // console.log(payload);
-
-      // if (payload.conditions)
-
-      // await api.post("/your-endpoint", payload, {
-      //   headers: {
-      //     Authorization: `Bearer ${user.token}`,
-      //   },
-      // });
-
-      // console.log("Payload sent:", payload);
     } catch (error) {
       console.error("Error sending request:", error);
     }
