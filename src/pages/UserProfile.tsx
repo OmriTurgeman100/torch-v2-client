@@ -99,6 +99,11 @@ export const UserProfile = () => {
         position: "relative",
         backgroundColor: "white",
         overflow: "hidden",
+        transition: "transform 1s ease, box-shadow 1s ease",
+        "&:hover": {
+          transform: "translateY(-5px)",
+          boxShadow: 10,
+        },
       }}
     >
       <Box

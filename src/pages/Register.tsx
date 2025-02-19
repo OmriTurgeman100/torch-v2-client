@@ -52,6 +52,11 @@ export const Register = () => {
           padding: "20px",
           borderRadius: "5px",
           color: "primary.main",
+          transition: "transform 1s ease, box-shadow 1s ease",
+          "&:hover": {
+            transform: "translateY(-5px)",
+            boxShadow: 10,
+          },
         }}
       >
         <Typography
