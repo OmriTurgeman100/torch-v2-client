@@ -25,7 +25,7 @@ export const Create_Report_Rules = () => {
   const [action, setAction] = useState<string>();
   const navigate = useNavigate();
 
-  const handleSymbolChange = (event: SelectChangeEvent) => {
+  const handleOperatorChange = (event: SelectChangeEvent) => {
     setOperator(event.target.value as string);
   };
 
@@ -127,7 +127,7 @@ export const Create_Report_Rules = () => {
                 id="demo-simple-select"
                 value={operator}
                 label="symbol"
-                onChange={handleSymbolChange}
+                onChange={handleOperatorChange}
                 sx={{ color: "blue", fontWeight: "bold" }}
               >
                 <MenuItem value=">">{">"}</MenuItem>
