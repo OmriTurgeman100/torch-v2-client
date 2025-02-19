@@ -10,7 +10,9 @@ import CheckIcon from "@mui/icons-material/Check";
 import { useAuthContext } from "../Context/UseAuthContext";
 import { useParams } from "react-router-dom";
 import { fetch_nodes_report } from "../services/Get-Nodes-Reports";
-import api from "../services/Http";
+import { ToastContainer } from "react-toastify";
+import { Bounce } from "react-toastify";
+import { post_node_rules } from "../services/Post-Node-Rules";
 
 interface Sub_Nodes {
   node_id: number;
@@ -63,8 +65,39 @@ export const Create_Node_Rules = () => {
         action,
       };
 
-      console.log(`payload is`)
-      console.log(payload)
+      const payload_values: any = [];
+
+      if (!operator || !action) {
+        console.log("none");
+      } else {
+        payload.conditions.map((condition) =>
+          payload_values.push(condition.value)
+        );
+      }
+
+      let safe_rules: boolean | null = null;
+
+      for (const value of payload_values) {
+        if (value === undefined) {
+          safe_rules = false;
+          break;
+        } else {
+          safe_rules = true;
+        }
+      }
+
+      if (safe_rules === null || safe_rules === false) {
+        console.log("error");
+      } else {
+        console.log("good");
+      }
+
+      // console.log(`payload is ${payload}`)
+      // console.log(typeof payload)
+
+      // console.log(payload);
+
+      // if (payload.conditions)
 
       // await api.post("/your-endpoint", payload, {
       //   headers: {
@@ -115,22 +148,48 @@ export const Create_Node_Rules = () => {
         </Box>
 
         {Data.map((node) => (
-          <Box key={node.node_id} sx={{ display: "flex", gap: 2, margin: "15px", alignItems: "center" }}>
-            <Typography variant="h6" sx={{ color: "#333333", fontSize: "1.5rem", letterSpacing: "1px" }}>
+          <Box
+            key={node.node_id}
+            sx={{
+              display: "flex",
+              gap: 2,
+              margin: "15px",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              variant="h6"
+              sx={{
+                color: "#333333",
+                fontSize: "1.5rem",
+                letterSpacing: "1px",
+              }}
+            >
               {node.title}
             </Typography>
 
-            <Typography variant="h6" sx={{ color: "#333333", fontSize: "1.5rem", letterSpacing: "1px" }}>
+            <Typography
+              variant="h6"
+              sx={{
+                color: "#333333",
+                fontSize: "1.5rem",
+                letterSpacing: "1px",
+              }}
+            >
               ==
             </Typography>
 
             <Box sx={{ width: "100px" }}>
               <FormControl fullWidth>
-                <InputLabel id={`value-label-${node.node_id}`}>value</InputLabel>
+                <InputLabel id={`value-label-${node.node_id}`}>
+                  value
+                </InputLabel>
                 <Select
                   labelId={`value-label-${node.node_id}`}
                   value={values[node.node_id] || ""}
-                  onChange={(event) => handleValueChange(node.node_id, event.target.value)}
+                  onChange={(event) =>
+                    handleValueChange(node.node_id, event.target.value)
+                  }
                 >
                   <MenuItem value="up">up</MenuItem>
                   <MenuItem value="critical">critical</MenuItem>
@@ -155,10 +214,26 @@ export const Create_Node_Rules = () => {
             </Select>
           </FormControl>
         </Box>
-        <IconButton onClick={handle_submit} sx={{ position: "absolute", bottom: "-25px" }}>
+        <IconButton
+          onClick={handle_submit}
+          sx={{ position: "absolute", bottom: "-25px" }}
+        >
           <CheckIcon sx={{ color: "#4361ee", fontSize: 35 }} />
         </IconButton>
       </Box>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
     </div>
   );
 };
