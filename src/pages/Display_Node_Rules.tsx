@@ -99,6 +99,11 @@ export const Display_Node_Rules = () => {
                         padding: 0.3,
                         borderRadius: 2,
                         boxShadow: 5,
+                        transition: "transform 1s ease, box-shadow 1s ease",
+                        "&:hover": {
+                          transform: "translateY(-5px)",
+                          boxShadow: 10,
+                        },
                       }}
                     >
                       <Typography
@@ -121,6 +126,11 @@ export const Display_Node_Rules = () => {
                       backgroundColor: "#ced4da",
                       padding: 0.5,
                       borderRadius: 5,
+                      transition: "transform 1s ease, box-shadow 1s ease",
+                      "&:hover": {
+                        transform: "translateY(-5px)",
+                        boxShadow: 10,
+                      },
                     }}
                   >
                     <Box
@@ -189,10 +199,14 @@ export const Display_Node_Rules = () => {
                 background: node_colors(node_rule.action),
                 alignItems: "center",
                 marginTop: "10px",
-
                 borderRadius: "5px",
                 padding: 0.5,
                 boxShadow: 5,
+                transition: "transform 1s ease, box-shadow 1s ease",
+                "&:hover": {
+                  transform: "translateY(-5px)",
+                  boxShadow: 10,
+                },
               }}
             >
               <Typography
