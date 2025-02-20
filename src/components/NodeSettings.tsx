@@ -3,6 +3,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import Checkbox from "@mui/material/Checkbox";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useState, useEffect } from "react";
+import { get_nodes_templates } from "../services/Get-Nodes-Templates";
+import { useAuthContext } from "../Context/UseAuthContext";
 
 interface SubNode {
   description: string;
@@ -20,6 +22,11 @@ interface NodeSettingsProps {
   parent: any;
 }
 
+interface Node_Templates {
+  id: number;
+  name: string;
+}
+
 export const NodeSettingsComponent = ({
   closeSettings,
   subNodes,
@@ -27,6 +34,8 @@ export const NodeSettingsComponent = ({
 }: NodeSettingsProps) => {
   const parent_to_number = parseInt(parent);
   const [nodesList, setNodesList] = useState<number[]>([]);
+  const [NodeTemplates, setNodeTemplates] = useState<Node_Templates[]>([]);
+  const { user } = useAuthContext();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   function insert_node(node_id: number, isChecked: boolean): void {
@@ -39,8 +48,20 @@ export const NodeSettingsComponent = ({
     }
   }
 
+  const fetch_nodes_templates = async () => {
+    try {
+      const response = await get_nodes_templates(user.token);
+
+      setNodeTemplates(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    console.log(nodesList);
+    fetch_nodes_templates();
+
+    console.log(NodeTemplates);
   }, [nodesList]);
 
   return (
