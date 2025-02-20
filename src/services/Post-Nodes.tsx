@@ -32,6 +32,6 @@ export const post_nodes = async (
 
     return response;
   } catch (error) {
-    throw error;
+    null;
   }
 };
