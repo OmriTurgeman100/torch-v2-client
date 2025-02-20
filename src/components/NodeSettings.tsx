@@ -76,7 +76,9 @@ export const NodeSettingsComponent = ({
 
   const handle_submit = async () => {
     try {
-      const CustomTemplatesExtraced: string[] = CustomTemplateList.split(",");
+      const CustomTemplatesExtraced: string[] = CustomTemplateList.split(
+        ","
+      ).map((item) => item.trim());
 
       let total_templates: string[] = [];
 
@@ -85,18 +87,19 @@ export const NodeSettingsComponent = ({
       }
 
       for (const custom_template of CustomTemplatesExtraced) {
-        total_templates.push(custom_template);
+        if (custom_template.length > 0) {
+          total_templates.push(custom_template);
+        }
       }
 
       for (const node of nodesList) {
         for (const total_template of total_templates) {
-
-          console.log(total_template, total_template, node, user.token)
+          console.log(total_template, total_template, node, user.token);
           await post_nodes(total_template, total_template, node, user.token);
         }
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   };
 
