@@ -118,6 +118,7 @@ export const NodeSettingsComponent = ({
             >
               {node.title}
             </Typography>
+
             <Checkbox
               {...label}
               onChange={(e) => insert_node(node.node_id, e.target.checked)}
@@ -147,25 +148,37 @@ export const NodeSettingsComponent = ({
         </Typography>
       </Box>
 
-      <Box sx={{display: "flex", alignItems: "center"}}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: 2,
+          margin: "15px",
+          overflow: "hidden",
+          flexWrap: "wrap",
+        }}
+      >
         <h1>1</h1>
         <h1>2</h1>
         <h1>3</h1>
       </Box>
 
       <Typography
-          variant="h4"
-          style={{
-            color: "#4361ee",
-            fontSize: "1.0rem",
-            margin: "auto",
-            letterSpacing: "1px",
-          }}
-        >
-          Custom templates
-        </Typography>
+        variant="h4"
+        style={{
+          color: "#4361ee",
+          fontSize: "1.0rem",
+          margin: "auto",
+          letterSpacing: "1px",
+        }}
+      >
+        Custom templates
+      </Typography>
 
-      <TextField placeholder="node 1, node 2, node 3" sx={{ width: "100%" }} />
+      <TextField
+        placeholder="node 1, node 2, node 3"
+        sx={{ width: "100%", marginTop: "15px" }}
+      />
     </Box>
   );
 };
