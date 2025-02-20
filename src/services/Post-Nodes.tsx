@@ -8,8 +8,7 @@ export const post_nodes = async (
   token: string
 ) => {
   try {
-
-    console.log(title, description, id, token)
+    console.log(title, description, id, token);
     const response = await api.post(
       "/api/v1/reports/nodes",
       {
@@ -32,7 +31,7 @@ export const post_nodes = async (
     });
 
     return response;
-  } catch (error: any) {
-    console.error("API Error:", error.response?.data || error.message);
+  } catch (error) {
+    throw error;
   }
 };

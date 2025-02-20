@@ -35,39 +35,32 @@ export const NodeSettingsComponent = ({
   parent,
 }: NodeSettingsProps) => {
   const parent_to_number = parseInt(parent);
-  const [NodeTemplates, setNodeTemplates] = useState<Node_Templates[]>([]); // * holds template data
-  const [nodesList, setNodesList] = useState<number[]>([]); // * stores marked nodes
-  const [TemplatesList, setTemplatesList] = useState<string[]>([]); // * stored marked templates
-  const [CustomTemplateList, setCustomTemplateList] = useState<string>(""); // * stored text field templates
+  const [NodeTemplates, setNodeTemplates] = useState<Node_Templates[]>([]);
+  const [nodesList, setNodesList] = useState<number[]>([]);
+  const [TemplatesList, setTemplatesList] = useState<string[]>([]);
+  const [CustomTemplateList, setCustomTemplateList] = useState<string>("");
   const { user } = useAuthContext();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   function insert_node(node_id: number, isChecked: boolean): void {
-    if (isChecked) {
-      if (!nodesList.includes(node_id)) {
-        setNodesList((prevNodes) => [...prevNodes, node_id]);
-      }
-    } else {
-      setNodesList((prevNodes) => prevNodes.filter((id) => id !== node_id));
-    }
+    setNodesList((prevNodes) =>
+      isChecked
+        ? [...prevNodes, node_id]
+        : prevNodes.filter((id) => id !== node_id)
+    );
   }
 
   function insert_template(template_name: string, isChecked: boolean): void {
-    if (isChecked) {
-      if (!TemplatesList.includes(template_name)) {
-        setTemplatesList((prevTemplate) => [...prevTemplate, template_name]);
-      }
-    } else {
-      setTemplatesList((prevTemplates) =>
-        prevTemplates.filter((id) => id !== template_name)
-      );
-    }
+    setTemplatesList((prevTemplates) =>
+      isChecked
+        ? [...prevTemplates, template_name]
+        : prevTemplates.filter((id) => id !== template_name)
+    );
   }
 
   const fetch_nodes_templates = async () => {
     try {
       const response = await get_nodes_templates(user.token);
-
       setNodeTemplates(response.node_templates);
     } catch (error) {
       console.error(error);
@@ -76,28 +69,20 @@ export const NodeSettingsComponent = ({
 
   const handle_submit = async () => {
     try {
-      const CustomTemplatesExtraced: string[] = CustomTemplateList.split(
-        ","
-      ).map((item) => item.trim());
-
-      let total_templates: string[] = [];
-
-      for (const template of TemplatesList) {
-        total_templates.push(template);
-      }
-
-      for (const custom_template of CustomTemplatesExtraced) {
-        if (custom_template.length > 0) {
-          total_templates.push(custom_template);
-        }
-      }
+      const CustomTemplatesExtracted = CustomTemplateList.split(",").map(
+        (item) => item.trim()
+      );
+      const total_templates = [
+        ...TemplatesList,
+        ...CustomTemplatesExtracted.filter(Boolean),
+      ];
 
       for (const node of nodesList) {
         for (const total_template of total_templates) {
-          console.log(total_template, total_template, node, user.token);
           await post_nodes(total_template, total_template, node, user.token);
         }
       }
+
       setNodesList([]);
       setTemplatesList([]);
       setCustomTemplateList("");
@@ -187,15 +172,14 @@ export const NodeSettingsComponent = ({
               style={{
                 color: "#333333",
                 fontSize: "1.5rem",
-
                 letterSpacing: "1px",
               }}
             >
               {node.title}
             </Typography>
-
             <Checkbox
               {...label}
+              checked={nodesList.includes(node.node_id)}
               onChange={(e) => insert_node(node.node_id, e.target.checked)}
             />
           </Box>
@@ -205,6 +189,7 @@ export const NodeSettingsComponent = ({
           <ExpandMoreIcon />
           <Checkbox
             {...label}
+            checked={nodesList.includes(parent_to_number)}
             onChange={(e) => insert_node(parent_to_number, e.target.checked)}
           />
         </Box>
@@ -247,9 +232,9 @@ export const NodeSettingsComponent = ({
             >
               {node_template.name}
             </Typography>
-
             <Checkbox
               {...label}
+              checked={TemplatesList.includes(node_template.name)}
               onChange={(e) =>
                 insert_template(node_template.name, e.target.checked)
               }
