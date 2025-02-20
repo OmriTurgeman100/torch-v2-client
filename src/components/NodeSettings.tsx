@@ -28,14 +28,6 @@ export const NodeSettingsComponent = ({
   const [nodesList, setNodesList] = useState<number[]>([]);
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-  function handleCheckboxChange(node_id: number, checked: boolean) {
-    setNodesList((prevNodes) =>
-      checked
-        ? [...prevNodes, node_id]
-        : prevNodes.filter((id) => id !== node_id)
-    );
-  }
-
   useEffect(() => {
     console.log(nodesList);
   }, [nodesList]);
@@ -101,15 +93,14 @@ export const NodeSettingsComponent = ({
             >
               {node.title}
             </Typography>
-            <Checkbox
-              {...label}
-              checked={nodesList.includes(node.node_id)}
-              onChange={(e) =>
-                handleCheckboxChange(node.node_id, e.target.checked)
-              }
-            />
+            <Checkbox {...label} />
           </Box>
         ))}
+
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <ExpandMoreIcon />
+          <Checkbox {...label} />
+        </Box>
       </Box>
     </Box>
   );
