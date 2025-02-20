@@ -104,10 +104,10 @@ export const Navbar = () => {
 
         {!user && (
           <>
-            <NavLink className="link" to="/login">
+            <NavLink className="login_link" to="/login">
               login
             </NavLink>
-            <NavLink to="/register">register</NavLink>
+            <NavLink className="register_link" to="/register">register</NavLink>
           </>
         )}
 

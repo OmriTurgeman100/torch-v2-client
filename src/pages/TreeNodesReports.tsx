@@ -70,18 +70,19 @@ export const TreeNodesReports = () => {
         <div>
           <div className="grid-container">
             {Data.nodes.map((node) => (
-              <Link to={`/${node.node_id}`} key={node.node_id}>
-                <Box
-                  className="card"
-                  sx={{
-                    width: "200px",
-                    height: "80px",
-                    background: node_colors(node.status),
-                    padding: "15px",
-                    borderRadius: 1,
-                    boxShadow: 5,
-                  }}
-                >
+              <Box
+                className="card"
+                sx={{
+                  width: "200px",
+                  height: "80px",
+                  background: node_colors(node.status),
+                  padding: "15px",
+                  borderRadius: 1,
+                  boxShadow: 5,
+                  position: "relative",
+                }}
+              >
+                <Link to={`/${node.node_id}`} key={node.node_id}>
                   <Typography
                     variant="h4"
                     style={{
@@ -104,8 +105,8 @@ export const TreeNodesReports = () => {
                   >
                     {node.status}
                   </Typography>
-                </Box>
-              </Link>
+                </Link>
+              </Box>
             ))}
           </div>
           <ButtonGroup
