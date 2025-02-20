@@ -1,4 +1,4 @@
-import { Box, colors, IconButton, TextField, Typography } from "@mui/material";
+import { Box, IconButton, TextField, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Checkbox from "@mui/material/Checkbox";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -211,7 +211,6 @@ export const NodeSettingsComponent = ({
         <IconButton
           onClick={handle_submit}
           sx={{
-  
             backgroundColor: "#e9ecef",
             transition: "transform 0.3s ease, box-shadow 1s ease",
             "&:hover": {
