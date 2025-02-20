@@ -180,20 +180,20 @@ export const TreeNodesReports = () => {
         <div>
           <div className="grid-container">
             {Data.reports.map((report) => (
-              <Link to={`/report/rules/${report.parent}`}>
-                <Box
-                  key={report.id}
-                  className="card"
-                  sx={{
-                    width: "200px",
-                    height: "80px",
-                    background:
-                      "linear-gradient(135deg,rgb(77, 85, 189), #2575fc)",
-                    padding: "15px",
-                    borderRadius: 1,
-                    boxShadow: 5,
-                  }}
-                >
+              <Box
+                key={report.report_id}
+                className="card"
+                sx={{
+                  width: "200px",
+                  height: "80px",
+                  background:
+                    "linear-gradient(135deg,rgb(77, 85, 189), #2575fc)",
+                  padding: "15px",
+                  borderRadius: 1,
+                  boxShadow: 5,
+                }}
+              >
+                <Link to={`/report/rules/${report.parent}`}>
                   <Typography
                     variant="h4"
                     style={{
@@ -216,8 +216,8 @@ export const TreeNodesReports = () => {
                   >
                     {report.value}
                   </Typography>
-                </Box>
-              </Link>
+                </Link>
+              </Box>
             ))}
           </div>
           <ButtonGroup
