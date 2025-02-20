@@ -9,6 +9,8 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 import SaveIcon from "@mui/icons-material/Save";
 import { useNavigate } from "react-router-dom";
+import IconButton from "@mui/material/IconButton";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 type sub_nodes = {
   description: string;
@@ -78,6 +80,7 @@ export const TreeNodesReports = () => {
                     padding: "15px",
                     borderRadius: 1,
                     boxShadow: 5,
+                    position: "relative",
                   }}
                 >
                   <Typography

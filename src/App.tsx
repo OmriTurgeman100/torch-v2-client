@@ -12,7 +12,6 @@ import { UserProfile } from "./pages/UserProfile";
 import { useAuthContext } from "./Context/UseAuthContext";
 import { TreeNodesReports } from "./pages/TreeNodesReports";
 import { Navigate } from "react-router-dom";
-import { ReportRules } from "./pages/ReportRules";
 import { CreateNodesForm } from "./pages/CreateNodesFormRoot";
 import { CreateNodesTreeForm } from "./pages/CreateNodesTreeForm";
 import { ReportsMenu } from "./pages/ReportsMenu";
@@ -29,7 +28,6 @@ function App() {
       <Route path="/" element={<Navbar />}>
         <Route index element={user ? <Root /> : <Navigate to={"/login"}/>}></Route>
         <Route path=":id" element={user ? <TreeNodesReports /> : <Navigate to={"/login"}/>}></Route>
-        <Route path="/report/rules/:id" element={user ? <ReportRules/> : <Navigate to={"/login"}/>}></Route>
         <Route path="/submit/nodes/root" element={user ? <CreateNodesForm/> : <Navigate to={"/login"}/>}></Route>
         <Route path="/submit/nodes/tree/:id" element={user ? <CreateNodesTreeForm/> : <Navigate to={"/login"}/>}></Route>
         <Route path="/reports/menu/tree/:id" element={user ? <ReportsMenu/> : <Navigate to={"/login"}/>}></Route>
