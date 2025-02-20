@@ -80,7 +80,6 @@ export const TreeNodesReports = () => {
                     padding: "15px",
                     borderRadius: 1,
                     boxShadow: 5,
-                    position: "relative",
                   }}
                 >
                   <Typography
