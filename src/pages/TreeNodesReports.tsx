@@ -45,6 +45,7 @@ export const TreeNodesReports = () => {
   const [Data, setData] = useState<data | null>(null);
   const [reportId, setReportId] = useState<string | null>();
   const [excluded, setExclude] = useState<boolean | null>(null);
+  const [NodeSettings, setNodeSettings] = useState<boolean>(false)
   const { id } = useParams();
   const { user } = useAuthContext();
   const navigate = useNavigate();
