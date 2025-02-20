@@ -1,5 +1,6 @@
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import Checkbox from "@mui/material/Checkbox";
 
 interface SubNode {
   description: string;
@@ -16,7 +17,11 @@ interface NodeSettingsProps {
   subNodes: SubNode[];
 }
 
-export const NodeSettingsComponent = ({ closeSettings, subNodes }: NodeSettingsProps) => {
+export const NodeSettingsComponent = ({
+  closeSettings,
+  subNodes,
+}: NodeSettingsProps) => {
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
   return (
     <Box
       sx={{
@@ -24,14 +29,82 @@ export const NodeSettingsComponent = ({ closeSettings, subNodes }: NodeSettingsP
         width: "700px",
         height: "500px",
         margin: "20px auto",
-        boxShadow: 1,
-        padding: "10px",
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+        padding: "20px",
+        borderRadius: "16px",
+        transition: "transform 0.3s ease, box-shadow 0.3s ease",
+
+        "&:hover": {
+          transform: "translateY(-8px)",
+          boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.15)",
+        },
       }}
     >
-      <h1>Hey from Node Settings</h1>
-      <IconButton onClick={closeSettings}>
-        <CloseIcon />
-      </IconButton>
+      <Box
+        sx={{ display: "flex", justifyContent: "end", alignItems: "center" }}
+      >
+        <Typography
+          variant="h4"
+          style={{
+            color: "#4361ee",
+            fontSize: "1.5rem",
+
+            margin: "auto",
+
+            letterSpacing: "1px",
+          }}
+        >
+          control panel
+        </Typography>
+
+        <IconButton onClick={closeSettings} sx={{ backgroundColor: "#4361ee" }}>
+          <CloseIcon sx={{ color: "white" }} />
+        </IconButton>
+      </Box>
+
+      <Box
+        sx={{
+          display: "flex",
+          gap: 2,
+          margin: "15px",
+          overflow: "hidden",
+          flexWrap: "wrap",
+        }}
+      >
+        {subNodes.map((node) => (
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Typography
+              variant="h4"
+              style={{
+                color: "#333333",
+                fontSize: "1.5rem",
+                fontWeight: "bold",
+                letterSpacing: "1px",
+              }}
+            >
+              {node.title}
+            </Typography>
+            <Checkbox {...label} />
+          </Box>
+        ))}
+
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Typography
+            variant="h4"
+            style={{
+              color: "#333333",
+              fontSize: "1.5rem",
+              fontWeight: "bold",
+              letterSpacing: "1px",
+            }}
+          >
+            ./
+          </Typography>
+          <Checkbox {...label} />
+        </Box>
+      </Box>
     </Box>
   );
 };
+//#e9ecef
+//#4361ee
