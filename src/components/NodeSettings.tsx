@@ -7,7 +7,7 @@ export const NodeSettingsComponent = ({
   closeSettings: () => void;
 }) => {
   return (
-    <Box>
+    <Box sx={{backgroundColor: "white", width: "700px", height: "500px", margin: "20px auto", boxShadow: 1, padding: "10px",}}>
       <h1>Hey from Node Settings</h1>
       <IconButton onClick={closeSettings}>
         <CloseIcon />

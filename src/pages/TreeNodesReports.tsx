@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { data, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetch_nodes_report } from "../services/Get-Nodes-Reports";
 import { useAuthContext } from "../Context/UseAuthContext";
@@ -16,7 +16,7 @@ import { set_node_excluded } from "../services/Set-Node-Excluded";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import { NodeSettingsComponent } from "../components/NodeSettings";
 
-type sub_nodes = {
+interface sub_nodes {
   description: string;
   excluded: string;
   node_id: number;
@@ -24,9 +24,9 @@ type sub_nodes = {
   status: string;
   time: string;
   title: string;
-};
+}
 
-type reports = {
+interface reports {
   description: string;
   id: number;
   parent: number;
@@ -34,12 +34,12 @@ type reports = {
   time: string;
   title: string;
   value: number | null;
-};
+}
 
-type data = {
+interface data {
   reports?: reports[];
   nodes?: sub_nodes[];
-};
+}
 
 export const TreeNodesReports = () => {
   const [Data, setData] = useState<data | null>(null);
@@ -160,7 +160,7 @@ export const TreeNodesReports = () => {
             onClick={() => setNodeSettings(true)}
             sx={{
               position: "absolute",
-              bottom: 80,
+              bottom: 70,
               right: 10,
               backgroundColor: "white",
               transition: "transform 0.3s ease, box-shadow 1s ease",
