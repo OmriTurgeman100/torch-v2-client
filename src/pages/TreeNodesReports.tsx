@@ -14,7 +14,7 @@ import FlashlightOnIcon from "@mui/icons-material/FlashlightOn";
 import FlashlightOffIcon from "@mui/icons-material/FlashlightOff";
 import { set_node_excluded } from "../services/Set-Node-Excluded";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
-import { NodeSettings } from "../components/NodeSettings";
+import { NodeSettingsComponent } from "../components/NodeSettings";
 
 type sub_nodes = {
   description: string;
@@ -45,7 +45,7 @@ export const TreeNodesReports = () => {
   const [Data, setData] = useState<data | null>(null);
   const [reportId, setReportId] = useState<string | null>();
   const [excluded, setExclude] = useState<boolean | null>(null);
-  const [NodeSettings, setNodeSettings] = useState<boolean>(false)
+  const [NodeSettings, setNodeSettings] = useState<boolean>(false);
   const { id } = useParams();
   const { user } = useAuthContext();
   const navigate = useNavigate();
@@ -157,6 +157,7 @@ export const TreeNodesReports = () => {
           </ButtonGroup>
 
           <IconButton
+            onClick={() => setNodeSettings(true)}
             sx={{
               position: "absolute",
               bottom: 80,
@@ -257,6 +258,10 @@ export const TreeNodesReports = () => {
             Reports
           </Button>
         </ButtonGroup>
+      )}
+
+      {NodeSettings && (
+        <NodeSettingsComponent closeSettings={() => setNodeSettings(false)} />
       )}
     </>
   );
