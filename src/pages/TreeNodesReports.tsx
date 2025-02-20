@@ -1,4 +1,4 @@
-import { data, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetch_nodes_report } from "../services/Get-Nodes-Reports";
 import { useAuthContext } from "../Context/UseAuthContext";
@@ -260,8 +260,11 @@ export const TreeNodesReports = () => {
         </ButtonGroup>
       )}
 
-      {NodeSettings && (
-        <NodeSettingsComponent closeSettings={() => setNodeSettings(false)} />
+      {NodeSettings && Data?.nodes && (
+        <NodeSettingsComponent
+          closeSettings={() => setNodeSettings(false)}
+          subNodes={Data.nodes}
+        />
       )}
     </>
   );
