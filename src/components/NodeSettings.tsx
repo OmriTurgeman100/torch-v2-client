@@ -75,9 +75,21 @@ export const NodeSettingsComponent = ({
 
   const handle_submit = async () => {
     try {
-      console.log(nodesList);
+      const CustomTemplatesExtraced: string[] = CustomTemplateList.split(",");
 
-      console.log(TemplatesList);
+      console.log(CustomTemplatesExtraced);
+
+      for (const node of nodesList) {
+        for (const template of TemplatesList) {
+          for (const custom_template of CustomTemplatesExtraced) {
+            console.log(`node ${node}`);
+
+            console.log(`template ${template}`);
+
+            console.log(`custom template is ${custom_template}`);
+          }
+        }
+      }
     } catch (error) {
       throw error;
     }
