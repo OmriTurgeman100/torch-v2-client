@@ -9,9 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
-import api from "../services/Http";
 import { useAuthContext } from "../Context/UseAuthContext";
 import { useParams } from "react-router-dom";
+import { post_nodes } from "../services/Post-Nodes";
 
 export const CreateNodesTreeForm = () => {
   const { user } = useAuthContext();
@@ -28,26 +28,12 @@ export const CreateNodesTreeForm = () => {
       const form_title: string = data.title;
       const form_description: string = data.description;
 
-      await api.post(
-        "/api/v1/reports/nodes",
-        {
-          title: form_title,
-          description: form_description,
-          parent: id,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
+      const response = await post_nodes(
+        form_title,
+        form_description,
+        id,
+        user.token
       );
-
-      toast.success("Successful", {
-        style: {
-          backgroundColor: "#0047AB",
-          color: "white",
-        },
-      });
 
       reset();
     } catch (error: any) {
