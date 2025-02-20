@@ -147,6 +147,12 @@ export const NodeSettingsComponent = ({
         </Typography>
       </Box>
 
+      <Box sx={{display: "flex", alignItems: "center"}}>
+        <h1>1</h1>
+        <h1>2</h1>
+        <h1>3</h1>
+      </Box>
+
       <TextField placeholder="node 1, node 2, node 3" sx={{ width: "100%" }} />
     </Box>
   );
