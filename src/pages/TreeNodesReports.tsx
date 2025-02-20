@@ -242,6 +242,7 @@ export const TreeNodesReports = () => {
       )}
 
       {Data?.nodes?.length === 0 && Data?.reports?.length === 0 && (
+        <div>
         <ButtonGroup
           variant="contained"
           aria-label="Loading button group"
@@ -257,6 +258,26 @@ export const TreeNodesReports = () => {
             Reports
           </Button>
         </ButtonGroup>
+        <IconButton
+            onClick={() => setNodeSettings(true)}
+            sx={{
+              position: "absolute",
+              bottom: 70,
+              right: 10,
+              backgroundColor: "white",
+              transition: "transform 0.3s ease, box-shadow 1s ease",
+              "&:hover": {
+                backgroundColor: "white",
+                transform: "translateY(-15px)",
+                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
+              },
+            }}
+          >
+            <SettingsSuggestIcon sx={{ color: "#4361ee", fontSize: 30 }} />
+          </IconButton>
+        
+        </div>
+        
       )}
 
       {NodeSettings && Data?.nodes && (
