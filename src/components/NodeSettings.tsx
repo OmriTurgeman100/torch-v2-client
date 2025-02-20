@@ -34,12 +34,12 @@ export const NodeSettingsComponent = ({
   parent,
 }: NodeSettingsProps) => {
   const parent_to_number = parseInt(parent);
-  const [nodesList, setNodesList] = useState<number[]>([]);
-  const [NodeTemplates, setNodeTemplates] = useState<Node_Templates[]>([]);
-  const [TemplatesList, setTemplatesList] = useState<string[]>([]);
-  const [CustomTemplateList, setCustomTemplateList] = useState<string>("");
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+  const [NodeTemplates, setNodeTemplates] = useState<Node_Templates[]>([]); // * holds template data
+  const [nodesList, setNodesList] = useState<number[]>([]); // * stores marked nodes
+  const [TemplatesList, setTemplatesList] = useState<string[]>([]); // * stored marked templates
+  const [CustomTemplateList, setCustomTemplateList] = useState<string>(""); // * stored text field templates
   const { user } = useAuthContext();
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   function insert_node(node_id: number, isChecked: boolean): void {
     if (isChecked) {
@@ -74,12 +74,13 @@ export const NodeSettingsComponent = ({
   };
 
   const handle_submit = async () => {
+    try {
+      console.log(nodesList);
 
-    console.log(NodeList)
-
-    console.log(CustomTemplateList);
-
- 
+      console.log(TemplatesList);
+    } catch (error) {
+      throw error;
+    }
   };
 
   useEffect(() => {
