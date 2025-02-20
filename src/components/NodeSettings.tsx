@@ -98,6 +98,9 @@ export const NodeSettingsComponent = ({
           await post_nodes(total_template, total_template, node, user.token);
         }
       }
+      setNodesList([]);
+      setTemplatesList([]);
+      setCustomTemplateList("");
     } catch (error) {
       console.error(error);
     }

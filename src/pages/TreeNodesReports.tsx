@@ -243,22 +243,22 @@ export const TreeNodesReports = () => {
 
       {Data?.nodes?.length === 0 && Data?.reports?.length === 0 && (
         <div>
-        <ButtonGroup
-          variant="contained"
-          aria-label="Loading button group"
-          sx={{ position: "absolute", bottom: 10, right: 10 }}
-        >
-          <Button loading loadingPosition="start" startIcon={<SaveIcon />}>
-            Rules
-          </Button>
-          <Button onClick={() => navigate(`/submit/nodes/tree/${id}`)}>
-            Nodes
-          </Button>
-          <Button onClick={() => navigate(`/reports/menu/tree/${id}`)}>
-            Reports
-          </Button>
-        </ButtonGroup>
-        <IconButton
+          <ButtonGroup
+            variant="contained"
+            aria-label="Loading button group"
+            sx={{ position: "absolute", bottom: 10, right: 10 }}
+          >
+            <Button loading loadingPosition="start" startIcon={<SaveIcon />}>
+              Rules
+            </Button>
+            <Button onClick={() => navigate(`/submit/nodes/tree/${id}`)}>
+              Nodes
+            </Button>
+            <Button onClick={() => navigate(`/reports/menu/tree/${id}`)}>
+              Reports
+            </Button>
+          </ButtonGroup>
+          <IconButton
             onClick={() => setNodeSettings(true)}
             sx={{
               position: "absolute",
@@ -275,9 +275,7 @@ export const TreeNodesReports = () => {
           >
             <SettingsSuggestIcon sx={{ color: "#4361ee", fontSize: 30 }} />
           </IconButton>
-        
         </div>
-        
       )}
 
       {NodeSettings && Data?.nodes && (
