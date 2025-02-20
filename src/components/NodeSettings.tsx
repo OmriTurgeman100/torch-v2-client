@@ -93,13 +93,13 @@ export const NodeSettingsComponent = ({
             >
               {node.title}
             </Typography>
-            <Checkbox {...label} />
+            <Checkbox {...label} onClick={() => console.log(node.node_id)} />
           </Box>
         ))}
 
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <ExpandMoreIcon />
-          <Checkbox {...label} />
+          <Checkbox {...label} onClick={() => console.log(parent)} />
         </Box>
       </Box>
     </Box>
