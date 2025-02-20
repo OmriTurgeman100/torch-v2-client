@@ -74,7 +74,7 @@ export const NodeSettingsComponent = ({
       );
       const total_templates = [
         ...TemplatesList,
-        ...CustomTemplatesExtracted.filter(Boolean),
+        ...CustomTemplatesExtracted.filter(Boolean), // * removes empty or falsy values (like "", null, undefined, false, 0, or NaN) from an array.
       ];
 
       for (const node of nodesList) {
