@@ -1,4 +1,4 @@
-import { Box, IconButton, TextField, Typography } from "@mui/material";
+import { Box, Button, IconButton, TextField, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Checkbox from "@mui/material/Checkbox";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -36,6 +36,7 @@ export const NodeSettingsComponent = ({
   const [nodesList, setNodesList] = useState<number[]>([]);
   const [NodeTemplates, setNodeTemplates] = useState<Node_Templates[]>([]);
   const [templatesList, setTemplatesList] = useState<string[]>([]);
+  const [customTemplateList, setCustomTemplateList] = useState<string>("");
   const { user } = useAuthContext();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -76,7 +77,8 @@ export const NodeSettingsComponent = ({
 
     console.log(nodesList);
     console.log(templatesList);
-  }, [nodesList, templatesList]);
+    console.log(customTemplateList);
+  }, [nodesList, templatesList, customTemplateList]);
 
   return (
     <Box
@@ -232,6 +234,8 @@ export const NodeSettingsComponent = ({
       </Typography>
 
       <TextField
+        value={customTemplateList}
+        onChange={(event) => setCustomTemplateList(event.target.value)}
         placeholder="status code, kubernetes, storage, utilization"
         sx={{ width: "100%", marginTop: "15px" }}
       />
