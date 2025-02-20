@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { get_nodes_templates } from "../services/Get-Nodes-Templates";
 import { useAuthContext } from "../Context/UseAuthContext";
 import CheckIcon from "@mui/icons-material/Check";
+import { post_nodes } from "../services/Post-Nodes";
 
 interface SubNode {
   description: string;
@@ -77,21 +78,25 @@ export const NodeSettingsComponent = ({
     try {
       const CustomTemplatesExtraced: string[] = CustomTemplateList.split(",");
 
-      console.log(CustomTemplatesExtraced);
+      let total_templates: string[] = [];
+
+      for (const template of TemplatesList) {
+        total_templates.push(template);
+      }
+
+      for (const custom_template of CustomTemplatesExtraced) {
+        total_templates.push(custom_template);
+      }
 
       for (const node of nodesList) {
-        for (const template of TemplatesList) {
-          for (const custom_template of CustomTemplatesExtraced) {
-            console.log(`node ${node}`);
+        for (const total_template of total_templates) {
 
-            console.log(`template ${template}`);
-
-            console.log(`custom template is ${custom_template}`);
-          }
+          console.log(total_template, total_template, node, user.token)
+          await post_nodes(total_template, total_template, node, user.token);
         }
       }
     } catch (error) {
-      throw error;
+      console.error(error)
     }
   };
 
