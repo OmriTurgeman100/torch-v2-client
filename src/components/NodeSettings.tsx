@@ -52,7 +52,7 @@ export const NodeSettingsComponent = ({
     try {
       const response = await get_nodes_templates(user.token);
 
-      setNodeTemplates(response.data);
+      setNodeTemplates(response.node_templates);
     } catch (error) {
       console.error(error);
     }
@@ -131,7 +131,7 @@ export const NodeSettingsComponent = ({
               style={{
                 color: "#333333",
                 fontSize: "1.5rem",
-                fontWeight: "bold",
+
                 letterSpacing: "1px",
               }}
             >
@@ -177,9 +177,22 @@ export const NodeSettingsComponent = ({
           flexWrap: "wrap",
         }}
       >
-        <h1>1</h1>
-        <h1>2</h1>
-        <h1>3</h1>
+        {NodeTemplates.map((node_template) => (
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Typography
+              variant="h4"
+              style={{
+                color: "#333333",
+                fontSize: "1.5rem",
+                letterSpacing: "1px",
+              }}
+            >
+              {node_template.name}
+            </Typography>
+
+            <Checkbox {...label} />
+          </Box>
+        ))}
       </Box>
 
       <Typography
@@ -195,7 +208,7 @@ export const NodeSettingsComponent = ({
       </Typography>
 
       <TextField
-        placeholder="node 1, node 2, node 3"
+        placeholder="status code, kubernetes, storage, utilization"
         sx={{ width: "100%", marginTop: "15px" }}
       />
     </Box>
