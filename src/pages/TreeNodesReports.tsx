@@ -92,6 +92,7 @@ export const TreeNodesReports = () => {
           <div className="grid-container">
             {Data.nodes.map((node) => (
               <Box
+                key={node.node_id}
                 className="card"
                 sx={{
                   width: "200px",

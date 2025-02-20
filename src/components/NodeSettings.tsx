@@ -35,6 +35,7 @@ export const NodeSettingsComponent = ({
   const parent_to_number = parseInt(parent);
   const [nodesList, setNodesList] = useState<number[]>([]);
   const [NodeTemplates, setNodeTemplates] = useState<Node_Templates[]>([]);
+  const [templatesList, setTemplatesList] = useState<string[]>([]);
   const { user } = useAuthContext();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -45,6 +46,18 @@ export const NodeSettingsComponent = ({
       }
     } else {
       setNodesList((prevNodes) => prevNodes.filter((id) => id !== node_id));
+    }
+  }
+
+  function insert_template(template_name: string, isChecked: boolean): void {
+    if (isChecked) {
+      if (!templatesList.includes(template_name)) {
+        setTemplatesList((prevTemplate) => [...prevTemplate, template_name]);
+      }
+    } else {
+      setTemplatesList((prevTemplates) =>
+        prevTemplates.filter((id) => id !== template_name)
+      );
     }
   }
 
@@ -60,7 +73,10 @@ export const NodeSettingsComponent = ({
 
   useEffect(() => {
     fetch_nodes_templates();
-  }, [nodesList]);
+
+    console.log(nodesList);
+    console.log(templatesList);
+  }, [nodesList, templatesList]);
 
   return (
     <Box
@@ -178,7 +194,10 @@ export const NodeSettingsComponent = ({
         }}
       >
         {NodeTemplates.map((node_template) => (
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box
+            sx={{ display: "flex", alignItems: "center" }}
+            key={node_template.id}
+          >
             <Typography
               variant="h4"
               style={{
@@ -190,7 +209,12 @@ export const NodeSettingsComponent = ({
               {node_template.name}
             </Typography>
 
-            <Checkbox {...label} />
+            <Checkbox
+              {...label}
+              onChange={(e) =>
+                insert_template(node_template.name, e.target.checked)
+              }
+            />
           </Box>
         ))}
       </Box>
