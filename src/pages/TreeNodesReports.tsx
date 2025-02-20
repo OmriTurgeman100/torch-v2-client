@@ -10,7 +10,9 @@ import Button from "@mui/material/Button";
 import SaveIcon from "@mui/icons-material/Save";
 import { useNavigate } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
+import FlashlightOnIcon from "@mui/icons-material/FlashlightOn";
+import FlashlightOffIcon from "@mui/icons-material/FlashlightOff";
+import { set_node_excluded } from "../services/Set-Node-Excluded";
 
 type sub_nodes = {
   description: string;
@@ -40,6 +42,7 @@ type data = {
 export const TreeNodesReports = () => {
   const [Data, setData] = useState<data | null>(null);
   const [reportId, setReportId] = useState<string | null>();
+  const [excluded, setExclude] = useState<boolean | null>(null);
   const { id } = useParams();
   const { user } = useAuthContext();
   const navigate = useNavigate();
@@ -54,6 +57,21 @@ export const TreeNodesReports = () => {
     }
   };
 
+  const set_excluded = async (node_status: string, node_id: number) => {
+    try {
+      if (node_status === "false") {
+        await set_node_excluded("true", node_id, user.token);
+
+        setExclude(true);
+      } else if (node_status === "true") {
+        await set_node_excluded("false", node_id, user.token);
+        setExclude(false);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     get_reports_nodes();
 
@@ -62,7 +80,7 @@ export const TreeNodesReports = () => {
     return () => {
       clearInterval(intervalId);
     };
-  }, [id]);
+  }, [id, excluded]);
 
   return (
     <>
@@ -106,6 +124,16 @@ export const TreeNodesReports = () => {
                     {node.status}
                   </Typography>
                 </Link>
+                <IconButton
+                  onClick={() => set_excluded(node.excluded, node.node_id)}
+                  sx={{ left: "170px" }}
+                >
+                  {node.excluded == "false" ? (
+                    <FlashlightOnIcon sx={{ color: "white" }} />
+                  ) : (
+                    <FlashlightOffIcon sx={{ color: "white" }} />
+                  )}
+                </IconButton>
               </Box>
             ))}
           </div>

@@ -107,7 +107,9 @@ export const Navbar = () => {
             <NavLink className="login_link" to="/login">
               login
             </NavLink>
-            <NavLink className="register_link" to="/register">register</NavLink>
+            <NavLink className="register_link" to="/register">
+              register
+            </NavLink>
           </>
         )}
 
