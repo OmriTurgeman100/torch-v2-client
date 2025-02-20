@@ -11,6 +11,7 @@ import { ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
 import api from "../services/Http";
 import { useAuthContext } from "../Context/UseAuthContext";
+import { post_nodes } from "../services/Post-Nodes";
 
 export const CreateNodesForm = () => {
   const { user } = useAuthContext();
@@ -26,26 +27,12 @@ export const CreateNodesForm = () => {
       const form_title: string = data.title;
       const form_description: string = data.description;
 
-      await api.post(
-        "/api/v1/reports/nodes",
-        {
-          title: form_title,
-          description: form_description,
-          parent: null,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
+      const response = await post_nodes(
+        form_title,
+        form_description,
+        null,
+        user.token
       );
-
-      toast.success("Successful", {
-        style: {
-          backgroundColor: "#0047AB",
-          color: "white",
-        },
-      });
 
       reset();
     } catch (error: any) {
