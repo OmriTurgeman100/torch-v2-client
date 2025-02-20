@@ -2,6 +2,7 @@ import { Box, IconButton, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Checkbox from "@mui/material/Checkbox";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useState, useEffect } from "react";
 
 interface SubNode {
   description: string;
@@ -22,7 +23,16 @@ export const NodeSettingsComponent = ({
   closeSettings,
   subNodes,
 }: NodeSettingsProps) => {
+  const [nodesList, setNodesList] = useState<number[]>([]);
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+
+  
+
+  useEffect(() => (
+    console.log(nodesList)
+
+  ), [nodesList])
   return (
     <Box
       sx={{
