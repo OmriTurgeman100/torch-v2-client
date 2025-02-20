@@ -1,6 +1,7 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Checkbox from "@mui/material/Checkbox";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 interface SubNode {
   description: string;
@@ -89,17 +90,7 @@ export const NodeSettingsComponent = ({
         ))}
 
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography
-            variant="h4"
-            style={{
-              color: "#333333",
-              fontSize: "1.5rem",
-              fontWeight: "bold",
-              letterSpacing: "1px",
-            }}
-          >
-            ./
-          </Typography>
+          <ExpandMoreIcon />
           <Checkbox {...label} />
         </Box>
       </Box>
