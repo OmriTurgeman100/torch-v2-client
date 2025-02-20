@@ -5,6 +5,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useState, useEffect } from "react";
 import { get_nodes_templates } from "../services/Get-Nodes-Templates";
 import { useAuthContext } from "../Context/UseAuthContext";
+import CheckIcon from "@mui/icons-material/Check";
 
 interface SubNode {
   description: string;
@@ -35,10 +36,10 @@ export const NodeSettingsComponent = ({
   const parent_to_number = parseInt(parent);
   const [nodesList, setNodesList] = useState<number[]>([]);
   const [NodeTemplates, setNodeTemplates] = useState<Node_Templates[]>([]);
-  const [templatesList, setTemplatesList] = useState<string[]>([]);
-  const [customTemplateList, setCustomTemplateList] = useState<string>("");
-  const { user } = useAuthContext();
+  const [TemplatesList, setTemplatesList] = useState<string[]>([]);
+  const [CustomTemplateList, setCustomTemplateList] = useState<string>("");
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
+  const { user } = useAuthContext();
 
   function insert_node(node_id: number, isChecked: boolean): void {
     if (isChecked) {
@@ -52,7 +53,7 @@ export const NodeSettingsComponent = ({
 
   function insert_template(template_name: string, isChecked: boolean): void {
     if (isChecked) {
-      if (!templatesList.includes(template_name)) {
+      if (!TemplatesList.includes(template_name)) {
         setTemplatesList((prevTemplate) => [...prevTemplate, template_name]);
       }
     } else {
@@ -72,25 +73,31 @@ export const NodeSettingsComponent = ({
     }
   };
 
+  const handle_submit = async () => {
+
+    console.log(NodeList)
+
+    console.log(CustomTemplateList);
+
+ 
+  };
+
   useEffect(() => {
     fetch_nodes_templates();
-
-    console.log(nodesList);
-    console.log(templatesList);
-    console.log(customTemplateList);
-  }, [nodesList, templatesList, customTemplateList]);
+  }, []);
 
   return (
     <Box
       sx={{
         backgroundColor: "white",
         width: "700px",
-        height: "500px",
+        height: "fit-content",
         margin: "20px auto",
         boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
         padding: "20px",
         borderRadius: "16px",
         transition: "transform 0.3s ease, box-shadow 0.3s ease",
+        position: "relative",
         "&:hover": {
           transform: "translateY(-8px)",
           boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.15)",
@@ -111,24 +118,31 @@ export const NodeSettingsComponent = ({
         >
           Control Panel
         </Typography>
-        <IconButton onClick={closeSettings} sx={{ backgroundColor: "#4361ee" }}>
+        <IconButton
+          onClick={closeSettings}
+          sx={{
+            backgroundColor: "#4361ee",
+            "&:hover": {
+              backgroundColor: "#4361ee",
+              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
+            },
+          }}
+        >
           <CloseIcon sx={{ color: "white" }} />
         </IconButton>
       </Box>
 
-      <Box>
-        <Typography
-          variant="h4"
-          style={{
-            color: "#4361ee",
-            fontSize: "1.0rem",
-            margin: "auto",
-            letterSpacing: "1px",
-          }}
-        >
-          Select nodes
-        </Typography>
-      </Box>
+      <Typography
+        variant="h4"
+        style={{
+          color: "#4361ee",
+          fontSize: "1.0rem",
+          margin: "auto",
+          letterSpacing: "1px",
+        }}
+      >
+        Select nodes
+      </Typography>
 
       <Box
         sx={{
@@ -171,19 +185,18 @@ export const NodeSettingsComponent = ({
           />
         </Box>
       </Box>
-      <Box>
-        <Typography
-          variant="h4"
-          style={{
-            color: "#4361ee",
-            fontSize: "1.0rem",
-            margin: "auto",
-            letterSpacing: "1px",
-          }}
-        >
-          Select templates
-        </Typography>
-      </Box>
+
+      <Typography
+        variant="h4"
+        style={{
+          color: "#4361ee",
+          fontSize: "1.0rem",
+          margin: "auto",
+          letterSpacing: "1px",
+        }}
+      >
+        Select templates
+      </Typography>
 
       <Box
         sx={{
@@ -234,11 +247,29 @@ export const NodeSettingsComponent = ({
       </Typography>
 
       <TextField
-        value={customTemplateList}
+        value={CustomTemplateList}
         onChange={(event) => setCustomTemplateList(event.target.value)}
         placeholder="status code, kubernetes, storage, utilization"
         sx={{ width: "100%", marginTop: "15px" }}
       />
+
+      <IconButton
+        onClick={handle_submit}
+        sx={{
+          position: "absolute",
+          bottom: "-15px",
+          left: "47%",
+          backgroundColor: "#4361ee",
+          transition: "transform 0.3s ease, box-shadow 1s ease",
+          "&:hover": {
+            backgroundColor: "#4361ee",
+            transform: "scale(1.05)",
+            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
+          },
+        }}
+      >
+        <CheckIcon sx={{ color: "white" }} />
+      </IconButton>
     </Box>
   );
 };
