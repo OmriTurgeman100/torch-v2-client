@@ -17,7 +17,7 @@ interface SubNode {
 interface NodeSettingsProps {
   closeSettings: () => void;
   subNodes: SubNode[];
-  parent: string | undefined;
+  parent: any;
 }
 
 export const NodeSettingsComponent = ({
@@ -25,8 +25,19 @@ export const NodeSettingsComponent = ({
   subNodes,
   parent,
 }: NodeSettingsProps) => {
+  const parent_to_number = parseInt(parent);
   const [nodesList, setNodesList] = useState<number[]>([]);
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+  function insert_node(node_id: number, isChecked: boolean): void {
+    if (isChecked) {
+      if (!nodesList.includes(node_id)) {
+        setNodesList((prevNodes) => [...prevNodes, node_id]);
+      }
+    } else {
+      setNodesList((prevNodes) => prevNodes.filter((id) => id !== node_id));
+    }
+  }
 
   useEffect(() => {
     console.log(nodesList);
@@ -93,13 +104,19 @@ export const NodeSettingsComponent = ({
             >
               {node.title}
             </Typography>
-            <Checkbox {...label} onClick={() => console.log(node.node_id)} />
+            <Checkbox
+              {...label}
+              onChange={(e) => insert_node(node.node_id, e.target.checked)}
+            />
           </Box>
         ))}
 
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <ExpandMoreIcon />
-          <Checkbox {...label} onClick={() => console.log(parent)} />
+          <Checkbox
+            {...label}
+            onChange={(e) => insert_node(parent_to_number, e.target.checked)}
+          />
         </Box>
       </Box>
     </Box>
