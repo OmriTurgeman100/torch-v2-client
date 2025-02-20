@@ -79,6 +79,20 @@ export const NodeSettingsComponent = ({
         </IconButton>
       </Box>
 
+      <Box>
+        <Typography
+          variant="h4"
+          style={{
+            color: "#4361ee",
+            fontSize: "1.0rem",
+            margin: "auto",
+            letterSpacing: "1px",
+          }}
+        >
+          select nodes
+        </Typography>
+      </Box>
+
       <Box
         sx={{
           display: "flex",
@@ -120,9 +134,7 @@ export const NodeSettingsComponent = ({
         </Box>
       </Box>
 
-      <TextField placeholder="node 1, node 2, node 3"  sx={{ width: "100%"}}/>
-
-     
+      <TextField placeholder="node 1, node 2, node 3" sx={{ width: "100%" }} />
     </Box>
   );
 };
