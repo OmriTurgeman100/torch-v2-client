@@ -1,4 +1,4 @@
-import { Box, IconButton, TextField, Typography } from "@mui/material";
+import { Box, colors, IconButton, TextField, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Checkbox from "@mui/material/Checkbox";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -7,6 +7,7 @@ import { get_nodes_templates } from "../services/Get-Nodes-Templates";
 import { useAuthContext } from "../Context/UseAuthContext";
 import CheckIcon from "@mui/icons-material/Check";
 import { post_nodes } from "../services/Post-Nodes";
+import AddIcon from "@mui/icons-material/Add";
 
 interface SubNode {
   description: string;
@@ -195,17 +196,34 @@ export const NodeSettingsComponent = ({
         </Box>
       </Box>
 
-      <Typography
-        variant="h4"
-        style={{
-          color: "#4361ee",
-          fontSize: "1.0rem",
-          margin: "auto",
-          letterSpacing: "1px",
-        }}
-      >
-        Select templates
-      </Typography>
+      <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+        <Typography
+          variant="h4"
+          style={{
+            color: "#4361ee",
+            fontSize: "1.0rem",
+            letterSpacing: "1px",
+          }}
+        >
+          Select templates
+        </Typography>
+
+        <IconButton
+          onClick={handle_submit}
+          sx={{
+  
+            backgroundColor: "#e9ecef",
+            transition: "transform 0.3s ease, box-shadow 1s ease",
+            "&:hover": {
+              backgroundColor: "#e9ecef",
+              transform: "scale(1.05)",
+              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
+            },
+          }}
+        >
+          <AddIcon sx={{ color: "#4361ee" }} />
+        </IconButton>
+      </Box>
 
       <Box
         sx={{
