@@ -67,7 +67,7 @@ export const Display_Report_Rules = () => {
         }}
       >
         {reportRules.map((report) => (
-          <Box>
+          <Box key={report.rule_id}>
             <Box
               sx={{
                 display: "flex",
