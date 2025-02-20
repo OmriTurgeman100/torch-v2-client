@@ -264,6 +264,7 @@ export const TreeNodesReports = () => {
         <NodeSettingsComponent
           closeSettings={() => setNodeSettings(false)}
           subNodes={Data.nodes}
+          parent={id}
         />
       )}
     </>

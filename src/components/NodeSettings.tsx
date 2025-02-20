@@ -17,22 +17,29 @@ interface SubNode {
 interface NodeSettingsProps {
   closeSettings: () => void;
   subNodes: SubNode[];
+  parent: string | undefined;
 }
 
 export const NodeSettingsComponent = ({
   closeSettings,
   subNodes,
+  parent,
 }: NodeSettingsProps) => {
   const [nodesList, setNodesList] = useState<number[]>([]);
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
+  function handleCheckboxChange(node_id: number, checked: boolean) {
+    setNodesList((prevNodes) =>
+      checked
+        ? [...prevNodes, node_id]
+        : prevNodes.filter((id) => id !== node_id)
+    );
+  }
 
-  
+  useEffect(() => {
+    console.log(nodesList);
+  }, [nodesList]);
 
-  useEffect(() => (
-    console.log(nodesList)
-
-  ), [nodesList])
   return (
     <Box
       sx={{
@@ -44,7 +51,6 @@ export const NodeSettingsComponent = ({
         padding: "20px",
         borderRadius: "16px",
         transition: "transform 0.3s ease, box-shadow 0.3s ease",
-
         "&:hover": {
           transform: "translateY(-8px)",
           boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.15)",
@@ -59,15 +65,12 @@ export const NodeSettingsComponent = ({
           style={{
             color: "#4361ee",
             fontSize: "1.5rem",
-
             margin: "auto",
-
             letterSpacing: "1px",
           }}
         >
-          control panel
+          Control Panel
         </Typography>
-
         <IconButton onClick={closeSettings} sx={{ backgroundColor: "#4361ee" }}>
           <CloseIcon sx={{ color: "white" }} />
         </IconButton>
@@ -83,7 +86,10 @@ export const NodeSettingsComponent = ({
         }}
       >
         {subNodes.map((node) => (
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box
+            key={node.node_id}
+            sx={{ display: "flex", alignItems: "center" }}
+          >
             <Typography
               variant="h4"
               style={{
@@ -95,17 +101,16 @@ export const NodeSettingsComponent = ({
             >
               {node.title}
             </Typography>
-            <Checkbox {...label} />
+            <Checkbox
+              {...label}
+              checked={nodesList.includes(node.node_id)}
+              onChange={(e) =>
+                handleCheckboxChange(node.node_id, e.target.checked)
+              }
+            />
           </Box>
         ))}
-
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <ExpandMoreIcon />
-          <Checkbox {...label} />
-        </Box>
       </Box>
     </Box>
   );
 };
-//#e9ecef
-//#4361ee
