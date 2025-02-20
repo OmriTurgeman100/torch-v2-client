@@ -153,6 +153,18 @@ export const NodeSettingsComponent = ({
         <h1>3</h1>
       </Box>
 
+      <Typography
+          variant="h4"
+          style={{
+            color: "#4361ee",
+            fontSize: "1.0rem",
+            margin: "auto",
+            letterSpacing: "1px",
+          }}
+        >
+          Custom templates
+        </Typography>
+
       <TextField placeholder="node 1, node 2, node 3" sx={{ width: "100%" }} />
     </Box>
   );
