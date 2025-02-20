@@ -34,6 +34,5 @@ export const post_nodes = async (
     return response;
   } catch (error: any) {
     console.error("API Error:", error.response?.data || error.message);
-    throw error;
   }
 };
