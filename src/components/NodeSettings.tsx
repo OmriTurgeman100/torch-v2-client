@@ -89,7 +89,7 @@ export const NodeSettingsComponent = ({
             letterSpacing: "1px",
           }}
         >
-          select nodes
+          Select nodes
         </Typography>
       </Box>
 
@@ -132,6 +132,19 @@ export const NodeSettingsComponent = ({
             onChange={(e) => insert_node(parent_to_number, e.target.checked)}
           />
         </Box>
+      </Box>
+      <Box>
+        <Typography
+          variant="h4"
+          style={{
+            color: "#4361ee",
+            fontSize: "1.0rem",
+            margin: "auto",
+            letterSpacing: "1px",
+          }}
+        >
+          Select templates
+        </Typography>
       </Box>
 
       <TextField placeholder="node 1, node 2, node 3" sx={{ width: "100%" }} />
