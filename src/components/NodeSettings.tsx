@@ -60,8 +60,6 @@ export const NodeSettingsComponent = ({
 
   useEffect(() => {
     fetch_nodes_templates();
-
-    console.log(NodeTemplates);
   }, [nodesList]);
 
   return (
