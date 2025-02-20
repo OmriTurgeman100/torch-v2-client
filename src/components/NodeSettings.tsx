@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, TextField, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Checkbox from "@mui/material/Checkbox";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -119,6 +119,10 @@ export const NodeSettingsComponent = ({
           />
         </Box>
       </Box>
+
+      <TextField placeholder="node 1, node 2, node 3"  sx={{ width: "100%"}}/>
+
+     
     </Box>
   );
 };
