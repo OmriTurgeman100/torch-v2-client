@@ -49,6 +49,7 @@ export const Root = () => {
       <div className="grid-container">
         {RootNodes.map((node) => (
           <Box
+            key={node.node_id}
             className="card"
             sx={{
               width: "200px",

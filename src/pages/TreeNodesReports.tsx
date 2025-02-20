@@ -193,30 +193,28 @@ export const TreeNodesReports = () => {
                   boxShadow: 5,
                 }}
               >
-                <Link to={`/report/rules/${report.parent}`}>
-                  <Typography
-                    variant="h4"
-                    style={{
-                      color: "white",
-                      fontSize: "1.6rem",
-                      letterSpacing: "1px",
-                    }}
-                  >
-                    {report.title}
-                  </Typography>
+                <Typography
+                  variant="h4"
+                  style={{
+                    color: "white",
+                    fontSize: "1.6rem",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  {report.title}
+                </Typography>
 
-                  <Typography
-                    variant="h4"
-                    style={{
-                      color: "white",
-                      fontSize: "1.0rem",
-                      opacity: "50%",
-                      letterSpacing: "1px",
-                    }}
-                  >
-                    {report.value}
-                  </Typography>
-                </Link>
+                <Typography
+                  variant="h4"
+                  style={{
+                    color: "white",
+                    fontSize: "1.0rem",
+                    opacity: "50%",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  {report.value}
+                </Typography>
               </Box>
             ))}
           </div>
