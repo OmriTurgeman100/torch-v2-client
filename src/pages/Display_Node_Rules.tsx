@@ -67,6 +67,7 @@ export const Display_Node_Rules = () => {
       >
         {NodeRules.map((node_rule) => (
           <Box
+            key={node_rule.rule_id}
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -88,7 +89,7 @@ export const Display_Node_Rules = () => {
 
             <Box>
               {node_rule.conditions.map((node_rule_condition, index) => (
-                <Box>
+                <Box key={node_rule_condition.node_id}>
                   {index > 0 && (
                     <Box
                       sx={{
