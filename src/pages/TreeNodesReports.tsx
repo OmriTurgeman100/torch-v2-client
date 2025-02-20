@@ -13,6 +13,8 @@ import IconButton from "@mui/material/IconButton";
 import FlashlightOnIcon from "@mui/icons-material/FlashlightOn";
 import FlashlightOffIcon from "@mui/icons-material/FlashlightOff";
 import { set_node_excluded } from "../services/Set-Node-Excluded";
+import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
+import { NodeSettings } from "../components/NodeSettings";
 
 type sub_nodes = {
   description: string;
@@ -152,6 +154,23 @@ export const TreeNodesReports = () => {
               Reports
             </Button>
           </ButtonGroup>
+
+          <IconButton
+            sx={{
+              position: "absolute",
+              bottom: 80,
+              right: 10,
+              backgroundColor: "white",
+              transition: "transform 0.3s ease, box-shadow 1s ease",
+              "&:hover": {
+                backgroundColor: "white",
+                transform: "translateY(-15px)",
+                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
+              },
+            }}
+          >
+            <SettingsSuggestIcon sx={{ color: "#4361ee", fontSize: 30 }} />
+          </IconButton>
         </div>
       )}
       {Data?.reports && Data.reports.length > 0 && (
