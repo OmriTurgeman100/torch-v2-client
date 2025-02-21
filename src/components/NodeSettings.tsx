@@ -152,7 +152,7 @@ export const NodeSettingsComponent = ({
         }}
       >
         Select nodes
-      </Typography>
+      </Typography> 
 
       <Box
         sx={{
