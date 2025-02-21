@@ -8,6 +8,7 @@ import { useAuthContext } from "../Context/UseAuthContext";
 import CheckIcon from "@mui/icons-material/Check";
 import { post_nodes } from "../services/Post-Nodes";
 import AddIcon from "@mui/icons-material/Add";
+import { post_node_template } from "../services/Post-Node-Template";
 
 interface SubNode {
   description: string;
@@ -42,7 +43,6 @@ export const NodeSettingsComponent = ({
   const [CustomTemplateList, setCustomTemplateList] = useState<string>("");
   const [DisplayTemplates, setDisplayTemplates] = useState<boolean>(false);
   const [TemplateFormData, setTemplateFormData] = useState<string>("");
-
   const { user } = useAuthContext();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -95,9 +95,29 @@ export const NodeSettingsComponent = ({
     }
   };
 
+  const handle_new_template = async () => {
+    try {
+      const TemplateFormDataExtracted = TemplateFormData.split(",").map(
+        (item) => item.trim()
+      );
+
+      const total_templates = [...TemplateFormDataExtracted.filter(Boolean)];
+
+      console.log(total_templates);
+
+      for (const template of total_templates) {
+        await post_node_template(template, user.token);
+      }
+
+      setDisplayTemplates(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     fetch_nodes_templates();
-  }, []);
+  }, [NodeTemplates]);
 
   return (
     <Box
@@ -213,7 +233,7 @@ export const NodeSettingsComponent = ({
             </Typography>
 
             <IconButton
-              onClick={() => setDisplayTemplates(false)}
+              onClick={handle_new_template}
               sx={{
                 backgroundColor: "#e9ecef",
                 transition: "transform 0.3s ease, box-shadow 1s ease",

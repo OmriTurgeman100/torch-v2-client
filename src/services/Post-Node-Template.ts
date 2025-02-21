@@ -1,5 +1,4 @@
 import api from "./Http";
-import { toast } from "react-toastify";
 
 export const post_node_template = async (
   template_name: string,
@@ -17,13 +16,6 @@ export const post_node_template = async (
         },
       }
     );
-
-    toast.success("Successful", {
-      style: {
-        backgroundColor: "#0047AB",
-        color: "white",
-      },
-    });
 
     return response;
   } catch (error) {
