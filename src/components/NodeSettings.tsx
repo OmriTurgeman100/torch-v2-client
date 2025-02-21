@@ -210,7 +210,7 @@ export const NodeSettingsComponent = ({
         </Typography>
 
         <IconButton
-          onClick={handle_submit}
+          onClick={() => setDisplayTemplates(true)}
           sx={{
             backgroundColor: "#e9ecef",
             transition: "transform 0.3s ease, box-shadow 1s ease",
