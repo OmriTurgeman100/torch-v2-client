@@ -41,6 +41,8 @@ export const NodeSettingsComponent = ({
   const [TemplatesList, setTemplatesList] = useState<string[]>([]);
   const [CustomTemplateList, setCustomTemplateList] = useState<string>("");
   const [DisplayTemplates, setDisplayTemplates] = useState<boolean>(false);
+  const [TemplateFormData, setTemplateFormData] = useState<string>("");
+
   const { user } = useAuthContext();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -207,7 +209,7 @@ export const NodeSettingsComponent = ({
                 letterSpacing: "1px",
               }}
             >
-              Display templates
+              Confirm templates
             </Typography>
 
             <IconButton
@@ -226,9 +228,9 @@ export const NodeSettingsComponent = ({
             </IconButton>
           </Box>
           <TextField
-            value={CustomTemplateList}
-            onChange={(event) => setCustomTemplateList(event.target.value)}
-            placeholder="status code, kubernetes, storage, utilization"
+            value={TemplateFormData}
+            onChange={(event) => setTemplateFormData(event.target.value)}
+            placeholder="Server Uptime, Firewall Monitoring, SSL Certificate Expiry"
             sx={{ width: "100%", marginTop: "15px", marginBottom: "15px" }}
           />
         </Box>
@@ -243,7 +245,7 @@ export const NodeSettingsComponent = ({
                 letterSpacing: "1px",
               }}
             >
-              insert templates
+              Insert templates
             </Typography>
 
             <IconButton
