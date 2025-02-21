@@ -225,41 +225,12 @@ export const NodeSettingsComponent = ({
               <CheckIcon sx={{ color: "#4361ee" }} />
             </IconButton>
           </Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 2,
-              margin: "15px",
-              overflow: "hidden",
-              flexWrap: "wrap",
-            }}
-          >
-            {NodeTemplates.map((node_template) => (
-              <Box
-                sx={{ display: "flex", alignItems: "center" }}
-                key={node_template.id}
-              >
-                <Typography
-                  variant="h4"
-                  style={{
-                    color: "#333333",
-                    fontSize: "1.5rem",
-                    letterSpacing: "1px",
-                  }}
-                >
-                  {node_template.name}
-                </Typography>
-                <Checkbox
-                  {...label}
-                  checked={TemplatesList.includes(node_template.name)}
-                  onChange={(e) =>
-                    insert_template(node_template.name, e.target.checked)
-                  }
-                />
-              </Box>
-            ))}
-          </Box>
+          <TextField
+            value={CustomTemplateList}
+            onChange={(event) => setCustomTemplateList(event.target.value)}
+            placeholder="status code, kubernetes, storage, utilization"
+            sx={{ width: "100%", marginTop: "15px", marginBottom: "15px" }}
+          />
         </Box>
       ) : (
         <Box>
