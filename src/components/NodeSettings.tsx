@@ -40,6 +40,7 @@ export const NodeSettingsComponent = ({
   const [nodesList, setNodesList] = useState<number[]>([]);
   const [TemplatesList, setTemplatesList] = useState<string[]>([]);
   const [CustomTemplateList, setCustomTemplateList] = useState<string>("");
+  const [DisplayTemplates, setDisplayTemplates] = useState<boolean>(false);
   const { user } = useAuthContext();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -152,7 +153,7 @@ export const NodeSettingsComponent = ({
         }}
       >
         Select nodes
-      </Typography> 
+      </Typography>
 
       <Box
         sx={{
