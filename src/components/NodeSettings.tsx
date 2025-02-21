@@ -196,70 +196,137 @@ export const NodeSettingsComponent = ({
           />
         </Box>
       </Box>
-
-      <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-        <Typography
-          variant="h4"
-          style={{
-            color: "#4361ee",
-            fontSize: "1.0rem",
-            letterSpacing: "1px",
-          }}
-        >
-          Select templates
-        </Typography>
-
-        <IconButton
-          onClick={() => setDisplayTemplates(true)}
-          sx={{
-            backgroundColor: "#e9ecef",
-            transition: "transform 0.3s ease, box-shadow 1s ease",
-            "&:hover": {
-              backgroundColor: "#e9ecef",
-              transform: "scale(1.05)",
-              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
-            },
-          }}
-        >
-          <AddIcon sx={{ color: "#4361ee" }} />
-        </IconButton>
-      </Box>
-
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: 2,
-          margin: "15px",
-          overflow: "hidden",
-          flexWrap: "wrap",
-        }}
-      >
-        {NodeTemplates.map((node_template) => (
-          <Box
-            sx={{ display: "flex", alignItems: "center" }}
-            key={node_template.id}
-          >
+      {DisplayTemplates ? (
+        <Box>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
             <Typography
               variant="h4"
               style={{
-                color: "#333333",
-                fontSize: "1.5rem",
+                color: "#4361ee",
+                fontSize: "1.0rem",
                 letterSpacing: "1px",
               }}
             >
-              {node_template.name}
+              Display templates
             </Typography>
-            <Checkbox
-              {...label}
-              checked={TemplatesList.includes(node_template.name)}
-              onChange={(e) =>
-                insert_template(node_template.name, e.target.checked)
-              }
-            />
+
+            <IconButton
+              onClick={() => setDisplayTemplates(false)}
+              sx={{
+                backgroundColor: "#e9ecef",
+                transition: "transform 0.3s ease, box-shadow 1s ease",
+                "&:hover": {
+                  backgroundColor: "#e9ecef",
+                  transform: "scale(1.05)",
+                  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
+                },
+              }}
+            >
+              <CheckIcon sx={{ color: "#4361ee" }} />
+            </IconButton>
           </Box>
-        ))}
-      </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 2,
+              margin: "15px",
+              overflow: "hidden",
+              flexWrap: "wrap",
+            }}
+          >
+            {NodeTemplates.map((node_template) => (
+              <Box
+                sx={{ display: "flex", alignItems: "center" }}
+                key={node_template.id}
+              >
+                <Typography
+                  variant="h4"
+                  style={{
+                    color: "#333333",
+                    fontSize: "1.5rem",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  {node_template.name}
+                </Typography>
+                <Checkbox
+                  {...label}
+                  checked={TemplatesList.includes(node_template.name)}
+                  onChange={(e) =>
+                    insert_template(node_template.name, e.target.checked)
+                  }
+                />
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      ) : (
+        <Box>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <Typography
+              variant="h4"
+              style={{
+                color: "#4361ee",
+                fontSize: "1.0rem",
+                letterSpacing: "1px",
+              }}
+            >
+              insert templates
+            </Typography>
+
+            <IconButton
+              onClick={() => setDisplayTemplates(true)}
+              sx={{
+                backgroundColor: "#e9ecef",
+                transition: "transform 0.3s ease, box-shadow 1s ease",
+                "&:hover": {
+                  backgroundColor: "#e9ecef",
+                  transform: "scale(1.05)",
+                  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
+                },
+              }}
+            >
+              <AddIcon sx={{ color: "#4361ee" }} />
+            </IconButton>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 2,
+              margin: "15px",
+              overflow: "hidden",
+              flexWrap: "wrap",
+            }}
+          >
+            {NodeTemplates.map((node_template) => (
+              <Box
+                sx={{ display: "flex", alignItems: "center" }}
+                key={node_template.id}
+              >
+                <Typography
+                  variant="h4"
+                  style={{
+                    color: "#333333",
+                    fontSize: "1.5rem",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  {node_template.name}
+                </Typography>
+                <Checkbox
+                  {...label}
+                  checked={TemplatesList.includes(node_template.name)}
+                  onChange={(e) =>
+                    insert_template(node_template.name, e.target.checked)
+                  }
+                />
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      )}
 
       <Typography
         variant="h4"
