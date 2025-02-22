@@ -93,9 +93,9 @@ export const Create_Node_Rules = () => {
       } else {
         await post_node_rules(user.token, id, payload);
 
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        // await new Promise((resolve) => setTimeout(resolve, 2000));
 
-        navigate(`/display/node/rules/${id}`);
+        // navigate(`/display/node/rules/${id}`);
       }
     } catch (error) {
       console.error("Error sending request:", error);
