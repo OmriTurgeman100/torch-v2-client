@@ -93,6 +93,8 @@ export const Create_Node_Rules = () => {
       } else {
         await post_node_rules(user.token, id, payload);
 
+        //! might want to delete nav  in production
+
         // await new Promise((resolve) => setTimeout(resolve, 2000));
 
         // navigate(`/display/node/rules/${id}`);
