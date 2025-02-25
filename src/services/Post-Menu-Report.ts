@@ -1,5 +1,4 @@
 import api from "./Http";
-import { toast } from "react-toastify";
 
 export const post_report_from_menu = async (
   token: string,
@@ -25,18 +24,8 @@ export const post_report_from_menu = async (
       }
     );
 
-    toast.success("Request Was Successful", {
-      style: {
-        backgroundColor: "#0047AB",
-        color: "white",
-      },
-    });
-
-    
     return response;
-  } catch (error: any) {
-    toast.error(error.message);
-
+  } catch (error) {
     throw error;
   }
 };

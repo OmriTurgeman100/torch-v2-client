@@ -1,5 +1,4 @@
 import api from "./Http";
-import { toast } from "react-toastify";
 
 export const post_node_rules = async (
   token: string,
@@ -16,14 +15,6 @@ export const post_node_rules = async (
         },
       }
     );
-
-    toast.success("Rules created successfully!", {
-      style: {
-        backgroundColor: "#0047AB",
-        color: "white",
-        fontWeight: "bold",
-      },
-    });
 
     return response;
   } catch (error) {

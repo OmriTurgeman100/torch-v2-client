@@ -1,5 +1,4 @@
 import api from "./Http";
-import { toast } from "react-toastify";
 
 export const post_nodes = async (
   title: string,
@@ -23,15 +22,8 @@ export const post_nodes = async (
       }
     );
 
-    toast.success("Successful", {
-      style: {
-        backgroundColor: "#0047AB",
-        color: "white",
-      },
-    });
-
     return response;
   } catch (error) {
-    null;
+    throw error;
   }
 };

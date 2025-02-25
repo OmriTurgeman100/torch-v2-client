@@ -35,9 +35,17 @@ export const CreateNodesTreeForm = () => {
         user.token
       );
 
+      toast.success("Successful", {
+        style: {
+          backgroundColor: "#0047AB",
+          color: "white",
+        },
+      });
+
       reset();
-    } catch (error: any) {
-      console.error("Form submit has failed:", error.message);
+    } catch (error) {
+      toast.error("Failed");
+      console.error("Form submit has failed:", error);
     }
   };
 

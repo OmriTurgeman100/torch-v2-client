@@ -9,6 +9,7 @@ import { fetch_report_menu } from "../services/Get-Reports-Menu";
 import { post_report_from_menu } from "../services/Post-Menu-Report";
 import { ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
+import { toast } from "react-toastify";
 
 interface Report {
   report_id: string;
@@ -48,11 +49,16 @@ export const ReportsMenu = () => {
         title,
         description
       );
-    } catch (error: any) {
-      console.error(
-        "Error posting report:",
-        error.response ? error.response.data : error.message
-      );
+
+      toast.success("Request Was Successful", {
+        style: {
+          backgroundColor: "#0047AB",
+          color: "white",
+        },
+      });
+    } catch (error) {
+      toast.error("Request failed with status code 500");
+      console.error("Error posting report:", error);
     }
   };
 

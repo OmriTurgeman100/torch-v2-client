@@ -28,6 +28,13 @@ export const Register = () => {
 
       await AuthUserRegister(form_username, form_password);
 
+      toast.success("Registration Successful", {
+        style: {
+          backgroundColor: "#0047AB",
+          color: "white",
+        },
+      });
+
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
       navigate("/login");

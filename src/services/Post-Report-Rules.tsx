@@ -1,5 +1,4 @@
 import api from "./Http";
-import { toast } from "react-toastify";
 
 export const post_report_rules = async (
   operator: string,
@@ -32,18 +31,8 @@ export const post_report_rules = async (
       }
     );
 
-    toast.success("Rules created successfully!", {
-      style: {
-        backgroundColor: "#0047AB",
-        color: "white",
-        fontWeight: "bold",
-      },
-    });
-
     return response;
-  } catch (error: any) {
-    toast.error(error.message);
-
+  } catch (error) {
     throw error;
   }
 };

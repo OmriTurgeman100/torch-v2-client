@@ -61,12 +61,20 @@ export const Create_Report_Rules = () => {
           user.token
         );
 
+        toast.success("Rule created successfully!", {
+          style: {
+            backgroundColor: "#0047AB",
+            color: "white",
+            fontWeight: "bold",
+          },
+        });
+
         // await new Promise((resolve) => setTimeout(resolve, 2000));
 
         // navigate(`/display/report/rules/${id}/${report_id}`);
       }
     } catch (error) {
-      console.error(error);
+      toast.error("Failed");
     }
   };
 
