@@ -20,6 +20,7 @@ import { delete_node } from "../services/Delete-Node";
 import { ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
 import { toast } from "react-toastify";
+import { detach_report } from "../services/Detach-Report";
 
 interface sub_nodes {
   description: string;
@@ -113,6 +114,26 @@ export const TreeNodesReports = () => {
       });
     } catch (error) {
       toast.error("Node has rules or reports", {
+        style: {
+          fontWeight: "bold",
+        },
+      });
+      console.error(error);
+    }
+  };
+
+  const handle_detach_report = async (report_id: string) => {
+    try {
+      await detach_report(report_id, user.token);
+      toast.success("Report has been removed!", {
+        style: {
+          backgroundColor: "#0047AB",
+          color: "white",
+          fontWeight: "bold",
+        },
+      });
+    } catch (error) {
+      toast.error("Report has rules", {
         style: {
           fontWeight: "bold",
         },
@@ -244,6 +265,7 @@ export const TreeNodesReports = () => {
                   padding: "15px",
                   borderRadius: 1,
                   boxShadow: 5,
+                  position: "relative",
                 }}
               >
                 <Typography
@@ -268,6 +290,13 @@ export const TreeNodesReports = () => {
                 >
                   {report.value}
                 </Typography>
+
+                <IconButton
+                  onClick={() => handle_detach_report(report.report_id)}
+                  sx={{ left: "190px", bottom: "70px", position: "absolute" }}
+                >
+                  <DeleteIcon sx={{ color: "white", opacity: "50%" }} />
+                </IconButton>
               </Box>
             ))}
           </div>
