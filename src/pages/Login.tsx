@@ -9,6 +9,7 @@ import { Bounce } from "react-toastify";
 import { AuthUserLogin } from "../services/Post-Auth-Login";
 import { useAuthContext } from "../Context/UseAuthContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const Login = () => {
   const {
@@ -38,7 +39,8 @@ export const Login = () => {
 
       reset();
     } catch (error: any) {
-      console.error("Registration failed:", error.message);
+      toast.error("Login failed.");
+      console.error("Login failed:", error.message);
     }
   };
 

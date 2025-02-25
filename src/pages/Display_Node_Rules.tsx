@@ -11,6 +11,7 @@ import { node_colors } from "../utils/NodeColors";
 import IconButton from "@mui/material/IconButton";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 interface node_conditions {
   value: string;
@@ -38,6 +39,13 @@ export const Display_Node_Rules = () => {
       const response = await fetch_rules(user.token, id);
 
       setNodeRules(response.data);
+
+      toast.success("Rules fetched successfully!", {
+        style: {
+          backgroundColor: "#0047AB",
+          color: "#fff",
+        },
+      });
     } catch (error) {
       console.error(error);
     }

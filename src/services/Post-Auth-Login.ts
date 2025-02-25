@@ -1,6 +1,4 @@
-// apiService.ts
-import api from "./Http"; // Assuming you have an api instance configured
-import { toast } from "react-toastify";
+import api from "./Http";
 
 export const AuthUserLogin = async (username: string, password: string) => {
   try {
@@ -9,16 +7,8 @@ export const AuthUserLogin = async (username: string, password: string) => {
       password,
     });
 
-    toast.success("Login Successful", {
-      style: {
-        backgroundColor: "#0047AB",
-        color: "white",
-      },
-    });
-
     return response;
-  } catch (error: any) {
-    toast.error(error.message);
+  } catch (error) {
     throw error;
   }
 };

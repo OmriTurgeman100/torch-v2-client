@@ -1,5 +1,4 @@
-import api from "./Http"; 
-import { toast } from "react-toastify";
+import api from "./Http";
 
 export const AuthUserRegister = async (username: string, password: string) => {
   try {
@@ -8,16 +7,8 @@ export const AuthUserRegister = async (username: string, password: string) => {
       password,
     });
 
-    toast.success("Registration Successful", {
-      style: {
-        backgroundColor: "#0047AB",
-        color: "white",
-      },
-    });
-
     return response;
-  } catch (error: any) {
-    toast.error(error.message);
+  } catch (error) {
     throw error;
   }
 };

@@ -8,14 +8,6 @@ export const delete_node = async (node_id: number, token: string) => {
       },
     });
 
-    // toast.success("Node deleted successfully!", {
-    //   style: {
-    //     backgroundColor: "#0047AB",
-    //     color: "white",
-    //     fontWeight: "bold",
-    //   },
-    // });
-
     return response;
   } catch (error) {
     throw error;
