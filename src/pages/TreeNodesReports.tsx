@@ -15,6 +15,11 @@ import FlashlightOffIcon from "@mui/icons-material/FlashlightOff";
 import { set_node_excluded } from "../services/Set-Node-Excluded";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import { NodeSettingsComponent } from "../components/NodeSettings";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { delete_node } from "../services/Delete-Node";
+import { ToastContainer } from "react-toastify";
+import { Bounce } from "react-toastify";
+import { toast } from "react-toastify";
 
 interface sub_nodes {
   description: string;
@@ -66,11 +71,38 @@ export const TreeNodesReports = () => {
         await set_node_excluded("true", node_id, user.token);
 
         setExclude(true);
+
+        toast.success("Node is excluded!", {
+          style: {
+            backgroundColor: "#0047AB",
+            color: "white",
+            fontWeight: "bold",
+          },
+        });
       } else if (node_status === "true") {
         await set_node_excluded("false", node_id, user.token);
         setExclude(false);
+
+        toast.success("Node is unexcluded!", {
+          style: {
+            backgroundColor: "#0047AB",
+            color: "white",
+            fontWeight: "bold",
+          },
+        });
       }
     } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handle_delete_node = async (node_id: number) => {
+    try {
+      const response = await delete_node(node_id, user.token);
+
+      console.log(response);
+    } catch (error) {
+      toast.error("Node has rules under him.");
       console.error(error);
     }
   };
@@ -130,13 +162,20 @@ export const TreeNodesReports = () => {
                 </Link>
                 <IconButton
                   onClick={() => set_excluded(node.excluded, node.node_id)}
-                  sx={{ left: "170px" }}
+                  sx={{ left: "190px", bottom: "0px", position: "absolute" }}
                 >
                   {node.excluded == "false" ? (
                     <FlashlightOnIcon sx={{ color: "white" }} />
                   ) : (
                     <FlashlightOffIcon sx={{ color: "white" }} />
                   )}
+                </IconButton>
+
+                <IconButton
+                  onClick={() => handle_delete_node(node.node_id)}
+                  sx={{ left: "190px", bottom: "70px", position: "absolute" }}
+                >
+                  <DeleteIcon sx={{ color: "white", opacity: "50%" }} />
                 </IconButton>
               </Box>
             ))}
@@ -285,6 +324,19 @@ export const TreeNodesReports = () => {
           parent={id}
         />
       )}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
     </>
   );
 };
