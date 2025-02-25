@@ -9,6 +9,12 @@ import { node_colors } from "../utils/NodeColors";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 import SaveIcon from "@mui/icons-material/Save";
+import { delete_node } from "../services/Delete-Node";
+import { toast } from "react-toastify";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { ToastContainer } from "react-toastify";
+import { Bounce } from "react-toastify";
 
 interface RootNode {
   node_id: number;
@@ -31,6 +37,27 @@ export const Root = () => {
       setRootNodes(response.data);
     } catch (error) {
       console.error("Error fetching root nodes:", error);
+    }
+  };
+
+  const handle_delete_node = async (node_id: number) => {
+    try {
+      await delete_node(node_id, user.token);
+
+      toast.success("Node has been deleted!", {
+        style: {
+          backgroundColor: "#0047AB",
+          color: "white",
+          fontWeight: "bold",
+        },
+      });
+    } catch (error) {
+      toast.error("Node has rules or reports", {
+        style: {
+          fontWeight: "bold",
+        },
+      });
+      console.error(error);
     }
   };
 
@@ -58,6 +85,7 @@ export const Root = () => {
               padding: "15px",
               borderRadius: 1,
               boxShadow: 5,
+              position: "relative",
             }}
           >
             <Link to={`/${node.node_id}`} key={node.node_id}>
@@ -84,6 +112,12 @@ export const Root = () => {
                 {node.status}
               </Typography>
             </Link>
+            <IconButton
+              onClick={() => handle_delete_node(node.node_id)}
+              sx={{ left: "190px", bottom: "70px", position: "absolute" }}
+            >
+              <DeleteIcon sx={{ color: "white", opacity: "50%" }} />
+            </IconButton>
           </Box>
         ))}
       </div>
@@ -100,6 +134,20 @@ export const Root = () => {
           Reports
         </Button>
       </ButtonGroup>
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
     </div>
   );
 };
