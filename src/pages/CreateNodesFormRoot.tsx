@@ -33,6 +33,13 @@ export const CreateNodesForm = () => {
         user.token
       );
 
+      toast.success("Successful", {
+        style: {
+          backgroundColor: "#0047AB",
+          color: "white",
+        },
+      });
+
       reset();
     } catch (error: any) {
       console.error("Form submit has failed:", error.message);
@@ -107,8 +114,8 @@ export const CreateNodesForm = () => {
               {...register("title", {
                 required: "title is required",
                 minLength: {
-                  value: 5,
-                  message: "Name must be at least 5 characters",
+                  value: 4,
+                  message: "Name must be at least 4 characters",
                 },
               })}
               error={!!errors.title}
@@ -124,8 +131,8 @@ export const CreateNodesForm = () => {
               {...register("description", {
                 required: "description is required",
                 minLength: {
-                  value: 5,
-                  message: "Desc must be at least 5 characters",
+                  value: 4,
+                  message: "Desc must be at least 4 characters",
                 },
               })}
               error={!!errors.description}
