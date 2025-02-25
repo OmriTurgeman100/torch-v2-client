@@ -102,7 +102,7 @@ export const TreeNodesReports = () => {
 
   const handle_delete_node = async (node_id: number) => {
     try {
-      const response = await delete_node(node_id, user.token);
+      await delete_node(node_id, user.token);
 
       toast.success("Node has been deleted!", {
         style: {

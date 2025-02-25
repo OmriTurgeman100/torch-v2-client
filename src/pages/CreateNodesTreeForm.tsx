@@ -28,12 +28,7 @@ export const CreateNodesTreeForm = () => {
       const form_title: string = data.title;
       const form_description: string = data.description;
 
-      const response = await post_nodes(
-        form_title,
-        form_description,
-        id,
-        user.token
-      );
+      await post_nodes(form_title, form_description, id, user.token);
 
       toast.success("Successful", {
         style: {
