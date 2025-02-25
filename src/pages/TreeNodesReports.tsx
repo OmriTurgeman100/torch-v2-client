@@ -56,12 +56,16 @@ export const TreeNodesReports = () => {
   const navigate = useNavigate();
 
   const get_reports_nodes = async () => {
-    const response = await fetch_nodes_report(user.token, id);
+    try {
+      const response = await fetch_nodes_report(user.token, id);
 
-    setData(response.data);
+      setData(response.data);
 
-    if (response.data.reports.length > 0) {
-      setReportId(response.data.reports[0].report_id);
+      if (response.data.reports.length > 0) {
+        setReportId(response.data.reports[0].report_id);
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -100,7 +104,13 @@ export const TreeNodesReports = () => {
     try {
       const response = await delete_node(node_id, user.token);
 
-      console.log(response);
+      toast.success("Node has been deleted!", {
+        style: {
+          backgroundColor: "#0047AB",
+          color: "white",
+          fontWeight: "bold",
+        },
+      });
     } catch (error) {
       toast.error("Node has rules under him.");
       console.error(error);
