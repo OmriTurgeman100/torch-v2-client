@@ -42,7 +42,7 @@ export const ReportsMenu = () => {
     description: string
   ) => {
     try {
-      const response = await post_report_from_menu(
+      await post_report_from_menu(
         user.token,
         id,
         report_id,
