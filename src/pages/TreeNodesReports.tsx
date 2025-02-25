@@ -112,7 +112,11 @@ export const TreeNodesReports = () => {
         },
       });
     } catch (error) {
-      toast.error("Node has rules under him.");
+      toast.error("Node has rules or reports", {
+        style: {
+          fontWeight: "bold",
+        },
+      });
       console.error(error);
     }
   };
