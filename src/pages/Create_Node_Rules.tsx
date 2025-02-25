@@ -13,7 +13,7 @@ import { fetch_nodes_report } from "../services/Get-Nodes-Reports";
 import { toast, ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
 import { post_node_rules } from "../services/Post-Node-Rules";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 interface Sub_Nodes {
   node_id: number;
@@ -32,7 +32,7 @@ export const Create_Node_Rules = () => {
   const [action, setAction] = useState<string>("");
   const [operator, setOperator] = useState<string>("");
   const [values, setValues] = useState<{ [key: number]: string }>({});
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleOperatorChange = (event: SelectChangeEvent) => {
     setOperator(event.target.value as string);

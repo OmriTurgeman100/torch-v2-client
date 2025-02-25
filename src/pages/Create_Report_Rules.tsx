@@ -13,9 +13,9 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
-import { useNavigate } from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
 import { post_report_rules } from "../services/Post-Report-Rules";
+// import { useNavigate } from "react-router-dom";
 
 export const Create_Report_Rules = () => {
   const { user } = useAuthContext();
@@ -23,7 +23,7 @@ export const Create_Report_Rules = () => {
   const [operator, setOperator] = useState<string>();
   const [value, setValue] = useState<any>();
   const [action, setAction] = useState<string>();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleOperatorChange = (event: SelectChangeEvent) => {
     setOperator(event.target.value as string);
