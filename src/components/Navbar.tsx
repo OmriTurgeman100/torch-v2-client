@@ -13,11 +13,13 @@ import IconButton from "@mui/material/IconButton";
 import { useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import { fetch_user_photo } from "../services/Get-User-Photo";
+import moment from "moment";
 
 export const Navbar = () => {
   const { user, dispatch } = useAuthContext();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
+  const [time, setTime] = useState<string>(moment().format("HH:mm:ss"));
   const navigate = useNavigate();
   const settings = ["Profile", "Account", "Home", "Logout"];
 
@@ -54,6 +56,12 @@ export const Navbar = () => {
 
   useEffect(() => {
     fetchProfilePhoto();
+
+    const intervalId = setInterval(() => {
+      setTime(moment().format("HH:mm:ss"));
+    }, 1000);
+
+    return () => clearInterval(intervalId);
   }, [user]);
 
   const handle_logout = (): void => {
@@ -112,6 +120,19 @@ export const Navbar = () => {
             </NavLink>
           </>
         )}
+
+        <Typography
+          variant="h6"
+          style={{
+            color: "#333333",
+            left: "50%",
+            fontSize: "1.5rem",
+            letterSpacing: "1px",
+            position: "absolute",
+          }}
+        >
+          {time}
+        </Typography>
 
         {user && (
           <>
