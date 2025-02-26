@@ -21,6 +21,8 @@ import { ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
 import { toast } from "react-toastify";
 import { detach_report } from "../services/Detach-Report";
+import DescriptionIcon from "@mui/icons-material/Description";
+import { NodeDescription } from "../components/NodeDescription";
 
 interface sub_nodes {
   description: string;
@@ -50,8 +52,10 @@ interface data {
 export const TreeNodesReports = () => {
   const [Data, setData] = useState<data | null>(null);
   const [reportId, setReportId] = useState<string | null>();
+  const [nodeId, setNodeId] = useState<number | null>();
   const [excluded, setExclude] = useState<boolean | null>(null);
   const [NodeSettings, setNodeSettings] = useState<boolean>(false);
+  const [DisplayDesc, setDisplayDesc] = useState<boolean>(false);
   const { id } = useParams();
   const { user } = useAuthContext();
   const navigate = useNavigate();
@@ -142,6 +146,18 @@ export const TreeNodesReports = () => {
     }
   };
 
+  function handle_open_view_description(node_id: number): void {
+    setNodeId(node_id);
+
+    setDisplayDesc(true);
+  }
+
+  function handle_close_view_description(): void {
+    setNodeId(null);
+
+    setDisplayDesc(false);
+  }
+
   useEffect(() => {
     get_reports_nodes();
 
@@ -211,6 +227,13 @@ export const TreeNodesReports = () => {
                   sx={{ left: "190px", bottom: "70px", position: "absolute" }}
                 >
                   <DeleteIcon sx={{ color: "white", opacity: "50%" }} />
+                </IconButton>
+
+                <IconButton
+                  onClick={() => handle_open_view_description(node.node_id)}
+                  sx={{ left: "190px", bottom: "35px", position: "absolute" }}
+                >
+                  <DescriptionIcon sx={{ color: "white", opacity: "50%" }} />
                 </IconButton>
               </Box>
             ))}
@@ -366,6 +389,11 @@ export const TreeNodesReports = () => {
           subNodes={Data.nodes}
           parent={id}
         />
+      )}
+
+      {DisplayDesc && (
+        <NodeDescription handle_close_view_description={handle_close_view_description} node_id={nodeId} />
+
       )}
       <ToastContainer
         position="bottom-right"
