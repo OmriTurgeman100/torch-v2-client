@@ -41,6 +41,13 @@ export const Display_Report_Rules = () => {
       const response = await fetch_rules(user.token, id);
 
       setReportRules(response.data);
+
+      toast.success("Rules fetched successfully!", {
+        style: {
+          backgroundColor: "#0047AB",
+          color: "#fff",
+        },
+      });
     } catch (error: any) {
       toast.error(error.response.data.message);
     }
@@ -49,14 +56,18 @@ export const Display_Report_Rules = () => {
   const handle_delete_rule = async (rule_id: number) => {
     try {
       await delete_rule(user.token, rule_id);
-    } catch (error) {
-      console.log(error);
+
+      window.location.reload(); 
+
+
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 
   useEffect(() => {
     fetch_report_rules();
-  }, [reportRules, id]);
+  }, [id]);
 
   return (
     <div>

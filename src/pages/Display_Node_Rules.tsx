@@ -12,6 +12,8 @@ import IconButton from "@mui/material/IconButton";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { delete_rule } from "../services/Delete-Rule";
 
 interface node_conditions {
   value: string;
@@ -51,9 +53,19 @@ export const Display_Node_Rules = () => {
     }
   };
 
+  const handle_delete_rule = async (rule_id: number) => {
+    try {
+      await delete_rule(user.token, rule_id);
+
+      window.location.reload(); 
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
+  };
+
   useEffect(() => {
     get_rules();
-  }, []);
+  }, [id]);
 
   return (
     <div>
@@ -80,6 +92,9 @@ export const Display_Node_Rules = () => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+
+              margin: "10px",
+              position: "relative",
             }}
           >
             <Typography
@@ -94,6 +109,19 @@ export const Display_Node_Rules = () => {
             >
               If
             </Typography>
+
+            <IconButton
+              onClick={() => handle_delete_rule(node_rule.rule_id)}
+              sx={{
+                position: "absolute",
+                left: "80%",
+                top: "5px",
+
+                backgroundColor: "#e9ecef;",
+              }}
+            >
+              <DeleteForeverIcon sx={{ color: "#4361ee" }} />
+            </IconButton>
 
             <Box>
               {node_rule.conditions.map((node_rule_condition, index) => (
