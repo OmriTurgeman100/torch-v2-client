@@ -24,6 +24,7 @@ import { detach_report } from "../services/Detach-Report";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { NodeDescription } from "../components/NodeDescription";
 import CommentIcon from "@mui/icons-material/Comment";
+import { NodeComments } from "../components/NodeComments";
 
 interface sub_nodes {
   description: string;
@@ -415,6 +416,13 @@ export const TreeNodesReports = () => {
       {DisplayDesc && (
         <NodeDescription
           handle_close_view_description={handle_close_view_description}
+          node_id={nodeId}
+        />
+      )}
+
+      {DisplayComments && (
+        <NodeComments
+          handle_close_comments={handle_close_comments}
           node_id={nodeId}
         />
       )}

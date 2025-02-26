@@ -15,7 +15,7 @@ export const get_node_comments = async (
       }
     );
 
-    return response;
+    return response.data;
   } catch (error) {
     throw error;
   }
