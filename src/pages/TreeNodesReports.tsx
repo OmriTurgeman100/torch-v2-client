@@ -135,7 +135,7 @@ export const TreeNodesReports = () => {
   function handle_open_view_description(node_id: number): void {
     setNodeId(node_id);
 
-    setNodeSettings(false)
+    setNodeSettings(false);
 
     setDisplayDesc(true);
   }
@@ -149,8 +149,7 @@ export const TreeNodesReports = () => {
   function handle_display_node_settings(): void {
     setDisplayDesc(false);
 
-    setNodeSettings(true)
-
+    setNodeSettings(true);
   }
   useEffect(() => {
     get_reports_nodes();
