@@ -135,6 +135,8 @@ export const TreeNodesReports = () => {
   function handle_open_view_description(node_id: number): void {
     setNodeId(node_id);
 
+    setNodeSettings(false)
+
     setDisplayDesc(true);
   }
 
@@ -144,6 +146,12 @@ export const TreeNodesReports = () => {
     setDisplayDesc(false);
   }
 
+  function handle_display_node_settings(): void {
+    setDisplayDesc(false);
+
+    setNodeSettings(true)
+
+  }
   useEffect(() => {
     get_reports_nodes();
 
@@ -243,7 +251,7 @@ export const TreeNodesReports = () => {
           </ButtonGroup>
 
           <IconButton
-            onClick={() => setNodeSettings(true)}
+            onClick={handle_display_node_settings}
             sx={{
               position: "absolute",
               bottom: 70,
