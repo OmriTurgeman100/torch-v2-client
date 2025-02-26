@@ -85,7 +85,6 @@ export const TreeNodesReports = () => {
           style: {
             backgroundColor: "#0047AB",
             color: "white",
-            fontWeight: "bold",
           },
         });
       } else if (node_status === "true") {
@@ -96,7 +95,6 @@ export const TreeNodesReports = () => {
           style: {
             backgroundColor: "#0047AB",
             color: "white",
-            fontWeight: "bold",
           },
         });
       }
@@ -113,7 +111,6 @@ export const TreeNodesReports = () => {
         style: {
           backgroundColor: "#0047AB",
           color: "white",
-          fontWeight: "bold",
         },
       });
     } catch (error: any) {
@@ -128,7 +125,6 @@ export const TreeNodesReports = () => {
         style: {
           backgroundColor: "#0047AB",
           color: "white",
-          fontWeight: "bold",
         },
       });
     } catch (error: any) {

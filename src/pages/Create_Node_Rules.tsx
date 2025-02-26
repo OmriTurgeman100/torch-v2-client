@@ -97,7 +97,6 @@ export const Create_Node_Rules = () => {
           style: {
             backgroundColor: "#0047AB",
             color: "white",
-            fontWeight: "bold",
           },
         });
 

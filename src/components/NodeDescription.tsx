@@ -105,7 +105,7 @@ export const NodeDescription = ({
       await update_node_description(user.token, id, null, contact, null);
 
       setEditContactMode(false);
-    } catch (error:any) {
+    } catch (error: any) {
       toast.error(error.response.data.message);
     }
   }
@@ -153,12 +153,10 @@ export const NodeDescription = ({
         style: {
           backgroundColor: "#0047AB",
           color: "white",
-          fontWeight: "bold",
         },
       });
     } catch (error: any) {
       toast.error(error.response.data.message);
-
     }
   };
 

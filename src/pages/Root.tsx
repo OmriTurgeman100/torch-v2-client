@@ -48,7 +48,6 @@ export const Root = () => {
         style: {
           backgroundColor: "#0047AB",
           color: "white",
-          fontWeight: "bold",
         },
       });
     } catch (error: any) {

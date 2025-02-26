@@ -65,7 +65,6 @@ export const Create_Report_Rules = () => {
           style: {
             backgroundColor: "#0047AB",
             color: "white",
-            fontWeight: "bold",
           },
         });
 
