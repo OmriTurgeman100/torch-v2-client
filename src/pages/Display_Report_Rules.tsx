@@ -57,9 +57,7 @@ export const Display_Report_Rules = () => {
     try {
       await delete_rule(user.token, rule_id);
 
-      window.location.reload(); 
-
-
+      window.location.reload();
     } catch (error: any) {
       toast.error(error.response.data.message);
     }
