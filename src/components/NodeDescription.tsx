@@ -1,4 +1,4 @@
-import { Typography, Box, TextField, Button } from "@mui/material";
+import { Typography, Box, TextField } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -10,9 +10,11 @@ import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import CheckIcon from "@mui/icons-material/Check";
 import { post_node_description } from "../services/Post-Node-Description";
+import EditIcon from "@mui/icons-material/Edit";
 import { ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
 import { toast } from "react-toastify";
+import { update_node_description } from "../services/Update-Node-Description";
 
 interface NodeDescProps {
   handle_close_view_description: () => void;
@@ -39,6 +41,10 @@ export const NodeDescription = ({
     description: "",
   });
   const { user } = useAuthContext();
+  const [EditTeamMode, setEditTeaMode] = useState<Boolean>(false);
+  const [EditContactMode, setEditContactMode] = useState<Boolean>(false);
+  const [DescriptionEditMode, setDescriptionEditMode] =
+    useState<Boolean>(false);
 
   const get_node_desc = async () => {
     try {
@@ -51,7 +57,7 @@ export const NodeDescription = ({
 
   useEffect(() => {
     get_node_desc();
-  }, [node_id]);
+  }, [node_id, EditTeamMode, EditContactMode, DescriptionEditMode]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -60,6 +66,53 @@ export const NodeDescription = ({
       [name]: value,
     }));
   };
+
+  async function handle_team_edit(id: number): Promise<void> {
+    try {
+      let { team } = formData;
+
+      if (team === "") {
+        team = "empty";
+      }
+
+      await update_node_description(user.token, id, team, null, null);
+
+      setEditTeaMode(false);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function handle_contact_edit(id: number): Promise<void> {
+    try {
+      let { contact } = formData;
+
+      if (contact === "") {
+        contact = "empty";
+      }
+
+      await update_node_description(user.token, id, null, contact, null);
+
+      setEditContactMode(false);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function handle_description_edit(id: number): Promise<void> {
+    try {
+      let { description } = formData;
+
+      if (description === "") {
+        description = "empty";
+      }
+
+      await update_node_description(user.token, id, null, null, description);
+      setDescriptionEditMode(false);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   const handleSave = async () => {
     try {
@@ -156,17 +209,55 @@ export const NodeDescription = ({
                 >
                   <Typography component="span">Team</Typography>
                 </AccordionSummary>
-                <AccordionDetails sx={{ backgroundColor: "#f8f9fa" }}>
-                  <Typography
-                    variant="h4"
-                    style={{
-                      color: "black",
-                      fontSize: "1.0rem",
-                      letterSpacing: "1px",
-                    }}
-                  >
-                    {node_description.team}
-                  </Typography>
+                <AccordionDetails
+                  sx={{ backgroundColor: "#f8f9fa", position: "relative" }}
+                >
+                  {EditTeamMode === false ? (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Typography
+                        variant="h4"
+                        style={{
+                          color: "black",
+                          fontSize: "1.0rem",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {node_description.team}
+                      </Typography>
+
+                      <IconButton onClick={() => setEditTeaMode(true)}>
+                        <EditIcon />
+                      </IconButton>
+                    </div>
+                  ) : (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <TextField
+                        name="team"
+                        value={formData.team}
+                        onChange={handleInputChange}
+                        variant="outlined"
+                        sx={{ marginBottom: 2, width: "90%" }}
+                      />
+
+                      <IconButton
+                        onClick={() => handle_team_edit(node_description.id)}
+                      >
+                        <CheckIcon />
+                      </IconButton>
+                    </div>
+                  )}
                 </AccordionDetails>
               </Accordion>
 
@@ -178,17 +269,56 @@ export const NodeDescription = ({
                 >
                   <Typography component="span">Contact</Typography>
                 </AccordionSummary>
-                <AccordionDetails sx={{ backgroundColor: "#f8f9fa" }}>
-                  <Typography
-                    variant="h4"
-                    style={{
-                      color: "black",
-                      fontSize: "1.0rem",
-                      letterSpacing: "1px",
-                    }}
-                  >
-                    {node_description.contact}
-                  </Typography>
+                <AccordionDetails
+                  sx={{ backgroundColor: "#f8f9fa", position: "relative" }}
+                >
+                  {EditContactMode === false ? (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Typography
+                        variant="h4"
+                        style={{
+                          color: "black",
+                          fontSize: "1.0rem",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {node_description.contact}
+                      </Typography>
+
+                      <IconButton onClick={() => setEditContactMode(true)}>
+                        <EditIcon />
+                      </IconButton>
+                    </div>
+                  ) : (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <TextField
+                        fullWidth
+                        name="contact"
+                        value={formData.contact}
+                        onChange={handleInputChange}
+                        variant="outlined"
+                        sx={{ marginBottom: 2 }}
+                      />
+
+                      <IconButton
+                        onClick={() => handle_contact_edit(node_description.id)}
+                      >
+                        <CheckIcon />
+                      </IconButton>
+                    </div>
+                  )}
                 </AccordionDetails>
               </Accordion>
 
@@ -200,17 +330,60 @@ export const NodeDescription = ({
                 >
                   <Typography component="span">Description</Typography>
                 </AccordionSummary>
-                <AccordionDetails sx={{ backgroundColor: "#f8f9fa" }}>
-                  <Typography
-                    variant="h4"
-                    style={{
-                      color: "black",
-                      fontSize: "1.0rem",
-                      letterSpacing: "1px",
-                    }}
-                  >
-                    {node_description.description}
-                  </Typography>
+                <AccordionDetails
+                  sx={{ backgroundColor: "#f8f9fa", position: "relative" }}
+                >
+                  {DescriptionEditMode === false ? (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Typography
+                        variant="h4"
+                        style={{
+                          color: "black",
+                          fontSize: "1.0rem",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {node_description.description}
+                      </Typography>
+
+                      <IconButton onClick={() => setDescriptionEditMode(true)}>
+                        <EditIcon />
+                      </IconButton>
+                    </div>
+                  ) : (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <TextField
+                        fullWidth
+                        name="description"
+                        value={formData.description}
+                        onChange={handleInputChange}
+                        variant="outlined"
+                        multiline
+                        rows={4}
+                        sx={{ marginBottom: 2 }}
+                      />
+
+                      <IconButton
+                        onClick={() =>
+                          handle_description_edit(node_description.id)
+                        }
+                      >
+                        <CheckIcon />
+                      </IconButton>
+                    </div>
+                  )}
                 </AccordionDetails>
               </Accordion>
             </Box>
