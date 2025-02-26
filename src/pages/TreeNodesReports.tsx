@@ -392,8 +392,10 @@ export const TreeNodesReports = () => {
       )}
 
       {DisplayDesc && (
-        <NodeDescription handle_close_view_description={handle_close_view_description} node_id={nodeId} />
-
+        <NodeDescription
+          handle_close_view_description={handle_close_view_description}
+          node_id={nodeId}
+        />
       )}
       <ToastContainer
         position="bottom-right"
