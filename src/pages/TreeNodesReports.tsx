@@ -23,6 +23,7 @@ import { toast } from "react-toastify";
 import { detach_report } from "../services/Detach-Report";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { NodeDescription } from "../components/NodeDescription";
+import CommentIcon from "@mui/icons-material/Comment";
 
 interface sub_nodes {
   description: string;
@@ -56,6 +57,7 @@ export const TreeNodesReports = () => {
   const [excluded, setExclude] = useState<boolean | null>(null);
   const [NodeSettings, setNodeSettings] = useState<boolean>(false);
   const [DisplayDesc, setDisplayDesc] = useState<boolean>(false);
+  const [DisplayComments, setDisplayComments] = useState<boolean>(false);
   const { id } = useParams();
   const { user } = useAuthContext();
   const navigate = useNavigate();
@@ -136,6 +138,7 @@ export const TreeNodesReports = () => {
     setNodeId(node_id);
 
     setNodeSettings(false);
+    setDisplayComments(false);
 
     setDisplayDesc(true);
   }
@@ -148,8 +151,16 @@ export const TreeNodesReports = () => {
 
   function handle_display_node_settings(): void {
     setDisplayDesc(false);
+    setDisplayComments(false);
 
     setNodeSettings(true);
+  }
+
+  function handle_display_comments(): void {
+    setDisplayDesc(false);
+    setNodeSettings(false);
+
+    setDisplayComments(true);
   }
   useEffect(() => {
     get_reports_nodes();
@@ -229,6 +240,13 @@ export const TreeNodesReports = () => {
                   sx={{ left: "190px", bottom: "35px", position: "absolute" }}
                 >
                   <DescriptionIcon sx={{ color: "white", opacity: "50%" }} />
+                </IconButton>
+
+                <IconButton
+                  onClick={handle_display_comments}
+                  sx={{ left: "160px", bottom: "0px", position: "absolute" }}
+                >
+                  <CommentIcon sx={{ color: "white", opacity: "50%" }} />
                 </IconButton>
               </Box>
             ))}
