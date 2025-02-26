@@ -39,8 +39,7 @@ export const Login = () => {
 
       reset();
     } catch (error: any) {
-      toast.error("Login failed.");
-      console.error("Login failed:", error.message);
+      toast.error(error.response.data.message);
     }
   };
 

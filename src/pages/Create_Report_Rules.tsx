@@ -73,8 +73,8 @@ export const Create_Report_Rules = () => {
 
         // navigate(`/display/report/rules/${id}/${report_id}`);
       }
-    } catch (error) {
-      toast.error("Failed");
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 

@@ -35,8 +35,8 @@ export const Root = () => {
     try {
       const response = await fetch_root_nodes(user.token);
       setRootNodes(response.data);
-    } catch (error) {
-      console.error("Error fetching root nodes:", error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 
@@ -51,13 +51,8 @@ export const Root = () => {
           fontWeight: "bold",
         },
       });
-    } catch (error) {
-      toast.error("Node has rules or reports", {
-        style: {
-          fontWeight: "bold",
-        },
-      });
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 

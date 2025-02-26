@@ -40,9 +40,8 @@ export const Register = () => {
       navigate("/login");
 
       reset();
-    } catch (error) {
-      toast.error("Registration failed.");
-      console.error("Registration failed:", error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 

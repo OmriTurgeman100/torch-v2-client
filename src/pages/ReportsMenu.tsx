@@ -56,9 +56,8 @@ export const ReportsMenu = () => {
           color: "white",
         },
       });
-    } catch (error) {
-      toast.error("Request failed with status code 500");
-      console.error("Error posting report:", error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 

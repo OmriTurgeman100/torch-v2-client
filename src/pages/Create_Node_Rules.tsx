@@ -50,8 +50,8 @@ export const Create_Node_Rules = () => {
     try {
       const response = await fetch_nodes_report(user.token, id);
       setData(response.data.nodes);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 
@@ -107,8 +107,8 @@ export const Create_Node_Rules = () => {
 
         // navigate(`/display/node/rules/${id}`);
       }
-    } catch (error) {
-      console.error("Error sending request:", error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 

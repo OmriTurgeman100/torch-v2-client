@@ -9,6 +9,8 @@ import CheckIcon from "@mui/icons-material/Check";
 import { post_nodes } from "../services/Post-Nodes";
 import AddIcon from "@mui/icons-material/Add";
 import { post_node_template } from "../services/Post-Node-Template";
+import { toast, ToastContainer } from "react-toastify";
+import { Bounce } from "react-toastify";
 
 interface SubNode {
   description: string;
@@ -66,8 +68,8 @@ export const NodeSettingsComponent = ({
     try {
       const response = await get_nodes_templates(user.token);
       setNodeTemplates(response.node_templates);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 
@@ -90,8 +92,8 @@ export const NodeSettingsComponent = ({
       setNodesList([]);
       setTemplatesList([]);
       setCustomTemplateList("");
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 
@@ -110,8 +112,8 @@ export const NodeSettingsComponent = ({
       }
 
       setDisplayTemplates(false);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 
@@ -120,243 +122,259 @@ export const NodeSettingsComponent = ({
   }, [NodeTemplates]);
 
   return (
-    <Box
-      sx={{
-        backgroundColor: "white",
-        width: "700px",
-        height: "fit-content",
-        margin: "20px auto",
-        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-        padding: "20px",
-        borderRadius: "16px",
-        transition: "transform 0.3s ease, box-shadow 0.3s ease",
-        position: "relative",
-        "&:hover": {
-          transform: "translateY(-8px)",
-          boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.15)",
-        },
-      }}
-    >
+    <div>
       <Box
-        sx={{ display: "flex", justifyContent: "end", alignItems: "center" }}
+        sx={{
+          backgroundColor: "white",
+          width: "700px",
+          height: "fit-content",
+          margin: "20px auto",
+          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+          padding: "20px",
+          borderRadius: "16px",
+          transition: "transform 0.3s ease, box-shadow 0.3s ease",
+          position: "relative",
+          "&:hover": {
+            transform: "translateY(-8px)",
+            boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.15)",
+          },
+        }}
       >
+        <Box
+          sx={{ display: "flex", justifyContent: "end", alignItems: "center" }}
+        >
+          <Typography
+            variant="h4"
+            style={{
+              color: "#4361ee",
+              fontSize: "1.5rem",
+              margin: "auto",
+              letterSpacing: "1px",
+            }}
+          >
+            Control Panel
+          </Typography>
+          <IconButton
+            onClick={closeSettings}
+            sx={{
+              backgroundColor: "#4361ee",
+              "&:hover": {
+                backgroundColor: "#4361ee",
+                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
+              },
+            }}
+          >
+            <CloseIcon sx={{ color: "white" }} />
+          </IconButton>
+        </Box>
+
         <Typography
           variant="h4"
           style={{
             color: "#4361ee",
-            fontSize: "1.5rem",
+            fontSize: "1.0rem",
             margin: "auto",
             letterSpacing: "1px",
           }}
         >
-          Control Panel
+          Select nodes
         </Typography>
-        <IconButton
-          onClick={closeSettings}
+
+        <Box
           sx={{
+            display: "flex",
+            gap: 2,
+            margin: "15px",
+            overflow: "hidden",
+            flexWrap: "wrap",
+          }}
+        >
+          {subNodes.map((node) => (
+            <Box
+              key={node.node_id}
+              sx={{ display: "flex", alignItems: "center" }}
+            >
+              <Typography
+                variant="h4"
+                style={{
+                  color: "#333333",
+                  fontSize: "1.5rem",
+                  letterSpacing: "1px",
+                }}
+              >
+                {node.title}
+              </Typography>
+              <Checkbox
+                {...label}
+                checked={nodesList.includes(node.node_id)}
+                onChange={(e) => insert_node(node.node_id, e.target.checked)}
+              />
+            </Box>
+          ))}
+
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <ExpandMoreIcon />
+            <Checkbox
+              {...label}
+              checked={nodesList.includes(parent_to_number)}
+              onChange={(e) => insert_node(parent_to_number, e.target.checked)}
+            />
+          </Box>
+        </Box>
+        {DisplayTemplates ? (
+          <Box>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+              <Typography
+                variant="h4"
+                style={{
+                  color: "#4361ee",
+                  fontSize: "1.0rem",
+                  letterSpacing: "1px",
+                }}
+              >
+                Confirm templates
+              </Typography>
+
+              <IconButton
+                onClick={handle_new_template}
+                sx={{
+                  backgroundColor: "#e9ecef",
+                  transition: "transform 0.3s ease, box-shadow 1s ease",
+                  "&:hover": {
+                    backgroundColor: "#e9ecef",
+                    transform: "scale(1.05)",
+                    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
+                  },
+                }}
+              >
+                <CheckIcon sx={{ color: "#4361ee" }} />
+              </IconButton>
+            </Box>
+            <TextField
+              value={TemplateFormData}
+              onChange={(event) => setTemplateFormData(event.target.value)}
+              placeholder="Server Uptime, Firewall Monitoring, SSL Certificate Expiry"
+              sx={{ width: "100%", marginTop: "15px", marginBottom: "15px" }}
+            />
+          </Box>
+        ) : (
+          <Box>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+              <Typography
+                variant="h4"
+                style={{
+                  color: "#4361ee",
+                  fontSize: "1.0rem",
+                  letterSpacing: "1px",
+                }}
+              >
+                Insert templates
+              </Typography>
+
+              <IconButton
+                onClick={() => setDisplayTemplates(true)}
+                sx={{
+                  backgroundColor: "#e9ecef",
+                  transition: "transform 0.3s ease, box-shadow 1s ease",
+                  "&:hover": {
+                    backgroundColor: "#e9ecef",
+                    transform: "scale(1.05)",
+                    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
+                  },
+                }}
+              >
+                <AddIcon sx={{ color: "#4361ee" }} />
+              </IconButton>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 2,
+                margin: "15px",
+                overflow: "hidden",
+                flexWrap: "wrap",
+              }}
+            >
+              {NodeTemplates.map((node_template) => (
+                <Box
+                  sx={{ display: "flex", alignItems: "center" }}
+                  key={node_template.id}
+                >
+                  <Typography
+                    variant="h4"
+                    style={{
+                      color: "#333333",
+                      fontSize: "1.5rem",
+                      letterSpacing: "1px",
+                    }}
+                  >
+                    {node_template.name}
+                  </Typography>
+                  <Checkbox
+                    {...label}
+                    checked={TemplatesList.includes(node_template.name)}
+                    onChange={(e) =>
+                      insert_template(node_template.name, e.target.checked)
+                    }
+                  />
+                </Box>
+              ))}
+            </Box>
+          </Box>
+        )}
+
+        <Typography
+          variant="h4"
+          style={{
+            color: "#4361ee",
+            fontSize: "1.0rem",
+            margin: "auto",
+            letterSpacing: "1px",
+          }}
+        >
+          Custom templates
+        </Typography>
+
+        <TextField
+          value={CustomTemplateList}
+          onChange={(event) => setCustomTemplateList(event.target.value)}
+          placeholder="status code, kubernetes, storage, utilization"
+          sx={{ width: "100%", marginTop: "15px" }}
+        />
+
+        <IconButton
+          onClick={handle_submit}
+          sx={{
+            position: "absolute",
+            bottom: "-15px",
+            left: "47%",
             backgroundColor: "#4361ee",
+            transition: "transform 0.3s ease, box-shadow 1s ease",
             "&:hover": {
               backgroundColor: "#4361ee",
+              transform: "scale(1.05)",
               boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
             },
           }}
         >
-          <CloseIcon sx={{ color: "white" }} />
+          <CheckIcon sx={{ color: "white" }} />
         </IconButton>
       </Box>
 
-      <Typography
-        variant="h4"
-        style={{
-          color: "#4361ee",
-          fontSize: "1.0rem",
-          margin: "auto",
-          letterSpacing: "1px",
-        }}
-      >
-        Select nodes
-      </Typography>
-
-      <Box
-        sx={{
-          display: "flex",
-          gap: 2,
-          margin: "15px",
-          overflow: "hidden",
-          flexWrap: "wrap",
-        }}
-      >
-        {subNodes.map((node) => (
-          <Box
-            key={node.node_id}
-            sx={{ display: "flex", alignItems: "center" }}
-          >
-            <Typography
-              variant="h4"
-              style={{
-                color: "#333333",
-                fontSize: "1.5rem",
-                letterSpacing: "1px",
-              }}
-            >
-              {node.title}
-            </Typography>
-            <Checkbox
-              {...label}
-              checked={nodesList.includes(node.node_id)}
-              onChange={(e) => insert_node(node.node_id, e.target.checked)}
-            />
-          </Box>
-        ))}
-
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <ExpandMoreIcon />
-          <Checkbox
-            {...label}
-            checked={nodesList.includes(parent_to_number)}
-            onChange={(e) => insert_node(parent_to_number, e.target.checked)}
-          />
-        </Box>
-      </Box>
-      {DisplayTemplates ? (
-        <Box>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Typography
-              variant="h4"
-              style={{
-                color: "#4361ee",
-                fontSize: "1.0rem",
-                letterSpacing: "1px",
-              }}
-            >
-              Confirm templates
-            </Typography>
-
-            <IconButton
-              onClick={handle_new_template}
-              sx={{
-                backgroundColor: "#e9ecef",
-                transition: "transform 0.3s ease, box-shadow 1s ease",
-                "&:hover": {
-                  backgroundColor: "#e9ecef",
-                  transform: "scale(1.05)",
-                  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
-                },
-              }}
-            >
-              <CheckIcon sx={{ color: "#4361ee" }} />
-            </IconButton>
-          </Box>
-          <TextField
-            value={TemplateFormData}
-            onChange={(event) => setTemplateFormData(event.target.value)}
-            placeholder="Server Uptime, Firewall Monitoring, SSL Certificate Expiry"
-            sx={{ width: "100%", marginTop: "15px", marginBottom: "15px" }}
-          />
-        </Box>
-      ) : (
-        <Box>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Typography
-              variant="h4"
-              style={{
-                color: "#4361ee",
-                fontSize: "1.0rem",
-                letterSpacing: "1px",
-              }}
-            >
-              Insert templates
-            </Typography>
-
-            <IconButton
-              onClick={() => setDisplayTemplates(true)}
-              sx={{
-                backgroundColor: "#e9ecef",
-                transition: "transform 0.3s ease, box-shadow 1s ease",
-                "&:hover": {
-                  backgroundColor: "#e9ecef",
-                  transform: "scale(1.05)",
-                  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
-                },
-              }}
-            >
-              <AddIcon sx={{ color: "#4361ee" }} />
-            </IconButton>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 2,
-              margin: "15px",
-              overflow: "hidden",
-              flexWrap: "wrap",
-            }}
-          >
-            {NodeTemplates.map((node_template) => (
-              <Box
-                sx={{ display: "flex", alignItems: "center" }}
-                key={node_template.id}
-              >
-                <Typography
-                  variant="h4"
-                  style={{
-                    color: "#333333",
-                    fontSize: "1.5rem",
-                    letterSpacing: "1px",
-                  }}
-                >
-                  {node_template.name}
-                </Typography>
-                <Checkbox
-                  {...label}
-                  checked={TemplatesList.includes(node_template.name)}
-                  onChange={(e) =>
-                    insert_template(node_template.name, e.target.checked)
-                  }
-                />
-              </Box>
-            ))}
-          </Box>
-        </Box>
-      )}
-
-      <Typography
-        variant="h4"
-        style={{
-          color: "#4361ee",
-          fontSize: "1.0rem",
-          margin: "auto",
-          letterSpacing: "1px",
-        }}
-      >
-        Custom templates
-      </Typography>
-
-      <TextField
-        value={CustomTemplateList}
-        onChange={(event) => setCustomTemplateList(event.target.value)}
-        placeholder="status code, kubernetes, storage, utilization"
-        sx={{ width: "100%", marginTop: "15px" }}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
       />
-
-      <IconButton
-        onClick={handle_submit}
-        sx={{
-          position: "absolute",
-          bottom: "-15px",
-          left: "47%",
-          backgroundColor: "#4361ee",
-          transition: "transform 0.3s ease, box-shadow 1s ease",
-          "&:hover": {
-            backgroundColor: "#4361ee",
-            transform: "scale(1.05)",
-            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
-          },
-        }}
-      >
-        <CheckIcon sx={{ color: "white" }} />
-      </IconButton>
-    </Box>
+    </div>
   );
 };

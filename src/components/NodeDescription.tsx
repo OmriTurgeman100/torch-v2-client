@@ -55,8 +55,8 @@ export const NodeDescription = ({
     try {
       const response = await get_node_description(user.token, node_id);
       setDescriptionData(response.data);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 
@@ -89,8 +89,8 @@ export const NodeDescription = ({
       await update_node_description(user.token, id, team, null, null);
 
       setEditTeaMode(false);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   }
 
@@ -105,8 +105,8 @@ export const NodeDescription = ({
       await update_node_description(user.token, id, null, contact, null);
 
       setEditContactMode(false);
-    } catch (error) {
-      console.error(error);
+    } catch (error:any) {
+      toast.error(error.response.data.message);
     }
   }
 
@@ -120,8 +120,8 @@ export const NodeDescription = ({
 
       await update_node_description(user.token, id, null, null, description);
       setDescriptionEditMode(false);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   }
 
@@ -156,15 +156,9 @@ export const NodeDescription = ({
           fontWeight: "bold",
         },
       });
-    } catch (error) {
-      toast.error("Description failed!", {
-        style: {
-          backgroundColor: "#0047AB",
-          color: "white",
-          fontWeight: "bold",
-        },
-      });
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+
     }
   };
 
@@ -175,8 +169,8 @@ export const NodeDescription = ({
       await delete_node_description(user.token, node_description_id);
 
       setAskDelete(false);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 

@@ -37,7 +37,7 @@ export const CreateNodesForm = () => {
 
       reset();
     } catch (error: any) {
-      console.error("Form submit has failed:", error.message);
+      toast.error(error.response.data.message);
     }
   };
 

@@ -38,9 +38,8 @@ export const CreateNodesTreeForm = () => {
       });
 
       reset();
-    } catch (error) {
-      toast.error("Failed");
-      console.error("Form submit has failed:", error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 

@@ -46,8 +46,8 @@ export const Display_Node_Rules = () => {
           color: "#fff",
         },
       });
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 

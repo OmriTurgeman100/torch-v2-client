@@ -11,6 +11,7 @@ import { node_colors } from "../utils/NodeColors";
 import IconButton from "@mui/material/IconButton";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 interface Report_Conditions {
   report_id: string;
@@ -38,8 +39,8 @@ export const Display_Report_Rules = () => {
       const response = await fetch_rules(user.token, id);
 
       setReportRules(response.data);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 
