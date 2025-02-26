@@ -156,12 +156,20 @@ export const TreeNodesReports = () => {
     setNodeSettings(true);
   }
 
-  function handle_display_comments(): void {
+  function handle_display_comments(node_id: number): void {
+    setNodeId(node_id);
     setDisplayDesc(false);
     setNodeSettings(false);
 
     setDisplayComments(true);
   }
+
+  function handle_close_comments(): void {
+    setNodeId(null);
+
+    setDisplayComments(false);
+  }
+
   useEffect(() => {
     get_reports_nodes();
 
@@ -243,7 +251,7 @@ export const TreeNodesReports = () => {
                 </IconButton>
 
                 <IconButton
-                  onClick={handle_display_comments}
+                  onClick={() => handle_display_comments(node.node_id)}
                   sx={{ left: "160px", bottom: "0px", position: "absolute" }}
                 >
                   <CommentIcon sx={{ color: "white", opacity: "50%" }} />
