@@ -12,6 +12,7 @@ import IconButton from "@mui/material/IconButton";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 interface Report_Conditions {
   report_id: string;
@@ -75,11 +76,11 @@ export const Display_Report_Rules = () => {
                 flexDirection: "row",
                 gap: 2,
                 alignItems: "center",
-
                 backgroundColor: "#e9ecef",
                 padding: "10px",
                 borderRadius: 5,
                 transition: "transform 1s ease, box-shadow 1s ease",
+                position: "relative",
                 "&:hover": {
                   transform: "translateY(-5px)",
                   boxShadow: 10,
@@ -105,6 +106,11 @@ export const Display_Report_Rules = () => {
                   {report.conditions[0].report_id}
                 </Typography>
               </Box>
+
+              <IconButton sx={{ position: "absolute", left: "105%", backgroundColor: "#e9ecef;"  }}>
+              <DeleteForeverIcon sx={{ color: "#4361ee"}} />
+            </IconButton>
+
               <Box
                 sx={{
                   backgroundColor: "#4361ee",
