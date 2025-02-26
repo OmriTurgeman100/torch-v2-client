@@ -69,8 +69,8 @@ export const TreeNodesReports = () => {
       if (response.data.reports.length > 0) {
         setReportId(response.data.reports[0].report_id);
       }
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 
@@ -100,8 +100,8 @@ export const TreeNodesReports = () => {
           },
         });
       }
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 
@@ -116,13 +116,8 @@ export const TreeNodesReports = () => {
           fontWeight: "bold",
         },
       });
-    } catch (error) {
-      toast.error("Node has rules or reports", {
-        style: {
-          fontWeight: "bold",
-        },
-      });
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 
@@ -136,13 +131,8 @@ export const TreeNodesReports = () => {
           fontWeight: "bold",
         },
       });
-    } catch (error) {
-      toast.error("Report has rules", {
-        style: {
-          fontWeight: "bold",
-        },
-      });
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     }
   };
 
