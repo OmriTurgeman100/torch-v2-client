@@ -15,7 +15,6 @@ import { ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
 import { toast } from "react-toastify";
 import { update_node_description } from "../services/Update-Node-Description";
-import { useParams } from "react-router-dom";
 
 interface NodeDescProps {
   handle_close_view_description: () => void;
@@ -46,10 +45,6 @@ export const NodeDescription = ({
   const [EditContactMode, setEditContactMode] = useState<Boolean>(false);
   const [DescriptionEditMode, setDescriptionEditMode] =
     useState<Boolean>(false);
-
-  const { id } = useParams();
-
-  console.log(id);
 
   const get_node_desc = async () => {
     try {
