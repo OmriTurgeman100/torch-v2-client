@@ -15,6 +15,9 @@ import { ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
 import { toast } from "react-toastify";
 import { update_node_description } from "../services/Update-Node-Description";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import Button from "@mui/material/Button";
+import { delete_node_description } from "../services/Delete-Node-Description";
 
 interface NodeDescProps {
   handle_close_view_description: () => void;
@@ -45,6 +48,8 @@ export const NodeDescription = ({
   const [EditContactMode, setEditContactMode] = useState<Boolean>(false);
   const [DescriptionEditMode, setDescriptionEditMode] =
     useState<Boolean>(false);
+
+  const [AskDelete, setAskDelete] = useState<Boolean>(false);
 
   const get_node_desc = async () => {
     try {
@@ -163,6 +168,18 @@ export const NodeDescription = ({
     }
   };
 
+  const handle_delete_node_description = async (
+    node_description_id: number
+  ) => {
+    try {
+      await delete_node_description(user.token, node_description_id);
+
+      setAskDelete(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       {descriptionData.length > 0 ? (
@@ -185,18 +202,62 @@ export const NodeDescription = ({
               <Box
                 sx={{
                   display: "flex",
-                  justifyContent: "flex-end",
+                  justifyContent: "space-between",
                   alignItems: "center",
                   marginBottom: "10px",
                 }}
               >
+                {AskDelete === true ? (
+                  <Box
+                    sx={{ display: "flex", gap: "10px", alignItems: "center" }}
+                  >
+                    <Typography
+                      variant="h4"
+                      style={{
+                        color: "black",
+                        fontSize: "1.0rem",
+                        letterSpacing: "1px",
+                      }}
+                    >
+                      confirm delete ?
+                    </Typography>
+
+                    <Button
+                      onClick={() =>
+                        handle_delete_node_description(node_description.id)
+                      }
+                      variant="contained"
+                      sx={{
+                        backgroundColor: "#E11D48",
+                        "&:hover": { backgroundColor: "#BE123C" },
+                      }}
+                    >
+                      yes
+                    </Button>
+                    <Button
+                      onClick={() => setAskDelete(false)}
+                      variant="contained"
+                      sx={{
+                        backgroundColor: "#10B981",
+
+                        "&:hover": { backgroundColor: "#059669" },
+                      }}
+                    >
+                      no
+                    </Button>
+                  </Box>
+                ) : (
+                  <IconButton onClick={() => setAskDelete(true)}>
+                    <DeleteForeverIcon />
+                  </IconButton>
+                )}
+
                 <Typography
                   variant="h4"
                   style={{
                     color: "black",
                     fontSize: "1.0rem",
                     letterSpacing: "1px",
-                    margin: "auto",
                   }}
                 >
                   {node_description.title}
