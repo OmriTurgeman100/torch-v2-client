@@ -13,6 +13,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { delete_rule } from "../services/Delete-Rule";
 
 interface Report_Conditions {
   report_id: string;
@@ -45,9 +46,17 @@ export const Display_Report_Rules = () => {
     }
   };
 
+  const handle_delete_rule = async (rule_id: number) => {
+    try {
+      await delete_rule(user.token, rule_id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetch_report_rules();
-  }, [id]);
+  }, [reportRules, id]);
 
   return (
     <div>
@@ -107,9 +116,16 @@ export const Display_Report_Rules = () => {
                 </Typography>
               </Box>
 
-              <IconButton sx={{ position: "absolute", left: "105%", backgroundColor: "#e9ecef;"  }}>
-              <DeleteForeverIcon sx={{ color: "#4361ee"}} />
-            </IconButton>
+              <IconButton
+                onClick={() => handle_delete_rule(report.rule_id)}
+                sx={{
+                  position: "absolute",
+                  left: "105%",
+                  backgroundColor: "#e9ecef;",
+                }}
+              >
+                <DeleteForeverIcon sx={{ color: "#4361ee" }} />
+              </IconButton>
 
               <Box
                 sx={{
