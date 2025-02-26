@@ -57,7 +57,13 @@ export const NodeDescription = ({
 
   useEffect(() => {
     get_node_desc();
-  }, [node_id, EditTeamMode, EditContactMode, DescriptionEditMode]);
+  }, [
+    descriptionData,
+    node_id,
+    EditTeamMode,
+    EditContactMode,
+    DescriptionEditMode,
+  ]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
