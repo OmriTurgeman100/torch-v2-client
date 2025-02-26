@@ -63,7 +63,19 @@ export const NodeDescription = ({
 
   const handleSave = async () => {
     try {
-      const { team, contact, description } = formData;
+      let { team, contact, description } = formData;
+
+      if (team === "") {
+        team = "empty";
+      }
+
+      if (contact === "") {
+        contact = "empty";
+      }
+
+      if (description === "") {
+        description = "empty";
+      }
 
       await post_node_description(
         user.token,
