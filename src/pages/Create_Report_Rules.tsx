@@ -84,16 +84,17 @@ export const Create_Report_Rules = () => {
         sx={{
           backgroundColor: "white",
           width: "500px",
-          height: "500px",
+          height: "300px",
           margin: "35px auto",
           padding: "10px",
-          borderRadius: 1,
+          borderRadius: 2,
           boxShadow: 1,
           display: "flex",
           flexDirection: "column",
           position: "relative",
           gap: 1,
           alignItems: "center",
+          border: "1px solid #ddd",
         }}
       >
         <Box
@@ -115,6 +116,7 @@ export const Create_Report_Rules = () => {
           >
             If
           </Typography>
+
           <Typography
             variant="h6"
             style={{
@@ -177,9 +179,18 @@ export const Create_Report_Rules = () => {
 
         <IconButton
           onClick={handle_submit}
-          sx={{ position: "absolute", bottom: "-25px" }}
+          sx={{
+            position: "absolute",
+            bottom: "50px",
+            backgroundColor: "#4361ee",
+            boxShadow: 5,
+            "&:hover": {
+              backgroundColor: "#4361ee",
+              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
+            },
+          }}
         >
-          <CheckIcon sx={{ color: "#4361ee", fontSize: 35 }} />
+          <CheckIcon sx={{ color: "white", fontSize: 35 }} />
         </IconButton>
       </Box>
 
