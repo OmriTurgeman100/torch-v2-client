@@ -9,6 +9,9 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
+import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
+import TextField from "@mui/material/TextField";
+import { post_node_comment } from "../services/Post-Node-Comments";
 
 interface NodeCommentsProps {
   handle_close_comments: () => void;
@@ -28,6 +31,7 @@ export const NodeComments = ({
 }: NodeCommentsProps) => {
   const [NodeComments, setNodeComments] = useState<NodeComments[]>([]);
   const [OrderBy, setOrderBy] = useState<string>("desc");
+  const [commentText, setCommentText] = useState("");
   const { user } = useAuthContext();
 
   const fetch_comments_by_filter = async () => {
@@ -35,28 +39,32 @@ export const NodeComments = ({
       if (OrderBy === "desc") {
         const response = await get_node_comments(user.token, node_id, "desc");
 
-        console.log(response);
-
         setNodeComments(response.data);
-
-        // console.log(NodeComments)
       }
 
       if (OrderBy === "asc") {
         const response = await get_node_comments(user.token, node_id, "asc");
 
         setNodeComments(response.data);
-
-        // console.log(NodeComments)
       }
     } catch (error: any) {
       toast.error(error.response.data.message);
     }
   };
 
+  const handle_submit = async (): Promise<void> => {
+    try {
+      await post_node_comment(user.token, node_id, commentText);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
+  };
+
   useEffect(() => {
-    fetch_comments_by_filter();
-  }, [OrderBy]);
+    if (node_id) {
+      fetch_comments_by_filter();
+    }
+  }, [OrderBy, node_id, NodeComments]);
 
   return (
     <div>
@@ -66,7 +74,7 @@ export const NodeComments = ({
           height: "500px",
           backgroundColor: "White",
           margin: "auto",
-          overflow: "scroll",
+
           padding: "20px",
           boxShadow: 1,
           borderRadius: 5,
@@ -81,6 +89,18 @@ export const NodeComments = ({
             justifyContent: "flex-end",
           }}
         >
+          <Box sx={{ display: "flex", marginRight: "auto", width: "90%" }}>
+            <TextField
+              value={commentText}
+              onChange={(e) => setCommentText(e.target.value)}
+              sx={{ width: "90%" }}
+            />
+
+            <IconButton onClick={handle_submit}>
+              <LibraryAddIcon />
+            </IconButton>
+          </Box>
+
           <IconButton onClick={() => setOrderBy("asc")}>
             <ArrowUpwardIcon />
           </IconButton>
@@ -93,41 +113,43 @@ export const NodeComments = ({
             <DeleteIcon />
           </IconButton>
         </Box>
-
-        <Box>
+        <Box sx={{ overflow: "scroll" }}>
           {NodeComments.map((node_comment) => (
             <Box
+              key={node_comment.id}
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                margin: 2,
-
-                alignItems: "center",
+                margin: "10px 0",
+                padding: "15px",
+                backgroundColor: "#f5f5f5",
+                borderRadius: "8px",
+                boxShadow: 1,
               }}
             >
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                <Typography
-                  variant="h4"
-                  style={{
-                    color: "black",
-                    fontSize: "1.5rem",
-                    letterSpacing: "1px",
-                  }}
-                >
-                  {node_comment.comment}
-                </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontWeight: "bold",
+                  color: "#333",
+                  fontSize: "1rem",
+                  marginBottom: "8px",
+                }}
+              >
+                {node_comment.comment}
+              </Typography>
 
-                <Typography
-                  variant="h4"
-                  style={{
-                    color: "black",
-                    fontSize: "1.5rem",
-                    letterSpacing: "1px",
-                  }}
-                >
-                  {node_comment.time}
-                </Typography>
-              </Box>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#757575",
+                  fontSize: "0.875rem",
+                  textAlign: "right",
+                  fontStyle: "italic",
+                }}
+              >
+                {node_comment.time}
+              </Typography>
             </Box>
           ))}
         </Box>

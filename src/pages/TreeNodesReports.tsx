@@ -176,6 +176,8 @@ export const TreeNodesReports = () => {
 
     handle_close_view_description();
 
+    handle_close_comments();
+
     const intervalId = setInterval(get_reports_nodes, 5000);
 
     return () => {
@@ -426,6 +428,7 @@ export const TreeNodesReports = () => {
           node_id={nodeId}
         />
       )}
+
       <ToastContainer
         position="bottom-right"
         autoClose={5000}
