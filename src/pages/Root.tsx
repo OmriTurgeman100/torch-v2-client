@@ -15,6 +15,7 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
 
 interface RootNode {
   node_id: number;
@@ -111,6 +112,13 @@ export const Root = () => {
               sx={{ left: "190px", bottom: "70px", position: "absolute" }}
             >
               <DeleteIcon sx={{ color: "white", opacity: "50%" }} />
+            </IconButton>
+
+            <IconButton
+              onClick={() => navigate(`/view/hierarchy/${node.node_id}`)}
+              sx={{ left: "190px", bottom: "0px", position: "absolute" }}
+            >
+              <AccountTreeIcon sx={{ color: "white", opacity: "50%" }} />
             </IconButton>
           </Box>
         ))}
