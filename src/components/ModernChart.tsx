@@ -1,11 +1,8 @@
 import {
-  LineChart,
-  Line,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   AreaChart,
   Area,
@@ -18,9 +15,8 @@ interface TimeSeries {
 
 interface ModernChartProps {
   Data: TimeSeries[];
-  height: number
+  height: number;
 }
-
 
 export const ModernChart = ({ Data, height }: ModernChartProps) => {
   return (
@@ -36,6 +32,7 @@ export const ModernChart = ({ Data, height }: ModernChartProps) => {
           stroke="blue"
           fill="#4361ee"
           dataKey="value"
+          dot={{ r: 4 }}
         ></Area>
       </AreaChart>
     </ResponsiveContainer>
