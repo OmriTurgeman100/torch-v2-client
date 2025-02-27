@@ -12,6 +12,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
 import TextField from "@mui/material/TextField";
 import { post_node_comment } from "../services/Post-Node-Comments";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 interface NodeCommentsProps {
   handle_close_comments: () => void;
@@ -55,6 +56,14 @@ export const NodeComments = ({
   const handle_submit = async (): Promise<void> => {
     try {
       await post_node_comment(user.token, node_id, commentText);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
+  };
+
+  const handle_delete_icon = async (comment_id: number) => {
+    try {
+      console.log(comment_id);
     } catch (error: any) {
       toast.error(error.response.data.message);
     }
@@ -109,15 +118,15 @@ export const NodeComments = ({
           </IconButton>
 
           <IconButton onClick={handle_close_comments}>
-            <DeleteIcon />
+            <CancelIcon />
           </IconButton>
         </Box>
         <Box
           sx={{
             overflow: "scroll",
-            scrollbarWidth: "none", // Hide scrollbar in Firefox
+            scrollbarWidth: "none",
             "&::-webkit-scrollbar": {
-              display: "none", // Hide scrollbar in Chrome, Safari
+              display: "none",
             },
           }}
         >
@@ -132,6 +141,7 @@ export const NodeComments = ({
                 backgroundColor: "#f5f5f5",
                 borderRadius: "8px",
                 boxShadow: 1,
+                position: "relative",
               }}
             >
               <Typography
@@ -145,6 +155,13 @@ export const NodeComments = ({
               >
                 {node_comment.comment}
               </Typography>
+
+              <IconButton
+                onClick={() => handle_delete_icon(node_comment.id)}
+                sx={{ position: "absolute", right: "0px", top: "0px" }}
+              >
+                <DeleteIcon />
+              </IconButton>
 
               <Typography
                 variant="body2"
