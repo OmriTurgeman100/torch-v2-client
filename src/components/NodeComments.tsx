@@ -74,7 +74,6 @@ export const NodeComments = ({
           height: "500px",
           backgroundColor: "White",
           margin: "auto",
-
           padding: "20px",
           boxShadow: 1,
           borderRadius: 5,
@@ -113,7 +112,15 @@ export const NodeComments = ({
             <DeleteIcon />
           </IconButton>
         </Box>
-        <Box sx={{ overflow: "scroll" }}>
+        <Box
+          sx={{
+            overflow: "scroll",
+            scrollbarWidth: "none", // Hide scrollbar in Firefox
+            "&::-webkit-scrollbar": {
+              display: "none", // Hide scrollbar in Chrome, Safari
+            },
+          }}
+        >
           {NodeComments.map((node_comment) => (
             <Box
               key={node_comment.id}
