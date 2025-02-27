@@ -83,16 +83,17 @@ export const ReportGraph = ({ report_id, handle_close_graph }: ReportProps) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "flex-end",
-            gap: "10px",
+            gap: "15px",
           }}
         >
           <Typography
             variant="h4"
             style={{
               color: "black",
-              fontSize: "1.0rem",
+              fontSize: "1.4rem",
               letterSpacing: "1px",
               margin: "auto",
+              fontWeight: "bold",
             }}
           >
             Report TimeSeries Graph
