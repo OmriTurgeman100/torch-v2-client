@@ -25,6 +25,7 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import { NodeDescription } from "../components/NodeDescription";
 import CommentIcon from "@mui/icons-material/Comment";
 import { NodeComments } from "../components/NodeComments";
+import AutoGraphIcon from "@mui/icons-material/AutoGraph";
 
 interface sub_nodes {
   description: string;
@@ -59,6 +60,7 @@ export const TreeNodesReports = () => {
   const [NodeSettings, setNodeSettings] = useState<boolean>(false);
   const [DisplayDesc, setDisplayDesc] = useState<boolean>(false);
   const [DisplayComments, setDisplayComments] = useState<boolean>(false);
+  const [DisplayGraph, setDisplayGraph] = useState<boolean>(false);
   const { id } = useParams();
   const { user } = useAuthContext();
   const navigate = useNavigate();
@@ -136,50 +138,68 @@ export const TreeNodesReports = () => {
   };
 
   function handle_open_view_description(node_id: number): void {
-    setNodeId(node_id);
-
-    setNodeSettings(false);
-    setDisplayComments(false);
-
-    setDisplayDesc(true);
+    try {
+      setNodeId(node_id);
+      setNodeSettings(false);
+      setDisplayComments(false);
+      setDisplayDesc(true);
+    } catch (error) {
+      console.log("Error in handle_open_view_description:", error);
+    }
   }
 
   function handle_close_view_description(): void {
-    setNodeId(null);
-
-    setDisplayDesc(false);
+    try {
+      setNodeId(null);
+      setDisplayDesc(false);
+    } catch (error) {
+      console.log("Error in handle_close_view_description:", error);
+    }
   }
 
   function handle_display_node_settings(): void {
-    setDisplayDesc(false);
-    setDisplayComments(false);
-
-    setNodeSettings(true);
+    try {
+      setDisplayDesc(false);
+      setDisplayComments(false);
+      setNodeSettings(true);
+    } catch (error) {
+      console.log("Error in handle_display_node_settings:", error);
+    }
   }
 
   function handle_display_comments(node_id: number): void {
-    setNodeId(node_id);
-    setDisplayDesc(false);
-    setNodeSettings(false);
-
-    setDisplayComments(true);
+    try {
+      setNodeId(node_id);
+      setDisplayDesc(false);
+      setNodeSettings(false);
+      setDisplayComments(true);
+    } catch (error) {
+      console.log("Error in handle_display_comments:", error);
+    }
   }
 
   function handle_close_comments(): void {
-    setNodeId(null);
+    try {
+      setNodeId(null);
+      setDisplayComments(false);
+    } catch (error) {
+      console.log("Error in handle_close_comments:", error);
+    }
+  }
 
-    setDisplayComments(false);
+  function handle_close_graph(): void {
+    try {
+      setDisplayGraph(false);
+    } catch (error) {
+      console.log("Error in handle_close_graph:", error);
+    }
   }
 
   useEffect(() => {
     get_reports_nodes();
-
     handle_close_view_description();
-
     handle_close_comments();
-
     const intervalId = setInterval(get_reports_nodes, 5000);
-
     return () => {
       clearInterval(intervalId);
     };
@@ -344,6 +364,18 @@ export const TreeNodesReports = () => {
                 >
                   <DeleteIcon sx={{ color: "white", opacity: "50%" }} />
                 </IconButton>
+
+                <IconButton
+                  onClick={() => setDisplayGraph(true)}
+                  sx={{
+                    color: "white",
+                    left: "190px",
+                    bottom: "0px",
+                    position: "absolute",
+                  }}
+                >
+                  <AutoGraphIcon />
+                </IconButton>
               </Box>
             ))}
           </div>
@@ -428,6 +460,8 @@ export const TreeNodesReports = () => {
           node_id={nodeId}
         />
       )}
+
+      {DisplayGraph && <h1>hey from graph</h1>}
 
       <ToastContainer
         position="bottom-right"
