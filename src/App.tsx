@@ -19,6 +19,7 @@ import { Create_Node_Rules } from "./pages/Create_Node_Rules";
 import { Create_Report_Rules } from "./pages/Create_Report_Rules";
 import { Display_Node_Rules } from "./pages/Display_Node_Rules";
 import { Display_Report_Rules } from "./pages/Display_Report_Rules";
+import { GraphView } from "./pages/GraphView";
 
 function App() {
   const { user } = useAuthContext();
@@ -35,6 +36,7 @@ function App() {
         <Route path="/display/node/rules/:id" element={user ? <Display_Node_Rules /> : <Navigate to={"/login"}/>}></Route>
         <Route path="/display/report/rules/:id/:report_id" element={user ? <Display_Report_Rules /> : <Navigate to={"/login"}/>}></Route>
         <Route path="/submit/report/rules/:id/:report_id" element={user ? <Create_Report_Rules /> : <Navigate to={"/login"}/>}></Route>
+        <Route path="/view/graph/:report_id" element={user ? <GraphView /> : <Navigate to={"/login"}/> }></Route>
         <Route path="/register" element={!user ?<Register /> : <Navigate to={"/"}/>}></Route>
         <Route path="/login" element={!user ? <Login /> :<Navigate to={"/"}/>}></Route>
         <Route path="/me" element={user ? <UserProfile /> :<Navigate to={"/"}/>}></Route>

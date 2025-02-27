@@ -18,11 +18,13 @@ interface TimeSeries {
 
 interface ModernChartProps {
   Data: TimeSeries[];
+  height: number
 }
 
-export const ModernChart = ({ Data }: ModernChartProps) => {
+
+export const ModernChart = ({ Data, height }: ModernChartProps) => {
   return (
-    <ResponsiveContainer width="100%" height={300}>
+    <ResponsiveContainer width="100%" height={height}>
       <AreaChart data={Data}>
         <CartesianGrid strokeDasharray="5 5" />
         <YAxis />

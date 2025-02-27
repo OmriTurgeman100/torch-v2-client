@@ -98,6 +98,7 @@ export const ReportGraph = ({ report_id, handle_close_graph }: ReportProps) => {
             </Typography>
 
             <IconButton
+              onClick={() => navigate(`/view/graph/${report_id}`)}
               sx={{
                 backgroundColor: "#e9ecef",
                 transition: "transform 0.3s ease, box-shadow 1s ease",
@@ -143,7 +144,7 @@ export const ReportGraph = ({ report_id, handle_close_graph }: ReportProps) => {
           </IconButton>
         </Box>
 
-        <ModernChart Data={Data} />
+        <ModernChart Data={Data} height={300} />
       </Box>
 
       <ToastContainer
