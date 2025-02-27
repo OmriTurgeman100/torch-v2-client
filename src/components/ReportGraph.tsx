@@ -3,18 +3,6 @@ import { get_graph_data_report } from "../services/Get-Report-Graph";
 import { toast, ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
 import { useAuthContext } from "../Context/UseAuthContext";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  AreaChart,
-  Area,
-} from "recharts";
 import { Box, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
@@ -22,6 +10,9 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { ModernChart } from "./ModernChart";
+import FullscreenIcon from "@mui/icons-material/Fullscreen";
+import { useNavigate } from "react-router-dom";
 
 interface ReportProps {
   report_id: string | null | undefined;
@@ -37,6 +28,7 @@ export const ReportGraph = ({ report_id, handle_close_graph }: ReportProps) => {
   const { user } = useAuthContext();
   const [Time, setTime] = useState<string>("1 days");
   const [Data, setData] = useState<TimeSeries[]>([]);
+  const navigate = useNavigate();
 
   const handleChange = (event: SelectChangeEvent) => {
     setTime(event.target.value as string);
@@ -68,34 +60,57 @@ export const ReportGraph = ({ report_id, handle_close_graph }: ReportProps) => {
       <Box
         sx={{
           backgroundColor: "white",
-          width: "fit-content",
           height: "fit-content",
+          width: "50%",
+          padding: "20px",
           margin: "auto",
-          padding: "10px",
-          boxShadow: 3,
-          borderRadius: "5px",
+          boxShadow: 1,
+          borderRadius: 5,
         }}
       >
         <Box
           sx={{
             display: "flex",
-            alignItems: "center",
             justifyContent: "flex-end",
-            gap: "15px",
+            gap: "20px",
+            alignItems: "center",
+            marginBottom: "25px",
           }}
         >
-          <Typography
-            variant="h4"
-            style={{
-              color: "black",
-              fontSize: "1.4rem",
-              letterSpacing: "1px",
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
               margin: "auto",
-              fontWeight: "bold",
+              gap: 1,
             }}
           >
-            Report TimeSeries Graph
-          </Typography>
+            <Typography
+              variant="h4"
+              style={{
+                color: "#333333",
+                fontSize: "1.4rem",
+                letterSpacing: "1px",
+                fontWeight: "bold",
+              }}
+            >
+              Report TimeSeries Graph
+            </Typography>
+
+            <IconButton
+              sx={{
+                backgroundColor: "#e9ecef",
+                transition: "transform 0.3s ease, box-shadow 1s ease",
+                "&:hover": {
+                  backgroundColor: "#e9ecef",
+                  transform: "scale(1.05)",
+                  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
+                },
+              }}
+            >
+              <FullscreenIcon sx={{ color: "#4361ee" }} />
+            </IconButton>
+          </Box>
 
           <FormControl sx={{ minWidth: "100px", width: "fit-content" }}>
             <InputLabel id="demo-simple-select-label">Time</InputLabel>
@@ -128,9 +143,7 @@ export const ReportGraph = ({ report_id, handle_close_graph }: ReportProps) => {
           </IconButton>
         </Box>
 
-        <AreaChart width={1000} height={500} data={Data}>
-          <Area type="monotone" dataKey="value" />
-        </AreaChart>
+        <ModernChart Data={Data} />
       </Box>
 
       <ToastContainer
