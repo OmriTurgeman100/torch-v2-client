@@ -10,7 +10,6 @@ export const tree_node_report_colors = (status: string) => {
       return "#00b894";
 
     default:
-      return "#00b894";
+      return "#4361ee";
   }
 };
- 
