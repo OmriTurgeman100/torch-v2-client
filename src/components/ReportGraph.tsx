@@ -3,6 +3,18 @@ import { get_graph_data_report } from "../services/Get-Report-Graph";
 import { toast, ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
 import { useAuthContext } from "../Context/UseAuthContext";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  AreaChart,
+  Area,
+} from "recharts";
 
 interface ReportProps {
   report_id: string | null | undefined;
@@ -21,7 +33,7 @@ export const ReportGraph = ({ report_id, handle_close_graph }: ReportProps) => {
   >([]);
   const fetch_report_graph = async () => {
     try {
-      const response = await get_graph_data_report(user.token, report_id);
+      const response = await get_graph_data_report(user.token, report_id, '2 days');
 
       setReportTimeSeriesData(response.time_series_data);
     } catch (error: any) {
@@ -35,6 +47,12 @@ export const ReportGraph = ({ report_id, handle_close_graph }: ReportProps) => {
 
   return (
     <div>
+      <div>
+        <AreaChart width={1000} height={500} data={ReportTimeSeriesData}>
+          <Area type="monotone" dataKey="value" />
+        </AreaChart>
+      </div>
+
       <h1>{report_id}</h1>
 
       <button onClick={handle_close_graph}>close</button>
