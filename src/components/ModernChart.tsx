@@ -32,7 +32,7 @@ export const ModernChart = ({ Data, height }: ModernChartProps) => {
           stroke="blue"
           fill="#4361ee"
           dataKey="value"
-          dot={{ r: 4 }}
+
         ></Area>
       </AreaChart>
     </ResponsiveContainer>
