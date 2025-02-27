@@ -7,25 +7,21 @@ export const post_report_from_menu = async (
   title: string,
   description: string
 ): Promise<any> => {
-  try {
-    const response = await api.post(
-      "/api/v1/reports/nodes/BlackBox",
-      {
-        parent: id,
-        report_id: report_id,
-        title: title,
-        description: description,
-        value: 0,
+  const response = await api.post(
+    "/api/v1/reports/nodes/BlackBox",
+    {
+      parent: id,
+      report_id: report_id,
+      title: title,
+      description: description,
+      value: 0,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    }
+  );
 
-    return response;
-  } catch (error) {
-    throw error;
-  }
+  return response;
 };

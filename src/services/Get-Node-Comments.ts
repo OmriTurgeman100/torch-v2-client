@@ -5,18 +5,14 @@ export const get_node_comments = async (
   node_id: any,
   filter: string
 ) => {
-  try {
-    const response = await api.get(
-      `/api/v1/reports/nodes/comments/${node_id}/${filter}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+  const response = await api.get(
+    `/api/v1/reports/nodes/comments/${node_id}/${filter}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+  return response.data;
 };

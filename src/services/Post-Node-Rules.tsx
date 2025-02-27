@@ -5,19 +5,15 @@ export const post_node_rules = async (
   id: string | undefined,
   payload: object
 ) => {
-  try {
-    const response = await api.post(
-      `/api/v1/reports/nodes/Rules/${id}`,
-      payload,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+  const response = await api.post(
+    `/api/v1/reports/nodes/Rules/${id}`,
+    payload,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
-    return response;
-  } catch (error) {
-    throw error;
-  }
+  return response;
 };

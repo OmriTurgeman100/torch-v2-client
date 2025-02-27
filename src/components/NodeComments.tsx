@@ -13,6 +13,7 @@ import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
 import TextField from "@mui/material/TextField";
 import { post_node_comment } from "../services/Post-Node-Comments";
 import CancelIcon from "@mui/icons-material/Cancel";
+import { handle_delete_node_comment } from "../services/Delete-Node-Comment";
 
 interface NodeCommentsProps {
   handle_close_comments: () => void;
@@ -63,7 +64,7 @@ export const NodeComments = ({
 
   const handle_delete_icon = async (comment_id: number) => {
     try {
-      console.log(comment_id);
+      await handle_delete_node_comment(user.token, comment_id);
     } catch (error: any) {
       toast.error(error.response.data.message);
     }
