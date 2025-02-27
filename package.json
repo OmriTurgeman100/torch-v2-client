@@ -15,7 +15,6 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.4.4",
     "@mui/material": "^6.4.4",
-    "@types/d3": "^7.4.3",
     "@types/react-tree-graph": "^8.0.0",
     "@xyflow/react": "^12.4.4",
     "axios": "^1.7.9",
@@ -41,6 +40,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
+    "@types/d3": "^7.4.3",
     "@types/dagre": "^0.7.52",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
