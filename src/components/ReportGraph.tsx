@@ -3,7 +3,7 @@ interface ReportProps {
   handle_close_graph: () => void;
 }
 
-export const ReportGraph = ({report_id, handle_close_graph}: ReportProps) => {
+export const ReportGraph = ({ report_id, handle_close_graph }: ReportProps) => {
   return (
     <div>
       <h1>{report_id}</h1>
