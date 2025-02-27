@@ -4,6 +4,7 @@ import { get_node_hierarchy } from "../services/Get-Node-Hierarchy";
 import { useAuthContext } from "../Context/UseAuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import { Bounce } from "react-toastify";
+import { node_colors } from "../utils/NodeColors";
 
 interface HierarchyData {
   id: number;
@@ -40,6 +41,10 @@ export const NodeHierarchy = () => {
 
   return (
     <div>
+      <div>
+
+      </div>
+
       <ToastContainer
         position="bottom-right"
         autoClose={5000}
