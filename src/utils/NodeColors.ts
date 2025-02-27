@@ -8,8 +8,7 @@ export const node_colors = (status: string) => {
       return "linear-gradient(135deg, #ff2600 0%, #e95d3a 100%)";
     case "up":
       return "linear-gradient(135deg, #00b894, #2ecc71)";
-
     default:
-      return "linear-gradient(135deg, #dee2e6, #adb5bd)";
+      return "linear-gradient(135deg,rgb(77, 85, 189), #2575fc)";
   }
 };
