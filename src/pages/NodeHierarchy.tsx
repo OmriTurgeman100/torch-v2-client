@@ -44,9 +44,13 @@ export const NodeHierarchy = () => {
     const root = d3
       .stratify<HierarchyData>()
       .id((d) => d.id.toString())
-      .parentId((d) => (d.parent !== null ? d.parent.toString() : null))(NodeHierarchy);
+      .parentId((d) => (d.parent !== null ? d.parent.toString() : null))(
+      NodeHierarchy
+    );
 
-    const treeLayout = d3.tree<d3.HierarchyNode<HierarchyData>>().size([600, 400]);
+    const treeLayout = d3
+      .tree<d3.HierarchyNode<HierarchyData>>()
+      .size([600, 400]);
     const treeData = treeLayout(d3.hierarchy(root));
 
     const svg = d3.select(svgRef.current);
@@ -90,14 +94,13 @@ export const NodeHierarchy = () => {
       .attr("text-anchor", "middle")
       .text((d) => d.data.data.title)
       .style("font-size", "12px");
-
   }, [NodeHierarchy]);
 
   return (
     <div>
       <h2>Tree Diagram</h2>
       <svg ref={svgRef} width={700} height={500} />
-      
+
       <ToastContainer
         position="bottom-right"
         autoClose={5000}
