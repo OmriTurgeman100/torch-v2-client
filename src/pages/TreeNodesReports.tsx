@@ -328,7 +328,8 @@ export const TreeNodesReports = () => {
                 sx={{
                   width: "200px",
                   height: "80px",
-                  background: node_colors(report.report_id),
+                  background:
+                    "linear-gradient(135deg,rgb(77, 85, 189), #2575fc)",
                   padding: "15px",
                   borderRadius: 1,
                   boxShadow: 5,
