@@ -5,7 +5,7 @@ import { useAuthContext } from "../Context/UseAuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import { Bounce } from "react-toastify";
 import * as d3 from "d3";
-import { node_colors } from "../utils/NodeColors"; // Import node_colors function
+import { tree_node_report_colors } from "../utils/TreeNodeReportColors";
 
 interface HierarchyData {
   id: number;
@@ -79,15 +79,7 @@ export const NodeHierarchy = () => {
       .append("circle")
       .attr("r", 10)
       .attr("fill", (d) => {
-        // Convert gradient-based colors to a solid color equivalent
-        const color = node_colors(d.data.data.status);
-        if (color.includes("linear-gradient")) {
-          if (d.data.data.status === "expired") return "#6c757d"; // Dark gray
-          if (d.data.data.status === "critical") return "#ff8800"; // Orange
-          if (d.data.data.status === "down") return "#ff2600"; // Red
-          if (d.data.data.status === "up") return "#00b894"; // Green
-          return "#dee2e6"; // Default gray
-        }
+        const color = tree_node_report_colors(d.data.data.status);
         return color;
       })
       .attr("stroke", "black");

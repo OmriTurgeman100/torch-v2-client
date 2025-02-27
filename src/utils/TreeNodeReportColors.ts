@@ -1,4 +1,4 @@
-export const tree_node_colors = (status: string) => {
+export const tree_node_report_colors = (status: string) => {
   switch (status) {
     case "expired":
       return "#6c757d";
