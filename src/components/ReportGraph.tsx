@@ -39,13 +39,6 @@ export const ReportGraph = ({ report_id, handle_close_graph }: ReportProps) => {
       const response = await get_graph_data_report(user.token, report_id, Time);
 
       setData(response.time_series_data);
-
-      toast.success("Time series data fetched!", {
-        style: {
-          backgroundColor: "#0047AB",
-          color: "white",
-        },
-      });
     } catch (error: any) {
       toast.error(error.response.data.message);
     }
@@ -122,9 +115,9 @@ export const ReportGraph = ({ report_id, handle_close_graph }: ReportProps) => {
               label="Time"
               onChange={handleChange}
             >
-              <MenuItem value={"7 days"}>7 days</MenuItem>
-              <MenuItem value={"3 days"}>3 days</MenuItem>
               <MenuItem value={"24 hours"}>24 hours</MenuItem>
+              <MenuItem value={"3 days"}>3 days</MenuItem>
+              <MenuItem value={"7 days"}>7 days</MenuItem>
             </Select>
           </FormControl>
 

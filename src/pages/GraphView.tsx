@@ -21,7 +21,7 @@ interface TimeSeries {
 
 export const GraphView = () => {
   const { user } = useAuthContext();
-  const [Time, setTime] = useState<string>("1 days");
+  const [Time, setTime] = useState<string>("24 hours");
   const [Data, setData] = useState<TimeSeries[]>([]);
   const { report_id } = useParams();
   const navigate = useNavigate();
@@ -30,20 +30,11 @@ export const GraphView = () => {
     setTime(event.target.value as string);
   };
 
-  console.log(report_id);
-
   const fetch_report_graph = async () => {
     try {
       const response = await get_graph_data_report(user.token, report_id, Time);
 
       setData(response.time_series_data);
-
-      toast.success("Time series data fetched!", {
-        style: {
-          backgroundColor: "#0047AB",
-          color: "white",
-        },
-      });
     } catch (error: any) {
       toast.error(error.response.data.message);
     }
@@ -120,9 +111,9 @@ export const GraphView = () => {
               label="Time"
               onChange={handleChange}
             >
-              <MenuItem value={"7 days"}>7 days</MenuItem>
-              <MenuItem value={"3 days"}>3 days</MenuItem>
               <MenuItem value={"24 hours"}>24 hours</MenuItem>
+              <MenuItem value={"3 days"}>3 days</MenuItem>
+              <MenuItem value={"7 days"}>7 days</MenuItem>
             </Select>
           </FormControl>
         </Box>
