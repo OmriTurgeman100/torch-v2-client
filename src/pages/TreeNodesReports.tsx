@@ -26,6 +26,7 @@ import { NodeDescription } from "../components/NodeDescription";
 import CommentIcon from "@mui/icons-material/Comment";
 import { NodeComments } from "../components/NodeComments";
 import AutoGraphIcon from "@mui/icons-material/AutoGraph";
+import { ReportGraph } from "../components/ReportGraph";
 
 interface sub_nodes {
   description: string;
@@ -461,7 +462,12 @@ export const TreeNodesReports = () => {
         />
       )}
 
-      {DisplayGraph && <h1>hey from graph</h1>}
+      {DisplayGraph && (
+        <ReportGraph
+          report_id={reportId}
+          handle_close_graph={handle_close_graph}
+        />
+      )}
 
       <ToastContainer
         position="bottom-right"
