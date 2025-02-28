@@ -17,3 +17,6 @@ spec:
       containers:
         - name: client
           image: omiturgeman100/client:latest
+          env:
+            - name: VITE_BACKEND
+              value: "http://server-service.default"
