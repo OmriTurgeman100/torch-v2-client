@@ -28,6 +28,7 @@ function App() {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
+      <>
       <Route path="/" element={<Navbar />}>
         <Route index element={user ? <Root /> : <Navigate to={"/login"}/>}></Route>
         <Route path=":id" element={user ? <TreeNodesReports /> : <Navigate to={"/login"}/>}></Route>
@@ -39,11 +40,12 @@ function App() {
         <Route path="/display/report/rules/:id/:report_id" element={user ? <Display_Report_Rules /> : <Navigate to={"/login"}/>}></Route>
         <Route path="/submit/report/rules/:id/:report_id" element={user ? <Create_Report_Rules /> : <Navigate to={"/login"}/>}></Route>
         <Route path="/view/graph/:report_id" element={user ? <GraphView /> : <Navigate to={"/login"}/> }></Route>
-        <Route path="/view/hierarchy/:node_id" element={user ? <NodeHierarchy /> : <Navigate to={"/login"}/> }></Route>
         <Route path="/register" element={!user ?<Register /> : <Navigate to={"/"}/>}></Route>
         <Route path="/login" element={!user ? <Login /> :<Navigate to={"/"}/>}></Route>
         <Route path="/me" element={user ? <UserProfile /> :<Navigate to={"/"}/>}></Route>
       </Route>
+      <Route path="/view/hierarchy/:node_id" element={user ? <NodeHierarchy /> : <Navigate to={"/login"}/> }></Route>
+    </>
     )
   );
 

@@ -6,6 +6,9 @@ import { ToastContainer, toast } from "react-toastify";
 import { Bounce } from "react-toastify";
 import * as d3 from "d3";
 import { tree_node_report_colors } from "../utils/TreeNodeReportColors";
+import { Box } from "@mui/material";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
 
 interface HierarchyData {
   id: number;
@@ -18,24 +21,39 @@ export const NodeHierarchy = () => {
   const { node_id } = useParams();
   const { user } = useAuthContext();
   const [NodeHierarchy, setNodeHierarchy] = useState<HierarchyData[]>([]);
+  const [width, setWidth] = useState<number>(1200);
+  const [height, setHeight] = useState<number>(800);
+
+  const [InitialWidth, setInitialWidth] = useState<number>(1300);
+  const [InitialHeigt, setInitialHeigt] = useState<number>(1000);
   const svgRef = useRef<SVGSVGElement | null>(null);
 
   const fetch_node_hierarchy = async () => {
     try {
       const response = await get_node_hierarchy(user.token, node_id);
       setNodeHierarchy(response.data);
-
-      toast.success("Path has been fetched!", {
-        style: { backgroundColor: "#0047AB", color: "white" },
-      });
     } catch (error: any) {
       toast.error(error.response.data.message);
     }
   };
 
+  function increase_dimensions(): void {
+    setInitialWidth(InitialWidth + 200);
+    setInitialHeigt(InitialHeigt + 200);
+    setWidth(width + 200);
+    setHeight(height + 200);
+  }
+
+  function decrease_dimensions(): void {
+    setInitialWidth(InitialWidth - 200);
+    setInitialHeigt(InitialHeigt - 200);
+    setWidth(width - 200);
+    setHeight(height - 200);
+  }
+
   useEffect(() => {
     fetch_node_hierarchy();
-  }, [node_id]);
+  }, [node_id, width, height]);
 
   useEffect(() => {
     if (!NodeHierarchy.length || !svgRef.current) return;
@@ -48,15 +66,16 @@ export const NodeHierarchy = () => {
       NodeHierarchy
     );
 
+    // Update tree layout size
     const treeLayout = d3
       .tree<d3.HierarchyNode<HierarchyData>>()
-      .size([600, 400]);
+      .size([width, height]); // Increased size for larger tree layout
     const treeData = treeLayout(d3.hierarchy(root));
 
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove(); // Clear previous SVG content
 
-    const g = svg.append("g").attr("transform", "translate(50,50)");
+    const g = svg.append("g").attr("transform", "translate(100,100)"); // Adjust position if needed
 
     // Draw links
     g.selectAll(".link")
@@ -81,7 +100,7 @@ export const NodeHierarchy = () => {
 
     nodes
       .append("circle")
-      .attr("r", 10)
+      .attr("r", 20) // Increased node size for better visibility
       .attr("fill", (d) => {
         const color = tree_node_report_colors(d.data.data.status);
         return color;
@@ -90,17 +109,30 @@ export const NodeHierarchy = () => {
 
     nodes
       .append("text")
-      .attr("dy", -15)
+      .attr("dy", -20) // Adjusted position for text
       .attr("text-anchor", "middle")
       .text((d) => d.data.data.title)
-      .style("font-size", "12px");
+      .style("font-size", "18px"); // Increased text size for better readability
   }, [NodeHierarchy]);
 
   return (
-    <div>
-      <h2>Tree Diagram</h2>
-      <svg ref={svgRef} width={700} height={500} />
-
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        position: "relative",
+      }}
+    >
+      <svg ref={svgRef} width={InitialWidth} height={InitialHeigt} />
+      <ButtonGroup
+        sx={{ position: "fixed", bottom: "15px", right: "15px" }}
+        variant="contained"
+        aria-label="Basic button group"
+      >
+        <Button onClick={() => increase_dimensions()}>+</Button>
+        <Button onClick={() => decrease_dimensions()}>-</Button>
+      </ButtonGroup>
       <ToastContainer
         position="bottom-right"
         autoClose={5000}
@@ -114,6 +146,6 @@ export const NodeHierarchy = () => {
         theme="colored"
         transition={Bounce}
       />
-    </div>
+    </Box>
   );
 };
