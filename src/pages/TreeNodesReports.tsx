@@ -27,6 +27,7 @@ import CommentIcon from "@mui/icons-material/Comment";
 import { NodeComments } from "../components/NodeComments";
 import AutoGraphIcon from "@mui/icons-material/AutoGraph";
 import { ReportGraph } from "../components/ReportGraph";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
 
 interface sub_nodes {
   description: string;
@@ -279,6 +280,13 @@ export const TreeNodesReports = () => {
                   sx={{ left: "160px", bottom: "0px", position: "absolute" }}
                 >
                   <CommentIcon sx={{ color: "white", opacity: "50%" }} />
+                </IconButton>
+
+                <IconButton
+                  onClick={() => navigate(`/view/hierarchy/1538`)}
+                  sx={{ left: "160px", bottom: "35px", position: "absolute" }}
+                >
+                  <AccountTreeIcon sx={{ color: "white", opacity: "50%" }} />
                 </IconButton>
               </Box>
             ))}
