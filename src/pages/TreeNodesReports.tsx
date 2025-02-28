@@ -283,7 +283,7 @@ export const TreeNodesReports = () => {
                 </IconButton>
 
                 <IconButton
-                  onClick={() => navigate(`/view/hierarchy/1538`)}
+                  onClick={() => navigate(`/view/hierarchy/${node.node_id}`)}
                   sx={{ left: "160px", bottom: "35px", position: "absolute" }}
                 >
                   <AccountTreeIcon sx={{ color: "white", opacity: "50%" }} />
