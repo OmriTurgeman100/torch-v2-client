@@ -112,7 +112,7 @@ export const NodeHierarchy = () => {
       .attr("dy", -20) // Adjusted position for text
       .attr("text-anchor", "middle")
       .text((d) => d.data.data.title)
-      .style("font-size", "18px"); 
+      .style("font-size", "18px");
   }, [NodeHierarchy]);
 
   return (
