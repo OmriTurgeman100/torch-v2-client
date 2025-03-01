@@ -126,7 +126,7 @@ export const Root = () => {
       <ButtonGroup
         variant="contained"
         aria-label="Loading button group"
-        sx={{ position: "absolute", bottom: 10, right: 10 }}
+        sx={{ position: "fixed", bottom: 10, right: 10 }}
       >
         <Button loading loadingPosition="start" startIcon={<SaveIcon />}>
           Rules

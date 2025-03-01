@@ -243,7 +243,7 @@ export const TreeNodesReports = () => {
         }}
       >
         <IconButton onClick={() => navigate("/")}>
-          <HomeIcon sx={{ color: "#4361ee" }}/>
+          <HomeIcon sx={{ color: "#4361ee" }} />
           <ArrowRightIcon sx={{ color: "#4361ee" }} />
         </IconButton>
 
@@ -446,7 +446,7 @@ export const TreeNodesReports = () => {
           <ButtonGroup
             variant="contained"
             aria-label="Loading button group"
-            sx={{ position: "absolute", bottom: 10, right: 10 }}
+            sx={{ position: "fixed", bottom: 10, right: 10 }}
           >
             <Button loading loadingPosition="start" startIcon={<SaveIcon />}>
               Nodes
