@@ -67,7 +67,7 @@ export const Root = () => {
   }, [user.token]);
 
   return (
-    <div>
+    <Box>
       <div className="grid-container">
         {RootNodes.map((node) => (
           <Box
@@ -150,6 +150,6 @@ export const Root = () => {
         theme="colored"
         transition={Bounce}
       />
-    </div>
+    </Box>
   );
 };
