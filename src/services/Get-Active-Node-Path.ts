@@ -7,5 +7,5 @@ export const get_active_node_path = async (token: string, node_id: any) => {
     },
   });
 
-  return response;
+  return response.data;
 };

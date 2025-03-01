@@ -28,6 +28,7 @@ import { NodeComments } from "../components/NodeComments";
 import AutoGraphIcon from "@mui/icons-material/AutoGraph";
 import { ReportGraph } from "../components/ReportGraph";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
+import { get_active_node_path } from "../services/Get-Active-Node-Path";
 
 interface sub_nodes {
   description: string;
@@ -55,7 +56,8 @@ interface data {
 }
 
 interface path {
-  id: number;
+  node_id: number;
+  parent: number;
   title: string;
 }
 
@@ -82,6 +84,16 @@ export const TreeNodesReports = () => {
       if (response.data.reports.length > 0) {
         setReportId(response.data.reports[0].report_id);
       }
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
+  };
+
+  const get_selected_node_path = async () => {
+    try {
+      const response = await get_active_node_path(user.token, id);
+
+      setPath(response.data);
     } catch (error: any) {
       toast.error(error.response.data.message);
     }
@@ -205,6 +217,7 @@ export const TreeNodesReports = () => {
 
   useEffect(() => {
     get_reports_nodes();
+    get_selected_node_path();
     handle_close_view_description();
     handle_close_comments();
     const intervalId = setInterval(get_reports_nodes, 5000);
