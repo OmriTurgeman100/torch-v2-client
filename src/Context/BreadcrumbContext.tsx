@@ -8,11 +8,11 @@ import {
 
 export const BreadCrumbContext = createContext<any>(null);
 
-export const Breadcrumb = ({ children }: any) => {
+export const BreadcrumbProvider = ({ children }: any) => {
   const [BreadCrumbPath, setBreadCrumbPath] = useState<string>("");
   return (
-    <div>
-      <h1>breadcrumb</h1>
-    </div>
+    <BreadCrumbContext.Provider value={BreadCrumbPath}>
+      {children}
+    </BreadCrumbContext.Provider>
   );
 };
