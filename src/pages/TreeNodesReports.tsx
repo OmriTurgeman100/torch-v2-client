@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetch_nodes_report } from "../services/Get-Nodes-Reports";
 import { useAuthContext } from "../hooks/UseAuthContext";
-import { UseBreadCrumbContext } from "../hooks/UseBreadCrumbContext";
 import { Typography, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import { node_colors } from "../utils/NodeColors";
@@ -66,7 +65,6 @@ export const TreeNodesReports = () => {
   const [DisplayGraph, setDisplayGraph] = useState<boolean>(false);
   const { id } = useParams();
   const { user } = useAuthContext();
-  const { BreadCrumbPath, setBreadCrumbPath } = UseBreadCrumbContext();
   const navigate = useNavigate();
 
   const get_reports_nodes = async () => {
@@ -211,7 +209,6 @@ export const TreeNodesReports = () => {
 
   return (
     <>
-      <h1>{BreadCrumbPath}</h1>
       {Data?.nodes && Data.nodes.length > 0 && (
         <div>
           <div className="grid-container">

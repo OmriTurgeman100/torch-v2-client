@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetch_root_nodes } from "../services/Get-Root-Nodes";
 import { useAuthContext } from "../hooks/UseAuthContext";
-import { UseBreadCrumbContext } from "../hooks/UseBreadCrumbContext";
 import { Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Typography } from "@mui/material";
@@ -30,7 +29,6 @@ interface RootNode {
 
 export const Root = () => {
   const { user } = useAuthContext();
-  const { setBreadCrumbPath } = UseBreadCrumbContext();
   const [RootNodes, setRootNodes] = useState<RootNode[]>([]);
   const navigate = useNavigate();
 
@@ -85,11 +83,7 @@ export const Root = () => {
               position: "relative",
             }}
           >
-            <Link
-              to={`/${node.node_id}`}
-              key={node.node_id}
-              onClick={() => setBreadCrumbPath(node.title)}
-            >
+            <Link to={`/${node.node_id}`} key={node.node_id}>
               <Typography
                 variant="h4"
                 style={{
