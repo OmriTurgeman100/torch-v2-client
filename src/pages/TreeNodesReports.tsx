@@ -29,6 +29,8 @@ import AutoGraphIcon from "@mui/icons-material/AutoGraph";
 import { ReportGraph } from "../components/ReportGraph";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import { get_active_node_path } from "../services/Get-Active-Node-Path";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import HomeIcon from "@mui/icons-material/Home";
 
 interface sub_nodes {
   description: string;
@@ -229,12 +231,18 @@ export const TreeNodesReports = () => {
   return (
     <>
       <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+        <HomeIcon />
+        <ArrowRightIcon />
         {path.map((node, index) => (
-          <Link to={`/${node.node_id}`} key={node.node_id}>
-            <Typography key={index} variant="h6">
-              {node.title} {index < path.length - 1 && ">>"}
-            </Typography>
-          </Link>
+          <Box
+            key={node.node_id}
+            sx={{ display: "flex", alignItems: "center", gap: 1 }}
+          >
+            <Link to={`/${node.node_id}`}>
+              <Typography variant="h6">{node.title}</Typography>
+            </Link>
+            {index < path.length - 1 && <ArrowRightIcon />}
+          </Box>
         ))}
       </Box>
 
