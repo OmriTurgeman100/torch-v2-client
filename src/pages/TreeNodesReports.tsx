@@ -230,7 +230,9 @@ export const TreeNodesReports = () => {
 
   return (
     <>
-      <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+      <Box
+        sx={{ display: "flex", alignItems: "center", gap: 1, margin: "15px", padding: "5px", backgroundColor: "#f8f9fa", width: "fit-content", borderRadius: 5 }}
+      >
         <IconButton onClick={() => navigate("/")}>
           <HomeIcon />
           <ArrowRightIcon />
@@ -242,7 +244,7 @@ export const TreeNodesReports = () => {
             sx={{ display: "flex", alignItems: "center", gap: 1 }}
           >
             <Link to={`/${node.node_id}`}>
-              <Typography variant="h6">{node.title}</Typography>
+              <Typography sx={{color: "black"}} variant="h6">{node.title}</Typography>
             </Link>
             {index < path.length - 1 && <ArrowRightIcon />}
           </Box>
