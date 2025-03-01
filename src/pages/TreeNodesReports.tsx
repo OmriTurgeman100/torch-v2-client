@@ -54,6 +54,11 @@ interface data {
   nodes?: sub_nodes[];
 }
 
+interface path {
+  id: number;
+  title: string;
+}
+
 export const TreeNodesReports = () => {
   const [Data, setData] = useState<data | null>(null);
   const [reportId, setReportId] = useState<string | null>();
@@ -63,6 +68,7 @@ export const TreeNodesReports = () => {
   const [DisplayDesc, setDisplayDesc] = useState<boolean>(false);
   const [DisplayComments, setDisplayComments] = useState<boolean>(false);
   const [DisplayGraph, setDisplayGraph] = useState<boolean>(false);
+  const [path, setPath] = useState<path[]>([]);
   const { id } = useParams();
   const { user } = useAuthContext();
   const navigate = useNavigate();
