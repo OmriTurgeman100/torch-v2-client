@@ -231,8 +231,11 @@ export const TreeNodesReports = () => {
   return (
     <>
       <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-        <HomeIcon />
-        <ArrowRightIcon />
+        <IconButton onClick={() => navigate("/")}>
+          <HomeIcon />
+          <ArrowRightIcon />
+        </IconButton>
+
         {path.map((node, index) => (
           <Box
             key={node.node_id}
