@@ -85,7 +85,11 @@ export const Root = () => {
               position: "relative",
             }}
           >
-            <Link to={`/${node.node_id}`} key={node.node_id}>
+            <Link
+              to={`/${node.node_id}`}
+              key={node.node_id}
+              onClick={() => setBreadCrumbPath(node.title)}
+            >
               <Typography
                 variant="h4"
                 style={{
