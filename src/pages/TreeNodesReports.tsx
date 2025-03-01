@@ -231,11 +231,20 @@ export const TreeNodesReports = () => {
   return (
     <>
       <Box
-        sx={{ display: "flex", alignItems: "center", gap: 1, margin: "15px", padding: "5px", backgroundColor: "#f8f9fa", width: "fit-content", borderRadius: 5 }}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: 1,
+          margin: "15px",
+          padding: "5px",
+          backgroundColor: "#f8f9fa",
+          width: "fit-content",
+          borderRadius: 5,
+        }}
       >
         <IconButton onClick={() => navigate("/")}>
-          <HomeIcon />
-          <ArrowRightIcon />
+          <HomeIcon sx={{ color: "#4361ee" }}/>
+          <ArrowRightIcon sx={{ color: "#4361ee" }} />
         </IconButton>
 
         {path.map((node, index) => (
@@ -244,9 +253,13 @@ export const TreeNodesReports = () => {
             sx={{ display: "flex", alignItems: "center", gap: 1 }}
           >
             <Link to={`/${node.node_id}`}>
-              <Typography sx={{color: "black"}} variant="h6">{node.title}</Typography>
+              <Typography sx={{ color: "#333333" }} variant="h6">
+                {node.title}
+              </Typography>
             </Link>
-            {index < path.length - 1 && <ArrowRightIcon />}
+            {index < path.length - 1 && (
+              <ArrowRightIcon sx={{ color: "#4361ee" }} />
+            )}
           </Box>
         ))}
       </Box>
