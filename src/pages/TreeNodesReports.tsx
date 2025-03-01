@@ -228,6 +228,16 @@ export const TreeNodesReports = () => {
 
   return (
     <>
+      <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+        {path.map((node, index) => (
+          <Link to={`/${node.node_id}`} key={node.node_id}>
+            <Typography key={index} variant="h6">
+              {node.title} {index < path.length - 1 && ">>"}
+            </Typography>
+          </Link>
+        ))}
+      </Box>
+
       {Data?.nodes && Data.nodes.length > 0 && (
         <div>
           <div className="grid-container">
