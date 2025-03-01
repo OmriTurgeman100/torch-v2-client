@@ -5,7 +5,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useEffect, useState } from "react";
 import { get_node_description } from "../services/Get-Node-Description";
-import { useAuthContext } from "../Context/UseAuthContext";
+import { useAuthContext } from "../hooks/UseAuthContext";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import CheckIcon from "@mui/icons-material/Check";

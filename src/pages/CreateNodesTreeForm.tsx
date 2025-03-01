@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
-import { useAuthContext } from "../Context/UseAuthContext";
+import { useAuthContext } from "../hooks/UseAuthContext";
 import { useParams } from "react-router-dom";
 import { post_nodes } from "../services/Post-Nodes";
 

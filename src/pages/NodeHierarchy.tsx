@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { get_node_hierarchy } from "../services/Get-Node-Hierarchy";
-import { useAuthContext } from "../Context/UseAuthContext";
+import { useAuthContext } from "../hooks/UseAuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import { Bounce } from "react-toastify";
 import * as d3 from "d3";
