@@ -15,18 +15,18 @@ export const authReducer = (state: any, action: any) => {
 
 export const AuthContextProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(authReducer, { user: null });
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       dispatch({ type: "LOGIN", payload: { token } });
     }
-    setLoading(false); 
+    setLoading(false);
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>;
   }
 
   return (
