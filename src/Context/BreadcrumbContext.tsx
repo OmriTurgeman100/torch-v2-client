@@ -6,7 +6,7 @@ import {
   useContext,
 } from "react";
 
-const BreadCrumbContext = createContext<any>(null);
+export const BreadCrumbContext = createContext<any>(null);
 
 export const BreadcrumbProvider = ({ children }: any) => {
   const [BreadCrumbPath, setBreadCrumbPath] = useState<string>("");
