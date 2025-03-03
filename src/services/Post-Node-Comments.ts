@@ -6,7 +6,7 @@ export const post_node_comment = async (
   comment: string
 ) => {
   const response = await api.post(
-    `/api/v1/reports/nodes/comments/${node_id}/null`,
+    `/api/v1/reports/nodes/comments/${node_id}`,
     { comment: comment },
     {
       headers: {

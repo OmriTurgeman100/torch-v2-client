@@ -6,7 +6,7 @@ export const get_node_comments = async (
   filter: string
 ) => {
   const response = await api.get(
-    `/api/v1/reports/nodes/comments/${node_id}/${filter}`,
+    `/api/v1/reports/nodes/comments/${node_id}/?filter=${filter}`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
