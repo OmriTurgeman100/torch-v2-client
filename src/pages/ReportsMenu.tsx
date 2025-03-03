@@ -10,6 +10,14 @@ import { post_report_from_menu } from "../services/Post-Menu-Report";
 import { ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
 import { toast } from "react-toastify";
+import { tree_node_report_colors } from "../utils/TreeNodeReportColors";
+import { get_active_node_path } from "../services/Get-Active-Node-Path";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import HomeIcon from "@mui/icons-material/Home";
+import CircleIcon from "@mui/icons-material/Circle";
+import IconButton from "@mui/material/IconButton";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface Report {
   report_id: string;
@@ -17,19 +25,39 @@ interface Report {
   description: string;
 }
 
+interface path {
+  node_id: number;
+  parent: number;
+  title: string;
+  status: string;
+}
+
 export const ReportsMenu = () => {
   const { user } = useAuthContext();
   const [reports, setReports] = useState<Report[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [path, setPath] = useState<path[]>([]);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const fetch_reports = async () => {
     const response = await fetch_report_menu(user.token);
     setReports(response.data.reports);
   };
 
+  const get_selected_node_path = async () => {
+    try {
+      const response = await get_active_node_path(user.token, id);
+
+      setPath(response.data);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
+  };
+
   useEffect(() => {
     fetch_reports();
+    get_selected_node_path();
   }, [id]);
 
   const filteredReports = reports.filter((report) =>
@@ -63,6 +91,42 @@ export const ReportsMenu = () => {
 
   return (
     <div>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: 1,
+          margin: "15px",
+          padding: "5px",
+          backgroundColor: "#f8f9fa",
+          width: "fit-content",
+          borderRadius: 5,
+        }}
+      >
+        <IconButton onClick={() => navigate("/")}>
+          <HomeIcon sx={{ color: "#4361ee" }} />
+          <ArrowRightIcon sx={{ color: "#4361ee" }} />
+        </IconButton>
+
+        {path.map((node, index) => (
+          <Box
+            key={node.node_id}
+            sx={{ display: "flex", alignItems: "center", gap: 1 }}
+          >
+            <Link to={`/${node.node_id}`}>
+              <Typography sx={{ color: "#333333" }} variant="h6">
+                {node.title}
+              </Typography>
+            </Link>
+
+            <CircleIcon sx={{ color: tree_node_report_colors(node.status) }} />
+
+            {index < path.length - 1 && (
+              <ArrowRightIcon sx={{ color: "#4361ee" }} />
+            )}
+          </Box>
+        ))}
+      </Box>
       <Box
         sx={{
           backgroundColor: "white",
