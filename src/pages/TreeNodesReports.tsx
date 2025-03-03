@@ -61,6 +61,7 @@ interface path {
   node_id: number;
   parent: number;
   title: string;
+  status: string;
 }
 
 export const TreeNodesReports = () => {
@@ -257,6 +258,10 @@ export const TreeNodesReports = () => {
                 {node.title}
               </Typography>
             </Link>
+
+            <Typography sx={{ color: "#333333" }} variant="h6">
+              {node.status}
+            </Typography>
             {index < path.length - 1 && (
               <ArrowRightIcon sx={{ color: "#4361ee" }} />
             )}
