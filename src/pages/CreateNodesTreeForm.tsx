@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -14,6 +14,12 @@ import { useParams } from "react-router-dom";
 import { post_nodes } from "../services/Post-Nodes";
 import { tree_node_report_colors } from "../utils/TreeNodeReportColors";
 import { get_active_node_path } from "../services/Get-Active-Node-Path";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import HomeIcon from "@mui/icons-material/Home";
+import CircleIcon from "@mui/icons-material/Circle";
+import IconButton from "@mui/material/IconButton";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface path {
   node_id: number;
@@ -26,6 +32,7 @@ export const CreateNodesTreeForm = () => {
   const { user } = useAuthContext();
   const { id } = useParams();
   const [path, setPath] = useState<path[]>([]);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -75,6 +82,43 @@ export const CreateNodesTreeForm = () => {
 
   return (
     <div>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: 1,
+          margin: "15px",
+          padding: "5px",
+          backgroundColor: "#f8f9fa",
+          width: "fit-content",
+          borderRadius: 5,
+        }}
+      >
+        <IconButton onClick={() => navigate("/")}>
+          <HomeIcon sx={{ color: "#4361ee" }} />
+          <ArrowRightIcon sx={{ color: "#4361ee" }} />
+        </IconButton>
+
+        {path.map((node, index) => (
+          <Box
+            key={node.node_id}
+            sx={{ display: "flex", alignItems: "center", gap: 1 }}
+          >
+            <Link to={`/${node.node_id}`}>
+              <Typography sx={{ color: "#333333" }} variant="h6">
+                {node.title}
+              </Typography>
+            </Link>
+
+            <CircleIcon sx={{ color: tree_node_report_colors(node.status) }} />
+
+            {index < path.length - 1 && (
+              <ArrowRightIcon sx={{ color: "#4361ee" }} />
+            )}
+          </Box>
+        ))}
+      </Box>
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box
           sx={{
