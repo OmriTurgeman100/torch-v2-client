@@ -6,16 +6,26 @@ import type { FieldValues } from "react-hook-form";
 import formsvg from "../assets/form.svg";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
 import { useAuthContext } from "../hooks/UseAuthContext";
 import { useParams } from "react-router-dom";
 import { post_nodes } from "../services/Post-Nodes";
+import { tree_node_report_colors } from "../utils/TreeNodeReportColors";
+import { get_active_node_path } from "../services/Get-Active-Node-Path";
+
+interface path {
+  node_id: number;
+  parent: number;
+  title: string;
+  status: string;
+}
 
 export const CreateNodesTreeForm = () => {
   const { user } = useAuthContext();
   const { id } = useParams();
+  const [path, setPath] = useState<path[]>([]);
   const {
     register,
     handleSubmit,
@@ -43,6 +53,16 @@ export const CreateNodesTreeForm = () => {
     }
   };
 
+  const get_selected_node_path = async () => {
+    try {
+      const response = await get_active_node_path(user.token, id);
+
+      setPath(response.data);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
+  };
+
   useEffect(() => {
     if (errors.title) {
       toast.error(errors.title.message as string);
@@ -50,6 +70,7 @@ export const CreateNodesTreeForm = () => {
     if (errors.description) {
       toast.error(errors.description.message as string);
     }
+    get_selected_node_path();
   }, [errors]);
 
   return (
