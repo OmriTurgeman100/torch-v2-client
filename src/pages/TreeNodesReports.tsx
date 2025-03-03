@@ -31,6 +31,8 @@ import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import { get_active_node_path } from "../services/Get-Active-Node-Path";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import HomeIcon from "@mui/icons-material/Home";
+import CircleIcon from "@mui/icons-material/Circle";
+import { tree_node_report_colors } from "../utils/TreeNodeReportColors";
 
 interface sub_nodes {
   description: string;
@@ -259,9 +261,8 @@ export const TreeNodesReports = () => {
               </Typography>
             </Link>
 
-            <Typography sx={{ color: "#333333" }} variant="h6">
-              {node.status}
-            </Typography>
+            <CircleIcon sx={{ color: tree_node_report_colors(node.status) }} />
+
             {index < path.length - 1 && (
               <ArrowRightIcon sx={{ color: "#4361ee" }} />
             )}
