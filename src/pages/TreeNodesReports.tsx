@@ -425,7 +425,11 @@ export const TreeNodesReports = () => {
                     letterSpacing: "1px",
                   }}
                 >
-                  {report.value}
+                  {report.value == 0
+                    ? `false (${report.value})`
+                    : report.value == 1
+                    ? `true (${report.value})`
+                    : report.value}
                 </Typography>
 
                 <IconButton
