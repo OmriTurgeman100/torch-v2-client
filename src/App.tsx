@@ -9,7 +9,7 @@ import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Root } from "./pages/Root";
 import { UserProfile } from "./pages/UserProfile";
-import { useAuthContext } from "./hooks/useAuthContext";
+import { useAuthContext } from "./hooks/UseAuthContext";
 import { TreeNodesReports } from "./pages/TreeNodesReports";
 import { Navigate } from "react-router-dom";
 import { CreateNodesForm } from "./pages/CreateNodesFormRoot";
