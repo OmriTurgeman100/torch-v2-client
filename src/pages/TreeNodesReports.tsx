@@ -376,7 +376,7 @@ export const TreeNodesReports = () => {
           <IconButton
             onClick={handle_display_node_settings}
             sx={{
-              position: "absolute",
+              position: "fixed",
               bottom: 70,
               right: 10,
               backgroundColor: "white",

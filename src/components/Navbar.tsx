@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import torchLogo_light from "../assets/torch-light.svg";
-import torchLogo_dark from "../assets/Torch-dark.svg"
+import torchLogo_dark from "../assets/Torch-dark.svg";
 import { useAuthContext } from "../hooks/UseAuthContext";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
@@ -17,15 +17,17 @@ import { fetch_user_photo } from "../services/Get-User-Photo";
 import { useThemeContext } from "../hooks/useThemeContext";
 import { ThemeColors } from "../utils/ThemeColors";
 import moment from "moment";
+import Switch from "@mui/material/Switch";
 
 export const Navbar = () => {
   const { user, dispatch } = useAuthContext();
-  const { Theme } = useThemeContext();
+  const { Theme, setTheme } = useThemeContext();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
   const [time, setTime] = useState<string>(moment().format("HH:mm:ss"));
   const navigate = useNavigate();
   const settings = ["Profile", "Account", "Home", "Logout"];
+  const label = { inputProps: { "aria-label": "Switch demo" } };
 
   let decoded: any = null;
   let username: any = null;
@@ -204,6 +206,8 @@ export const Navbar = () => {
       <main>
         <Outlet />
       </main>
+
+      <Switch sx={{ position: "fixed", bottom: 50, right: 70 }} {...label} defaultChecked />
     </div>
   );
 };
