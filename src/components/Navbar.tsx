@@ -21,7 +21,7 @@ import Switch from "@mui/material/Switch";
 
 export const Navbar = () => {
   const { user, dispatch } = useAuthContext();
-  const { Theme, setTheme } = useThemeContext();
+  const { Theme, setTheme, Change_Theme } = useThemeContext();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
   const [time, setTime] = useState<string>(moment().format("HH:mm:ss"));
@@ -207,7 +207,12 @@ export const Navbar = () => {
         <Outlet />
       </main>
 
-      <Switch sx={{ position: "fixed", bottom: 50, right: 70 }} {...label} defaultChecked />
+      <Switch
+        onChange={() => Change_Theme()}
+        sx={{ position: "fixed", bottom: 50, right: 70 }}
+        {...label}
+        defaultChecked
+      />
     </div>
   );
 };
