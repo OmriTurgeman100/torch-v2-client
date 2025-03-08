@@ -1,4 +1,4 @@
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useAuthContext } from "../hooks/UseAuthContext";
 import { fetch_user_details } from "../services/Get-User-Details";
 import { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";

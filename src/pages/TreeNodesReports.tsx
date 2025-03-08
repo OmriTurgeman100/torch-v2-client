@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetch_nodes_report } from "../services/Get-Nodes-Reports";
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useAuthContext } from "../hooks/UseAuthContext";
 import { Typography, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import { node_colors } from "../utils/NodeColors";
