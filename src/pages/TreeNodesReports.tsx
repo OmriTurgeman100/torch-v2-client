@@ -251,7 +251,7 @@ export const TreeNodesReports = () => {
         }}
       >
         <IconButton onClick={() => navigate("/")}>
-          <HomeIcon sx={{ color: ThemeColorsInputs(Theme) }} />
+          <HomeIcon sx={{ color: ThemeColorsText(Theme) }} />
           <ArrowRightIcon sx={{ color: "#4361ee" }} />
         </IconButton>
 
