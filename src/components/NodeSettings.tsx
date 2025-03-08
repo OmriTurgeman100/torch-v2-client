@@ -15,6 +15,7 @@ import { Bounce } from "react-toastify";
 import { ThemeColors } from "../utils/ThemeColors";
 import { ThemeColorsText } from "../utils/ThemeColors";
 import { ThemeColorsInputs } from "../utils/ThemeColors";
+import { ThemeColorsButtons } from "../utils/ThemeColors";
 
 interface SubNode {
   description: string;
@@ -243,16 +244,16 @@ export const NodeSettingsComponent = ({
               <IconButton
                 onClick={handle_new_template}
                 sx={{
-                  backgroundColor: "#e9ecef",
+                  backgroundColor: ThemeColorsButtons(Theme),
                   transition: "transform 0.3s ease, box-shadow 1s ease",
                   "&:hover": {
-                    backgroundColor: "#e9ecef",
+                    backgroundColor: ThemeColorsButtons(Theme),
                     transform: "scale(1.05)",
                     boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
                   },
                 }}
               >
-                <CheckIcon sx={{ color: "#4361ee" }} />
+                <CheckIcon sx={{ color: ThemeColorsText(Theme) }} />
               </IconButton>
             </Box>
             <TextField
@@ -286,16 +287,16 @@ export const NodeSettingsComponent = ({
               <IconButton
                 onClick={() => setDisplayTemplates(true)}
                 sx={{
-                  backgroundColor: "#e9ecef",
+                  backgroundColor: ThemeColorsButtons(Theme),
                   transition: "transform 0.3s ease, box-shadow 1s ease",
                   "&:hover": {
-                    backgroundColor: "#e9ecef",
+                    backgroundColor: ThemeColorsButtons(Theme),
                     transform: "scale(1.05)",
                     boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
                   },
                 }}
               >
-                <AddIcon sx={{ color: "#4361ee" }} />
+                <AddIcon sx={{ color: ThemeColorsText(Theme) }} />
               </IconButton>
             </Box>
             <Box

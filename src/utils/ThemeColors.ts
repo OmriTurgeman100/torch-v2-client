@@ -27,3 +27,11 @@ export const ThemeColorsInputs = (Theme: String) => {
   }
 };
 
+export const ThemeColorsButtons = (Theme: String) => {
+  switch (Theme) {
+    case "light":
+      return "#e9ecef";
+    case "dark":
+      return "#6c757d";
+  }
+};
