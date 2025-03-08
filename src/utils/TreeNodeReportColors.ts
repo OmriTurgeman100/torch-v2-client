@@ -8,8 +8,7 @@ export const tree_node_report_colors = (status: string) => {
       return "#ff2600";
     case "up":
       return "#00b894";
-
     default:
-      return "#4361ee";
+      return null;
   }
 };

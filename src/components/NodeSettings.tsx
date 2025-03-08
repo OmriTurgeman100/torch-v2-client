@@ -4,13 +4,15 @@ import Checkbox from "@mui/material/Checkbox";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useState, useEffect } from "react";
 import { get_nodes_templates } from "../services/Get-Nodes-Templates";
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useAuthContext } from "../hooks/UseAuthContext";
+import { useThemeContext } from "../hooks/useThemeContext";
 import CheckIcon from "@mui/icons-material/Check";
 import { post_nodes } from "../services/Post-Nodes";
 import AddIcon from "@mui/icons-material/Add";
 import { post_node_template } from "../services/Post-Node-Template";
 import { toast, ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
+import { ThemeColors } from "../utils/ThemeColors";
 
 interface SubNode {
   description: string;
@@ -46,6 +48,7 @@ export const NodeSettingsComponent = ({
   const [DisplayTemplates, setDisplayTemplates] = useState<boolean>(false);
   const [TemplateFormData, setTemplateFormData] = useState<string>("");
   const { user } = useAuthContext();
+  const { Theme } = useThemeContext();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   function insert_node(node_id: number, isChecked: boolean): void {
@@ -125,7 +128,7 @@ export const NodeSettingsComponent = ({
     <div>
       <Box
         sx={{
-          backgroundColor: "white",
+          backgroundColor: ThemeColors(Theme),
           width: "700px",
           height: "fit-content",
           margin: "20px auto",
