@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import torchLogo_light from "../assets/torch-light.svg";
 import torchLogo_dark from "../assets/Torch-dark.svg";
-import Torched from "../assets/Torch-cropped.svg"
 import { useAuthContext } from "../hooks/UseAuthContext";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
@@ -17,12 +16,14 @@ import Avatar from "@mui/material/Avatar";
 import { fetch_user_photo } from "../services/Get-User-Photo";
 import { useThemeContext } from "../hooks/useThemeContext";
 import { ThemeColors } from "../utils/ThemeColors";
+import { ThemeColorsText } from "../utils/ThemeColors";
+import { ThemeColorsInputs } from "../utils/ThemeColors";
 import moment from "moment";
 import Switch from "@mui/material/Switch";
 
 export const Navbar = () => {
   const { user, dispatch } = useAuthContext();
-  const { Theme, setTheme, Change_Theme } = useThemeContext();
+  const { Theme, Change_Theme } = useThemeContext();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
   const [time, setTime] = useState<string>(moment().format("HH:mm:ss"));
@@ -139,7 +140,7 @@ export const Navbar = () => {
         <Typography
           variant="h6"
           style={{
-            color: "#333333",
+            color: ThemeColorsInputs(Theme),
             left: "50%",
             fontSize: "1.5rem",
             letterSpacing: "1px",
