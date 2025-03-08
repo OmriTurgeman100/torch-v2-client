@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useAuthContext } from "../hooks/UseAuthContext";
+import { useThemeContext } from "../hooks/useThemeContext";
 import { useParams } from "react-router-dom";
 import { fetch_report_menu } from "../services/Get-Reports-Menu";
 import { post_report_from_menu } from "../services/Post-Menu-Report";
@@ -18,6 +19,7 @@ import CircleIcon from "@mui/icons-material/Circle";
 import IconButton from "@mui/material/IconButton";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { ThemeColors } from "../utils/ThemeColors";
 
 interface Report {
   report_id: string;
@@ -34,6 +36,7 @@ interface path {
 
 export const ReportsMenu = () => {
   const { user } = useAuthContext();
+  const {Theme} = useThemeContext()
   const [reports, setReports] = useState<Report[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [path, setPath] = useState<path[]>([]);
@@ -129,7 +132,7 @@ export const ReportsMenu = () => {
       </Box>
       <Box
         sx={{
-          backgroundColor: "white",
+          backgroundColor: ThemeColors(Theme),
           width: "500px",
           height: "500px",
           margin: "40px auto",
