@@ -168,7 +168,7 @@ export const ReportsMenu = () => {
             <Box
               key={report.report_id}
               sx={{
-                backgroundColor: "#e9ecef",
+                backgroundColor: ThemeColorsButtons(Theme),
                 width: "96%",
                 padding: "5px",
                 display: "flex",
@@ -206,7 +206,7 @@ export const ReportsMenu = () => {
               <Typography
                 variant="h6"
                 style={{
-                  color: "#333333",
+                  color: ThemeColorsText(Theme),
                   textAlign: "center",
                   fontSize: "1.3rem",
                   letterSpacing: "1px",
