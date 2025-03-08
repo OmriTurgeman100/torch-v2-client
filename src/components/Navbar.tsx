@@ -209,7 +209,7 @@ export const Navbar = () => {
 
       <Switch
         onChange={() => Change_Theme()}
-        sx={{ position: "fixed", bottom: 50, right: 70 }}
+        sx={{ position: "fixed", bottom: 5, left: 0 }}
         {...label}
         defaultChecked
       />
