@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
-import { useAuthContext } from "../hooks/UseAuthContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 import { useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { fetch_rules } from "../services/Get-Rules";

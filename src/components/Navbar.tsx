@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import torchLogo from "../assets/torchi.svg";
-import { useAuthContext } from "../hooks/UseAuthContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import MenuItem from "@mui/material/MenuItem";

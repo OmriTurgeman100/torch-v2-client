@@ -4,7 +4,7 @@ import Checkbox from "@mui/material/Checkbox";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useState, useEffect } from "react";
 import { get_nodes_templates } from "../services/Get-Nodes-Templates";
-import { useAuthContext } from "../hooks/UseAuthContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 import CheckIcon from "@mui/icons-material/Check";
 import { post_nodes } from "../services/Post-Nodes";
 import AddIcon from "@mui/icons-material/Add";

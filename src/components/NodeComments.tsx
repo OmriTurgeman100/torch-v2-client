@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { useAuthContext } from "../hooks/UseAuthContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 import { useState, useEffect } from "react";
 import { get_node_comments } from "../services/Get-Node-Comments";
 import { ToastContainer } from "react-toastify";
