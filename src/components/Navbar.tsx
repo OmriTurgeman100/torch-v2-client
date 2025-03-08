@@ -2,7 +2,8 @@ import { NavLink } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
-import torchLogo from "../assets/torchi.svg";
+import torchLogo_light from "../assets/torch-light.svg";
+import torchLogo_dark from "../assets/Torch-dark.svg"
 import { useAuthContext } from "../hooks/UseAuthContext";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
@@ -13,10 +14,13 @@ import IconButton from "@mui/material/IconButton";
 import { useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import { fetch_user_photo } from "../services/Get-User-Photo";
+import { useThemeContext } from "../hooks/useThemeContext";
+import { ThemeColors } from "../utils/ThemeColors";
 import moment from "moment";
 
 export const Navbar = () => {
   const { user, dispatch } = useAuthContext();
+  const { Theme } = useThemeContext();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
   const [time, setTime] = useState<string>(moment().format("HH:mm:ss"));
@@ -99,16 +103,24 @@ export const Navbar = () => {
           gap: "15px",
           padding: "15px",
           height: "40px",
-          backgroundColor: "white",
+          backgroundColor: ThemeColors(Theme),
           justifyContent: "flex-end",
           boxShadow: 1,
         }}
       >
-        <img
-          src={torchLogo}
-          alt="Torch logo"
-          style={{ height: "40px", width: "30", marginRight: "auto" }}
-        />
+        {Theme === "light" ? (
+          <img
+            src={torchLogo_light}
+            alt="Torch logo"
+            style={{ height: "40px", width: "30", marginRight: "auto" }}
+          />
+        ) : (
+          <img
+            src={torchLogo_dark}
+            alt="Torch logo"
+            style={{ height: "40px", width: "30", marginRight: "auto" }}
+          />
+        )}
 
         {!user && (
           <>
