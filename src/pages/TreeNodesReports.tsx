@@ -261,7 +261,7 @@ export const TreeNodesReports = () => {
             sx={{ display: "flex", alignItems: "center", gap: 1 }}
           >
             <Link to={`/${node.node_id}`}>
-              <Typography sx={{ color: ThemeColorsText(Theme) }} variant="h6">
+              <Typography sx={{ color: ThemeColorsInputs(Theme) }} variant="h6">
                 {node.title}
               </Typography>
             </Link>
