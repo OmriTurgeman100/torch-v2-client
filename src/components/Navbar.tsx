@@ -119,7 +119,7 @@ export const Navbar = () => {
           />
         ) : (
           <img
-            src={Torched}
+            src={torchLogo_dark}
             alt="Torch logo"
             style={{ height: "40px", width: "30", marginRight: "auto" }}
           />
