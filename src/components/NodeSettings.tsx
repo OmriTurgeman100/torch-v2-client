@@ -13,6 +13,8 @@ import { post_node_template } from "../services/Post-Node-Template";
 import { toast, ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
 import { ThemeColors } from "../utils/ThemeColors";
+import { ThemeColorsText } from "../utils/ThemeColors";
+import { ThemeColorsInputs } from "../utils/ThemeColors";
 
 interface SubNode {
   description: string;
@@ -149,7 +151,7 @@ export const NodeSettingsComponent = ({
           <Typography
             variant="h4"
             style={{
-              color: "#4361ee",
+              color: ThemeColorsText(Theme),
               fontSize: "1.5rem",
               margin: "auto",
               letterSpacing: "1px",
@@ -174,7 +176,7 @@ export const NodeSettingsComponent = ({
         <Typography
           variant="h4"
           style={{
-            color: "#4361ee",
+            color: ThemeColorsText(Theme),
             fontSize: "1.0rem",
             margin: "auto",
             letterSpacing: "1px",
@@ -200,7 +202,7 @@ export const NodeSettingsComponent = ({
               <Typography
                 variant="h4"
                 style={{
-                  color: "#333333",
+                  color: ThemeColorsInputs(Theme),
                   fontSize: "1.5rem",
                   letterSpacing: "1px",
                 }}
@@ -216,7 +218,7 @@ export const NodeSettingsComponent = ({
           ))}
 
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <ExpandMoreIcon />
+            <ExpandMoreIcon sx={{ color: ThemeColorsInputs(Theme) }} />
             <Checkbox
               {...label}
               checked={nodesList.includes(parent_to_number)}
@@ -230,7 +232,7 @@ export const NodeSettingsComponent = ({
               <Typography
                 variant="h4"
                 style={{
-                  color: "#4361ee",
+                  color: ThemeColorsText(Theme),
                   fontSize: "1.0rem",
                   letterSpacing: "1px",
                 }}
@@ -257,7 +259,14 @@ export const NodeSettingsComponent = ({
               value={TemplateFormData}
               onChange={(event) => setTemplateFormData(event.target.value)}
               placeholder="Server Uptime, Firewall Monitoring, SSL Certificate Expiry"
-              sx={{ width: "100%", marginTop: "15px", marginBottom: "15px" }}
+              sx={{
+                width: "100%",
+                marginTop: "15px",
+                marginBottom: "15px",
+                "& .MuiInputBase-input": {
+                  color: ThemeColorsInputs(Theme),
+                },
+              }}
             />
           </Box>
         ) : (
@@ -266,7 +275,7 @@ export const NodeSettingsComponent = ({
               <Typography
                 variant="h4"
                 style={{
-                  color: "#4361ee",
+                  color: ThemeColorsText(Theme),
                   fontSize: "1.0rem",
                   letterSpacing: "1px",
                 }}
@@ -307,7 +316,7 @@ export const NodeSettingsComponent = ({
                   <Typography
                     variant="h4"
                     style={{
-                      color: "#333333",
+                      color: ThemeColorsInputs(Theme),
                       fontSize: "1.5rem",
                       letterSpacing: "1px",
                     }}
@@ -330,7 +339,7 @@ export const NodeSettingsComponent = ({
         <Typography
           variant="h4"
           style={{
-            color: "#4361ee",
+            color: ThemeColorsText(Theme),
             fontSize: "1.0rem",
             margin: "auto",
             letterSpacing: "1px",
@@ -343,7 +352,13 @@ export const NodeSettingsComponent = ({
           value={CustomTemplateList}
           onChange={(event) => setCustomTemplateList(event.target.value)}
           placeholder="status code, kubernetes, storage, utilization"
-          sx={{ width: "100%", marginTop: "15px" }}
+          sx={{
+            width: "100%",
+            marginTop: "15px",
+            "& .MuiInputBase-input": {
+              color: ThemeColorsInputs(Theme),
+            },
+          }}
         />
 
         <IconButton

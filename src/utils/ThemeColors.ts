@@ -8,3 +8,22 @@ export const ThemeColors = (Theme: String) => {
       return null;
   }
 };
+
+export const ThemeColorsText = (Theme: String) => {
+  switch (Theme) {
+    case "light":
+      return "#4361ee";
+    case "dark":
+      return "#f8f9fa";
+  }
+};
+
+export const ThemeColorsInputs = (Theme: String) => {
+  switch (Theme) {
+    case "light":
+      return "#333333";
+    case "dark":
+      return "#f8f9fa";
+  }
+};
+
