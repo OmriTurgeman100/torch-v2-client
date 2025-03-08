@@ -500,21 +500,21 @@ export const TreeNodesReports = () => {
             </Button>
           </ButtonGroup>
           <IconButton
-            onClick={() => setNodeSettings(true)}
+            onClick={handle_display_node_settings}
             sx={{
-              position: "absolute",
+              position: "fixed",
               bottom: 70,
               right: 10,
-              backgroundColor: "white",
+              backgroundColor: ThemeColors(Theme),
               transition: "transform 0.3s ease, box-shadow 1s ease",
               "&:hover": {
-                backgroundColor: "white",
+                backgroundColor: ThemeColorsButtons(Theme),
                 transform: "translateY(-15px)",
                 boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
               },
             }}
           >
-            <SettingsSuggestIcon sx={{ color: "#4361ee", fontSize: 30 }} />
+            <SettingsSuggestIcon sx={{ color: ThemeColorsText(Theme), fontSize: 30 }} />
           </IconButton>
         </div>
       )}
