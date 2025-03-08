@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetch_nodes_report } from "../services/Get-Nodes-Reports";
 import { useAuthContext } from "../hooks/UseAuthContext";
+import { useThemeContext } from "../hooks/useThemeContext";
 import { Typography, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import { node_colors } from "../utils/NodeColors";
@@ -33,6 +34,9 @@ import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import HomeIcon from "@mui/icons-material/Home";
 import CircleIcon from "@mui/icons-material/Circle";
 import { tree_node_report_colors } from "../utils/TreeNodeReportColors";
+import { ThemeColors } from "../utils/ThemeColors";
+import { ThemeColorsInputs } from "../utils/ThemeColors";
+import { ThemeColorsText } from "../utils/ThemeColors";
 
 interface sub_nodes {
   description: string;
@@ -78,6 +82,7 @@ export const TreeNodesReports = () => {
   const [path, setPath] = useState<path[]>([]);
   const { id } = useParams();
   const { user } = useAuthContext();
+  const { Theme } = useThemeContext();
   const navigate = useNavigate();
 
   const get_reports_nodes = async () => {
@@ -240,13 +245,13 @@ export const TreeNodesReports = () => {
           gap: 1,
           margin: "15px",
           padding: "5px",
-          backgroundColor: "#f8f9fa",
+          backgroundColor: ThemeColors(Theme),
           width: "fit-content",
           borderRadius: 5,
         }}
       >
         <IconButton onClick={() => navigate("/")}>
-          <HomeIcon sx={{ color: "#4361ee" }} />
+          <HomeIcon sx={{ color: ThemeColorsInputs(Theme) }} />
           <ArrowRightIcon sx={{ color: "#4361ee" }} />
         </IconButton>
 
@@ -256,7 +261,7 @@ export const TreeNodesReports = () => {
             sx={{ display: "flex", alignItems: "center", gap: 1 }}
           >
             <Link to={`/${node.node_id}`}>
-              <Typography sx={{ color: "#333333" }} variant="h6">
+              <Typography sx={{ color: ThemeColorsText(Theme) }} variant="h6">
                 {node.title}
               </Typography>
             </Link>
