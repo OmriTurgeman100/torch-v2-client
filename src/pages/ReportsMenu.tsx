@@ -20,6 +20,9 @@ import IconButton from "@mui/material/IconButton";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ThemeColors } from "../utils/ThemeColors";
+import { ThemeColorsText } from "../utils/ThemeColors";
+import { ThemeColorsInputs } from "../utils/ThemeColors";
+import { ThemeColorsButtons } from "../utils/ThemeColors";
 
 interface Report {
   report_id: string;
@@ -36,7 +39,7 @@ interface path {
 
 export const ReportsMenu = () => {
   const { user } = useAuthContext();
-  const {Theme} = useThemeContext()
+  const { Theme } = useThemeContext();
   const [reports, setReports] = useState<Report[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [path, setPath] = useState<path[]>([]);
@@ -101,13 +104,13 @@ export const ReportsMenu = () => {
           gap: 1,
           margin: "15px",
           padding: "5px",
-          backgroundColor: "#f8f9fa",
+          backgroundColor: ThemeColors(Theme),
           width: "fit-content",
           borderRadius: 5,
         }}
       >
         <IconButton onClick={() => navigate("/")}>
-          <HomeIcon sx={{ color: "#4361ee" }} />
+          <HomeIcon sx={{ color: ThemeColorsText(Theme) }} />
           <ArrowRightIcon sx={{ color: "#4361ee" }} />
         </IconButton>
 
@@ -117,7 +120,7 @@ export const ReportsMenu = () => {
             sx={{ display: "flex", alignItems: "center", gap: 1 }}
           >
             <Link to={`/${node.node_id}`}>
-              <Typography sx={{ color: "#333333" }} variant="h6">
+              <Typography sx={{ color: ThemeColorsInputs(Theme) }} variant="h6">
                 {node.title}
               </Typography>
             </Link>
