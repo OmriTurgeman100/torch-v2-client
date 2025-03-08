@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import torchLogo_light from "../assets/torch-light.svg";
 import torchLogo_dark from "../assets/Torch-dark.svg";
+import Torched from "../assets/Torch-cropped.svg"
 import { useAuthContext } from "../hooks/UseAuthContext";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
@@ -118,7 +119,7 @@ export const Navbar = () => {
           />
         ) : (
           <img
-            src={torchLogo_dark}
+            src={Torched}
             alt="Torch logo"
             style={{ height: "40px", width: "30", marginRight: "auto" }}
           />
