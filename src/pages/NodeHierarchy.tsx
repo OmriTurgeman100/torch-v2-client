@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { get_node_hierarchy } from "../services/Get-Node-Hierarchy";
 import { useAuthContext } from "../hooks/UseAuthContext";
+import { useThemeContext } from "../hooks/useThemeContext";
 import { ToastContainer, toast } from "react-toastify";
 import { Bounce } from "react-toastify";
 import * as d3 from "d3";
@@ -9,6 +10,7 @@ import { tree_node_report_colors } from "../utils/TreeNodeReportColors";
 import { Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
+import { ThemeColorsInputs } from "../utils/ThemeColors";
 
 interface HierarchyData {
   id: number;
@@ -20,10 +22,10 @@ interface HierarchyData {
 export const NodeHierarchy = () => {
   const { node_id } = useParams();
   const { user } = useAuthContext();
+  const { Theme } = useThemeContext();
   const [NodeHierarchy, setNodeHierarchy] = useState<HierarchyData[]>([]);
   const [width, setWidth] = useState<number>(1200);
   const [height, setHeight] = useState<number>(800);
-
   const [InitialWidth, setInitialWidth] = useState<number>(1300);
   const [InitialHeigt, setInitialHeigt] = useState<number>(1000);
   const svgRef = useRef<SVGSVGElement | null>(null);
