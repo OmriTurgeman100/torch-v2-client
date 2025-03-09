@@ -10,7 +10,7 @@ import { tree_node_report_colors } from "../utils/TreeNodeReportColors";
 import { Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import { ThemeColorsInputs, ThemeColorsText } from "../utils/ThemeColors";
+import { ThemeColorsText } from "../utils/ThemeColors";
 
 interface HierarchyData {
   id: number;
