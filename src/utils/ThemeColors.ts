@@ -4,8 +4,18 @@ export const ThemeColors = (Theme: String) => {
       return "#f8f9fa";
     case "dark":
       return "#343a40";
-    default:
-      return null;
+    case "light text":
+      return "#4361ee";
+    case "dark text":
+      return "#f8f9fa";
+    case "light inputs":
+      return "#333333";
+    case "dark inputs":
+      return "#f8f9fa";
+    case "light button":
+      return "#e9ecef";
+    case "dark button":
+      return "#6c757d";
   }
 };
 

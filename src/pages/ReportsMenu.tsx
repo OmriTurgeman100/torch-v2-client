@@ -110,7 +110,7 @@ export const ReportsMenu = () => {
         }}
       >
         <IconButton onClick={() => navigate("/")}>
-          <HomeIcon sx={{ color: ThemeColorsText(Theme) }} />
+          <HomeIcon sx={{ color: ThemeColors(`${Theme} text`) }} />
           <ArrowRightIcon sx={{ color: "#4361ee" }} />
         </IconButton>
 

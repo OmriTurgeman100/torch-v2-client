@@ -152,7 +152,7 @@ export const NodeSettingsComponent = ({
           <Typography
             variant="h4"
             style={{
-              color: ThemeColorsText(Theme),
+              color: ThemeColors(`${Theme} text`),
               fontSize: "1.5rem",
               margin: "auto",
               letterSpacing: "1px",
@@ -177,7 +177,7 @@ export const NodeSettingsComponent = ({
         <Typography
           variant="h4"
           style={{
-            color: ThemeColorsText(Theme),
+            color: ThemeColors(`${Theme} text`),
             fontSize: "1.0rem",
             margin: "auto",
             letterSpacing: "1px",
@@ -203,7 +203,7 @@ export const NodeSettingsComponent = ({
               <Typography
                 variant="h4"
                 style={{
-                  color: ThemeColorsInputs(Theme),
+                  color: ThemeColors(`${Theme} inputs`),
                   fontSize: "1.5rem",
                   letterSpacing: "1px",
                 }}
@@ -219,7 +219,7 @@ export const NodeSettingsComponent = ({
           ))}
 
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <ExpandMoreIcon sx={{ color: ThemeColorsInputs(Theme) }} />
+            <ExpandMoreIcon sx={{ color: ThemeColors(`${Theme} inputs`) }} />
             <Checkbox
               {...label}
               checked={nodesList.includes(parent_to_number)}
@@ -233,7 +233,7 @@ export const NodeSettingsComponent = ({
               <Typography
                 variant="h4"
                 style={{
-                  color: ThemeColorsText(Theme),
+                  color: ThemeColors(`${Theme} text`),
                   fontSize: "1.0rem",
                   letterSpacing: "1px",
                 }}
@@ -276,7 +276,7 @@ export const NodeSettingsComponent = ({
               <Typography
                 variant="h4"
                 style={{
-                  color: ThemeColorsText(Theme),
+                  color: ThemeColors(`${Theme} text`),
                   fontSize: "1.0rem",
                   letterSpacing: "1px",
                 }}
@@ -287,16 +287,16 @@ export const NodeSettingsComponent = ({
               <IconButton
                 onClick={() => setDisplayTemplates(true)}
                 sx={{
-                  backgroundColor: ThemeColorsButtons(Theme),
+                  backgroundColor: ThemeColors(`${Theme} button`),
                   transition: "transform 0.3s ease, box-shadow 1s ease",
                   "&:hover": {
-                    backgroundColor: ThemeColorsButtons(Theme),
+                    backgroundColor: ThemeColors(`${Theme} button`),
                     transform: "scale(1.05)",
                     boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
                   },
                 }}
               >
-                <AddIcon sx={{ color: ThemeColorsText(Theme) }} />
+                <AddIcon sx={{ color: ThemeColors(`${Theme} text`) }} />
               </IconButton>
             </Box>
             <Box
@@ -317,7 +317,7 @@ export const NodeSettingsComponent = ({
                   <Typography
                     variant="h4"
                     style={{
-                      color: ThemeColorsInputs(Theme),
+                      color: ThemeColors(`${Theme} inputs`),
                       fontSize: "1.5rem",
                       letterSpacing: "1px",
                     }}
@@ -357,7 +357,7 @@ export const NodeSettingsComponent = ({
             width: "100%",
             marginTop: "15px",
             "& .MuiInputBase-input": {
-              color: ThemeColorsInputs(Theme),
+              color: ThemeColors(`${Theme} inputs`),
             },
           }}
         />
