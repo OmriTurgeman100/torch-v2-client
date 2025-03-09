@@ -115,7 +115,7 @@ export const NodeHierarchy = () => {
       .attr("text-anchor", "middle")
       .text((d) => d.data.data.title)
       .style("font-size", "18px")
-      .style("fill", ThemeColorsText(Theme)); // Change this to any color you like
+      .style("fill", ThemeColorsText(Theme));
   }, [NodeHierarchy]);
 
   return (
