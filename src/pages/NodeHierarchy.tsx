@@ -29,6 +29,7 @@ export const NodeHierarchy = () => {
   const [height, setHeight] = useState<number>(800);
   const [InitialWidth, setInitialWidth] = useState<number>(1300);
   const [InitialHeigt, setInitialHeigt] = useState<number>(1000);
+  const [InitialRadius, setInitialRadius] = useState<number>(20);
   const label = { inputProps: { "aria-label": "Switch demo" } };
   const svgRef = useRef<SVGSVGElement | null>(null);
 
@@ -104,7 +105,7 @@ export const NodeHierarchy = () => {
 
     nodes
       .append("circle")
-      .attr("r", 20) // Increased node size for better visibility
+      .attr("r", InitialRadius) // Increased node size for better visibility
       .attr("fill", (d) => {
         const color = tree_node_report_colors(d.data.data.status);
         return color;
@@ -118,7 +119,7 @@ export const NodeHierarchy = () => {
       .text((d) => d.data.data.title)
       .style("font-size", "18px")
       .style("fill", ThemeColorsText(Theme));
-  }, [NodeHierarchy, Theme]);
+  }, [NodeHierarchy, Theme, InitialRadius]);
 
   return (
     <div>
