@@ -16,7 +16,6 @@ import Avatar from "@mui/material/Avatar";
 import { fetch_user_photo } from "../services/Get-User-Photo";
 import { useThemeContext } from "../hooks/useThemeContext";
 import { ThemeColors } from "../utils/ThemeColors";
-import { ThemeColorsText } from "../utils/ThemeColors";
 import { ThemeColorsInputs } from "../utils/ThemeColors";
 import moment from "moment";
 import Switch from "@mui/material/Switch";

@@ -11,6 +11,7 @@ import { Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { ThemeColorsText } from "../utils/ThemeColors";
+import Switch from "@mui/material/Switch";
 
 interface HierarchyData {
   id: number;
@@ -22,12 +23,13 @@ interface HierarchyData {
 export const NodeHierarchy = () => {
   const { node_id } = useParams();
   const { user } = useAuthContext();
-  const { Theme } = useThemeContext();
+  const { Theme, Change_Theme } = useThemeContext();
   const [NodeHierarchy, setNodeHierarchy] = useState<HierarchyData[]>([]);
   const [width, setWidth] = useState<number>(1200);
   const [height, setHeight] = useState<number>(800);
   const [InitialWidth, setInitialWidth] = useState<number>(1300);
   const [InitialHeigt, setInitialHeigt] = useState<number>(1000);
+  const label = { inputProps: { "aria-label": "Switch demo" } };
   const svgRef = useRef<SVGSVGElement | null>(null);
 
   const fetch_node_hierarchy = async () => {
@@ -116,39 +118,48 @@ export const NodeHierarchy = () => {
       .text((d) => d.data.data.title)
       .style("font-size", "18px")
       .style("fill", ThemeColorsText(Theme));
-  }, [NodeHierarchy]);
+  }, [NodeHierarchy, Theme]);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        position: "relative",
-      }}
-    >
-      <svg ref={svgRef} width={InitialWidth} height={InitialHeigt} />
-      <ButtonGroup
-        sx={{ position: "fixed", bottom: "15px", right: "15px" }}
-        variant="contained"
-        aria-label="Basic button group"
+    <div>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          position: "relative",
+        }}
       >
-        <Button onClick={() => increase_dimensions()}>+</Button>
-        <Button onClick={() => decrease_dimensions()}>-</Button>
-      </ButtonGroup>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-        transition={Bounce}
+        <svg ref={svgRef} width={InitialWidth} height={InitialHeigt} />
+        <ButtonGroup
+          sx={{ position: "fixed", bottom: "15px", right: "15px" }}
+          variant="contained"
+          aria-label="Basic button group"
+        >
+          <Button onClick={() => increase_dimensions()}>+</Button>
+          <Button onClick={() => decrease_dimensions()}>-</Button>
+        </ButtonGroup>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          transition={Bounce}
+        />
+      </Box>
+
+      <Switch
+        onChange={() => Change_Theme()}
+        sx={{ position: "fixed", bottom: 5, left: 0 }}
+        {...label}
+        defaultChecked
       />
-    </Box>
+    </div>
   );
 };
