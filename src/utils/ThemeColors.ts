@@ -22,9 +22,11 @@ export const ThemeColors = (Theme: String) => {
 export const ThemeColorsText = (Theme: String) => {
   switch (Theme) {
     case "light":
-      return "#4361ee";
+      return "#333333";
     case "dark":
       return "#f8f9fa";
+    default: 
+      return "#4361ee"
   }
 };
 

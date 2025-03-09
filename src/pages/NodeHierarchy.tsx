@@ -10,7 +10,7 @@ import { tree_node_report_colors } from "../utils/TreeNodeReportColors";
 import { Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import { ThemeColorsInputs } from "../utils/ThemeColors";
+import { ThemeColorsInputs, ThemeColorsText } from "../utils/ThemeColors";
 
 interface HierarchyData {
   id: number;
@@ -114,7 +114,8 @@ export const NodeHierarchy = () => {
       .attr("dy", -20) // Adjusted position for text
       .attr("text-anchor", "middle")
       .text((d) => d.data.data.title)
-      .style("font-size", "18px");
+      .style("font-size", "18px")
+      .style("fill", ThemeColorsText(Theme)); // Change this to any color you like
   }, [NodeHierarchy]);
 
   return (
